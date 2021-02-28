@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="bh_patient_registration_sequence" model="ir.sequence">
+            <field name="name">BH Patient Seq</field>
+            <field name="code">bh.medical.patient</field>
+            <field name="prefix">BH</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</odoo>
