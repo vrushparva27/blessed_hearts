@@ -2,3 +2,5 @@
 
 from . import patient
 from . import cardiac_tests_and_procedures
+from . import partner
+

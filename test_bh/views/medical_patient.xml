@@ -14,9 +14,9 @@
                            img_height="120" width="120" height="120"
                            widget="image"/>
                     <div class="oe_title">
-                        <div class="oe_edit_only">
-                            <label for="patient_id"/>
-                        </div>
+<!--                        <div class="oe_edit_only">-->
+<!--                            <label for="patient_id"/>-->
+<!--                        </div>-->
                         <h1>
                             <field style="width: 100%; text-transform: uppercase;" name="patient_id"
                                    default_focus="1" placeholder="Patient Name"/>
@@ -26,11 +26,12 @@
                     <notebook>
 
 
-                        <!--DemoGraphic Datay-->
+                        <!--DemoGraphic Data-->
                         <page string="DemoGraphic Data">
                             <group>
                                 <group>
                                     <field name="name"/>
+                                    <field name="patient_id" invisible="1"/>
                                     <field name="company_id" invisible="1"/>
                                     <field name="currency_id" invisible="1"/>
                                     <field name="date_of_birth"/>

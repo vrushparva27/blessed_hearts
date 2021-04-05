@@ -12,4 +12,3 @@ access_patient_cabg,patient.cabg,model_patient_cabg,base.group_user,1,1,1,1
 access_patient_other_tests,patient.other_tests,model_patient_other_tests,base.group_user,1,1,1,1
 access_patient_treatment_chart,patient.treatment.chart,model_patient_treatment_chart,base.group_user,1,1,1,1
 
-

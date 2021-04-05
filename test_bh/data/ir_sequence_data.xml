@@ -3,7 +3,7 @@
     <data noupdate="1">
         <record id="bh_patient_registration_sequence" model="ir.sequence">
             <field name="name">BH Patient Seq</field>
-            <field name="code">bh.medical.patient</field>
+            <field name="code">medical.patient</field>
             <field name="prefix">BH</field>
             <field name="padding">5</field>
         </record>

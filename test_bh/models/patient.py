@@ -6,7 +6,7 @@ from dateutil.relativedelta import relativedelta
 
 class MedicalPatient(models.Model):
     _name = 'medical.patient'
-    _rec_name = 'patient_id'
+    _rec_name = 'name'
 
     def start_treatment(self):
         return
@@ -197,7 +197,7 @@ class MedicalPatient(models.Model):
     cad = fields.Char("CAD")
     chf = fields.Char("CHF")
     refractory_angina = fields.Char("Refractory Angina")
-    
+
     mi = fields.Boolean("MI")
     mi_date = fields.Date(string='Date of MI')
 
@@ -208,7 +208,7 @@ class MedicalPatient(models.Model):
     ptca = fields.Boolean("PTCA")
     ptca_date = fields.Date(string='Date of PTCA')
     ptca_text = fields.Char("PTCA text")
-    
+
     medical_mx = fields.Boolean("Medical MX")
     medical_mx_text = fields.Char("Medical MX text")
 
@@ -237,7 +237,7 @@ class MedicalPatient(models.Model):
             age = str(rd.years) + "y" + " " + str(rd.months) + "m" + " " + str(rd.days) + "d"
             val.update({'age': age})
 
-        patient_id = self.env['ir.sequence'].next_by_code('bh.medical.patient')
+        patient_id = self.env['ir.sequence'].next_by_code('medical.patient')
         if patient_id:
             val.update({
                 'name': patient_id,
