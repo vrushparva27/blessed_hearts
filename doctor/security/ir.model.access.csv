@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_patient_consultation_detail,access_patient_consultation_detail,model_patient_consultation_detail,base.group_user,1,1,1,1
+access_patient_occupation,access_patient_occupation,model_patient_occupation,base.group_user,1,1,1,1
+access_patient_reference,access_patient_reference,model_patient_reference,base.group_user,1,1,1,1
+access_patient_cholesterol,access_patient_cholesterol,model_patient_cholesterol,base.group_user,1,1,1,1
+access_patient_diabetes,access_patient_diabetes,model_patient_diabetes,base.group_user,1,1,1,1
+access_patient_drug_allergie,access_patient_drug_allergie,model_patient_drug_allergie,base.group_user,1,1,1,1
+access_patient_mobile,access_patient_mobile,model_patient_mobile,base.group_user,1,1,1,1
+access_patient_treatment_chart,access_patient_treatment_chart,model_patient_treatment_chart,base.group_user,1,1,1,1

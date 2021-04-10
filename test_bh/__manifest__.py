@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
 
-    "name": "Vrushparva Vaishav",
+    "name": "Blessed Hearts",
     "version": "13.0.0.0",
     "currency": 'INR',
     "summary": "Based ",
@@ -10,7 +10,7 @@
     Blessed Hearts
 """,
 
-    "depends": ["base", "sale_management", "stock", "account"],
+    "depends": ["base"],
     "data": [
         'data/ir_sequence_data.xml',
         'views/medical_patient.xml',

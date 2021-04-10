@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="patient_consultation_detail_form" model="ir.ui.view">
+        <field name="name">patient.consultation.detail.form</field>
+        <field name="model">patient.consultation.detail</field>
+        <field name="arch" type="xml">
+            <form string="Patient Detail">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id" domain="[('is_patient', '=', True)]"
+                                   options="{'no_open':True,'no_create_edit':True}"/>
+                            <field name="age_years"/>
+                            <field name="gender"/>
+                            <field name="mobile"/>
+                        </group>
+                        <group>
+                            <field name="file_number"/>
+                            <field name="occupation_id"/>
+                            <field name="reference_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="page_1" string="Page 1">
+                            <group>
+                                <field name="cardiac_history"/>
+                                <field name="icu_stay"/>
+                            </group>
+                        </page>
+                        <page name="page_2" string="Page 2">
+                            <group>
+                                <field name="medical_surgical_history"/>
+                                <field name="signs_symptoms"/>
+                            </group>
+                        </page>
+                        <page name="page_3" string="Page 3">
+                            <group>
+                                <field name="nyha_class"/>
+                                <field name="ccs_angina_class"/>
+                                <!--<field name="no_hf"/>-->
+                                <field name="no_of_angina_episodes"/>
+                                <field name="no_of_sublingual_nitrate_spray"/>
+                                <!--<field name="spray_time_type"/>-->
+                                <field name="diagnosis"/>
+                                <field name="other_angina_diagnosis"/>
+                                <field name="date_of_diagnosis"/>
+                                <field name="mi"/>
+                                <field name="date_of_mi" attrs="{'invisible':[('mi', '!=', 'yes')]}"/>
+                                <field name="cabg_procedure"/>
+                                <field name="ptca_procedure"/>
+                                <field name="madical_management_procedure"/>
+                                <field name="history_ccf_other"/>
+                            </group>
+                        </page>
+
+                        <page name="page_4" string="Page 4">
+                            <group>
+                                <field name="stress_date" placeholder="e.g. Month/Date/Years"/>
+                                <field name="stress_test"/>
+                                <field name="echo"/>
+                                <field name="stress_echo_thallium_echo"/>
+                                <field name="cardiac_cath"/>
+                                <field name="ptca_stent"/>
+                                <field name="cabg"/>
+                                <field name="other_tests_procedures"/>
+                            </group>
+                        </page>
+
+                        <page name="page_5" string="Page 5">
+                            <div class="row">
+                                <div class="col-4">
+                                    <group>
+                                        <b>Father</b>
+                                        <field name="father_diabetes_mellitus"/>
+                                        <field name="father_diabetes_mellitus_age"
+                                               attrs="{'invisible': [('father_diabetes_mellitus', '!=', 'yes')]}"/>
+                                        <field name="father_hypertension"/>
+                                        <field name="father_hypertension_age"
+                                               attrs="{'invisible': [('father_hypertension', '!=', 'yes')]}"/>
+                                        <field name="father_colonary_artery_disease"/>
+                                        <field name="father_colonary_artery_disease_age"
+                                               attrs="{'invisible': [('father_colonary_artery_disease', '!=', 'yes')]}"/>
+                                        <field name="father_stroke"/>
+                                        <field name="father_stroke_age"
+                                               attrs="{'invisible': [('father_stroke', '!=', 'yes')]}"/>
+                                    </group>
+                                </div>
+                                <div class="col-4">
+                                    <group>
+                                        <b>Mother</b>
+                                        <field name="mother_diabetes_mellitus"/>
+                                        <field name="mother_diabetes_mellitus_age"
+                                               attrs="{'invisible': [('mother_diabetes_mellitus', '!=', 'yes')]}"/>
+                                        <field name="mother_hypertension"/>
+                                        <field name="mother_hypertension_age"
+                                               attrs="{'invisible': [('mother_hypertension', '!=', 'yes')]}"/>
+                                        <field name="mother_colonary_artery_disease"/>
+                                        <field name="mother_colonary_artery_disease_age"
+                                               attrs="{'invisible': [('mother_colonary_artery_disease', '!=', 'yes')]}"/>
+                                        <field name="mother_stroke"/>
+                                        <field name="mother_stroke_age"
+                                               attrs="{'invisible': [('mother_stroke', '!=', 'yes')]}"/>
+                                    </group>
+                                </div>
+                                <div class="col-4">
+                                    <group>
+                                        <b>Sibling</b>
+                                        <field name="sibling_diabetes_mellitus"/>
+                                        <field name="sibling_diabetes_mellitus_age"
+                                               attrs="{'invisible': [('sibling_diabetes_mellitus', '!=', 'yes')]}"/>
+                                        <field name="sibling_hypertension"/>
+                                        <field name="sibling_hypertension_age"
+                                               attrs="{'invisible': [('sibling_hypertension', '!=', 'yes')]}"/>
+                                        <field name="sibling_colonary_artery_disease"/>
+                                        <field name="sibling_colonary_artery_disease_age"
+                                               attrs="{'invisible': [('sibling_colonary_artery_disease', '!=', 'yes')]}"/>
+                                        <field name="sibling_stroke"/>
+                                        <field name="sibling_stroke_age"
+                                               attrs="{'invisible': [('sibling_stroke', '!=', 'yes')]}"/>
+                                    </group>
+                                </div>
+                            </div>
+                        </page>
+
+                        <page name="page_6" string="Page 6">
+                            <group>
+                                <group>
+                                    <field name="current_smoking_tabacco"/>
+                                    <field name="smoking_tabacco_per_day"
+                                           attrs="{'invisible': [('current_smoking_tabacco', '!=', 'yes')]}"/>
+                                    <field name="smoking_tabacco_desire_quit"
+                                           attrs="{'invisible': [('current_smoking_tabacco', '!=', 'yes')]}"/>
+                                    <field name="smoking_tabacco_date_to_quit"
+                                           attrs="{'invisible': [('current_smoking_tabacco', '!=', 'yes')]}"/>
+                                </group>
+                                <group attrs="{'invisible': [('current_smoking_tabacco', '!=', 'no')]}">
+                                    <field name="past_smoking_tabacco"
+                                           attrs="{'invisible': [('current_smoking_tabacco', '!=', 'no')]}"/>
+                                    <field name="past_smoking_tabacco_per_day"
+                                           attrs="{'invisible': [('past_smoking_tabacco', '!=', 'yes')]}"/>
+                                    <field name="smoking_tabacco_since_how_long"
+                                           attrs="{'invisible': [('past_smoking_tabacco', '!=', 'yes')]}"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page name="page_7" string="Page 7">
+                            <b>Blood Pressure</b>
+                            <group>
+                                <field name="hypertension"/>
+                                <field name="hypertension_since_how_long"
+                                       attrs="{'invisible': [('hypertension', '!=', True)]}"/>
+                                <field name="hypertension_medication"
+                                       attrs="{'invisible': [('hypertension', '!=', True)]}"/>
+                            </group>
+                        </page>
+
+                        <page name="page_8" string="Page 8">
+                            <group>
+                                <field name="cholesterol"/>
+                                <field name="patient_cholesterol_ids"
+                                       attrs="{'invisible': [('cholesterol', '!=', True)]}">
+                                    <tree editable="bottom">
+                                        <field name="cholesterol_date"/>
+                                        <field name="total_chol"/>
+                                        <field name="total_chol_uom_id"/>
+                                        <field name="cholesterol_ldl"/>
+                                        <field name="cholesterol_ldl_uom_id"/>
+                                        <field name="cholesterol_hdl"/>
+                                        <field name="cholesterol_hdl_uom_id"/>
+                                        <field name="cholesterol_triglycerides"/>
+                                        <field name="cholesterol_triglycerides_uom_id"/>
+                                        <field name="cholesterol_vldl"/>
+                                        <field name="cholesterol_vldl_uom_id"/>
+                                        <field name="cholesterol_other_test"/>
+                                        <field name="cholesterol_other_uom_id"/>
+                                        <field name="cholesterol_medications"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+
+                        <page name="page_9" string="Page 9">
+                            <group>
+                                <field name="patient_diabetes"/>
+                                <field name="diabetes_since_how_long"
+                                       attrs="{'invisible': [('patient_diabetes', '!=', True)]}"/>
+                                <field name="patient_diabetes_ids"
+                                       attrs="{'invisible': [('patient_diabetes', '!=', True)]}">
+                                    <tree editable="bottom">
+                                        <field name="diabetes_date"/>
+                                        <field name="fast_blood_sugar"/>
+                                        <field name="fast_blood_sugar_uom_id"/>
+                                        <field name="ppbs"/>
+                                        <field name="rbs"/>
+                                        <field name="hba1c"/>
+                                        <field name="mbs"/>
+                                    </tree>
+                                </field>
+                                <field name="diabetes_medication"
+                                       attrs="{'invisible': [('patient_diabetes', '!=', True)]}"/>
+                            </group>
+                        </page>
+
+                        <page name="page_10" string="Page 10">
+                            <b>Stree</b>
+                            <group>
+                                <field name="feel_stress"/>
+                                <field name="stress_rating"/>
+                                <field name="stress_family_related"/>
+                                <field name="stress_business_related"/>
+                                <field name="stress_finance_related"/>
+                                <field name="stress_other"/>
+                                <field name="other_stress" attrs="{'invisible': [('stress_other', '!=', True)]}"/>
+                            </group>
+                        </page>
+
+                        <page name="page_11" string="Page 11">
+                            <group>
+                                <field name="nutration_veg_non_veg"/>
+                                <field name="cooking_medium"/>
+                                <field name="consumption_oil_ghee"/>
+                            </group>
+                        </page>
+
+                        <page name="page_12" string="Page 12">
+                            <group>
+                                <field name="alcohol"/>
+                                <field name="alcohol_consumption" attrs="{'invisible': [('alcohol', '!=', True)]}"/>
+                                <field name="drinks_per_week"
+                                       attrs="{'invisible': [('alcohol_consumption', '!=', 'regular')]}"/>
+                            </group>
+                        </page>
+
+                        <page name="page_13" string="Page 13">
+                            <group>
+                                <field name="alcohol"/>
+                                <field name="alcohol_consumption" attrs="{'invisible': [('alcohol', '!=', True)]}"/>
+                                <field name="drinks_per_week"
+                                       attrs="{'invisible': [('alcohol_consumption', '!=', 'regular')]}"/>
+                            </group>
+                        </page>
+
+                        <page name="page_14" string="Page 14">
+                            <group>
+                                <field name="exercise"/>
+                                <field name="type_of_exercise" attrs="{'invisible': [('exercise', '!=', True)]}"/>
+                                <field name="how_often_exercise" attrs="{'invisible': [('exercise', '!=', True)]}"/>
+                                <field name="exercise_duration" attrs="{'invisible': [('exercise', '!=', True)]}"/>
+                                <field name="physical_limitation" attrs="{'invisible': [('exercise', '!=', True)]}"/>
+                            </group>
+                        </page>
+
+                        <page name="page_15" string="Page 15">
+                            <group>
+                                <group>
+                                    <field name="height"/>
+                                    <field name="height_uom"/>
+                                    <field name="bmi"/>
+                                    <field name="bmi_status"/>
+                                </group>
+                                <group>
+                                    <field name="weight"/>
+                                    <field name="weight_uom"/>
+                                    <field name="auscultatory_finding"/>
+                                    <field name="pulse"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="carotid_artery_lt"/>
+                                    <field name="brachial_artery_lt"/>
+                                    <field name="radial_artery_lt"/>
+                                    <field name="femoral_artery_lt"/>
+
+                                    <field name="popliteal_artery_lt"/>
+                                    <field name="tibial_artery_lt"/>
+                                    <field name="dorsalis_pedis_lt"/>
+
+                                </group>
+                                <group>
+                                    <field name="carotid_artery_rt"/>
+                                    <field name="brachial_artery_rt"/>
+                                    <field name="radial_artery_rt"/>
+                                    <field name="femoral_artery_rt"/>
+                                    <field name="popliteal_artery_rt"/>
+                                    <field name="tibial_artery_rt"/>
+                                    <field name="dorsalis_pedis_rt"/>
+
+                                </group>
+                            </group>
+                        </page>
+
+                        <page name="page_16" string="Page 16">
+                            <b>Medications:</b>
+                            <group>
+                                <field name="drug_allergies_side_effects"/>
+                                <field name="drug_allergies_side_effects_name"
+                                       attrs="{'invisible': [('drug_allergies_side_effects', '!=', True)]}"/>
+                                <field name="drug_allergies_side_effects_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="medication_dose"/>
+                                        <field name="medication_frequency"/>
+                                    </tree>
+                                </field>
+
+                                <field name="antiplatelet_agent"/>
+                                <field name="ace_i_arb"/>
+                                <field name="b_blocker"/>
+                                <field name="statin"/>
+                            </group>
+                        </page>
+
+                        <page name="page_17" string="Page 17">
+                            <b>Contra-indication checklist</b>
+                            <group>
+                                <field name="uncontrolled_ventricular"/>
+                                <field name="decompensated_heart_failure"/>
+                                <field name="severe_pulmonary_hypertension"/>
+                                <field name="uncontrolled_systemic_hypertension"/>
+                                <field name="severe_aortic_insufficiency"/>
+                                <field name="severe_lower_extremity_peripheral_vascular_disease"/>
+                                <field name="aortic_aneurysm"/>
+                                <field name="recent_lower_extremity_thrombophlebitis"/>
+                                <field name="lower_extremity_deep_vein_thrombosis"/>
+                                <field name="bleeding_diathesis_on_warfarin"/>
+                                <field name="pragnancy"/>
+                            </group>
+                        </page>
+
+                        <page name="page_18" string="Page 18">
+
+                        </page>
+
+                        <page name="page_19" string="Page 19">
+                            <group>
+                                <group>
+                                    <b>Pre EECP</b>
+                                    <field name="pre_eecp_date"/>
+                                    <field name="pre_hr"/>
+                                    <field name="pre_bp"/>
+                                    <b>EX.HR</b>
+                                    <field name="pre_one_min_ex_hr"/>
+                                    <field name="pre_two_min_ex_hr"/>
+                                    <field name="pre_three_min_ex_hr"/>
+
+                                    <b>Recovery HR</b>
+                                    <field name="pre_one_min_recovery_hr"/>
+                                    <field name="pre_two_min_recovery_hr"/>
+                                    <field name="pre_three_min_recovery_hr"/>
+
+                                    <b>Recovery BP</b>
+                                    <field name="pre_one_min_recovery_bp"/>
+                                    <field name="pre_two_min_recovery_bp"/>
+                                    <field name="pre_three_min_recovery_bp"/>
+
+                                    <b>Distance</b>
+                                    <field name="pre_distance"/>
+
+                                    <b>RPE</b>
+                                    <field name="pre_rpe"/>
+                                </group>
+
+                                <group>
+                                    <b>Post EECP</b>
+                                    <field name="post_eecp_date"/>
+                                    <field name="post_hr"/>
+                                    <field name="post_bp"/>
+                                    <b>Ex.HR</b>
+                                    <field name="post_one_min_ex_hr"/>
+                                    <field name="post_two_min_ex_hr"/>
+                                    <field name="post_three_min_ex_hr"/>
+
+                                    <b>Recovery HR</b>
+                                    <field name="post_one_min_recovery_hr"/>
+                                    <field name="post_two_min_recovery_hr"/>
+                                    <field name="post_three_min_recovery_hr"/>
+
+                                    <b>Recovery BP</b>
+                                    <field name="post_one_min_recovery_bp"/>
+                                    <field name="post_two_min_recovery_bp"/>
+                                    <field name="post_three_min_recovery_bp"/>
+
+                                    <b>Distance</b>
+                                    <field name="post_distance"/>
+
+                                    <b>RPE</b>
+                                    <field name="post_rpe"/>
+
+                                </group>
+                            </group>
+
+                        </page>
+
+                        <page name="page_20" string="Page 20">
+                            <b>Treatment Chart</b>
+                            <field name="patient_treatment_chart_ids">
+                                <tree editable="bottom">
+                                    <field name="treatment_date"/>
+                                    <field name="treatment_pre_hr"/>
+                                    <field name="treatment_pre_hr_uom"/>
+                                    <field name="treatment_pre_bp"/>
+                                    <field name="treatment_pre_bp_uom"/>
+                                    <field name="diastolic_systolic_augmentation_ratio"/>
+                                    <field name="treatment_post_hr"/>
+                                    <field name="treatment_post_hr_uom"/>
+                                    <field name="treatment_post_bp"/>
+                                    <field name="treatment_post_bp_uom"/>
+                                    <field name="treatment_weight"/>
+                                    <field name="treatment_weight_uom"/>
+                                    <field name="treatment_complaints"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="patient_consultation_detail_tree" model="ir.ui.view">
+        <field name="name">patient.consultation.detail.tree</field>
+        <field name="model">patient.consultation.detail</field>
+        <field name="arch" type="xml">
+            <tree string="Patient Detail">
+                <field name="name"/>
+                <field name="age_years"/>
+                <field name="gender"/>
+                <field name="mobile"/>
+                <field name="file_number"/>
+                <field name="occupation_id"/>
+                <field name="reference_id"/>
+            </tree>
+        </field>
+    </record>
+    <!---->
+    <record id="action_patient_consultation_detail" model="ir.actions.act_window">
+        <field name="name">Consultation</field>
+        <field name="res_model">patient.consultation.detail</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+    <!---->
+    <menuitem id="menu_patient_consultation_detail"
+              action="action_patient_consultation_detail"
+              parent="doctor.patient_main_menu"
+              sequence="2"
+    />
+</odoo>

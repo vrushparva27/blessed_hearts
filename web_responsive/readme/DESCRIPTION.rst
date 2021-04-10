@@ -35,6 +35,10 @@ Features for mobile:
 
   .. image:: https://user-images.githubusercontent.com/973709/50965168-1d0ec500-14c9-11e9-82a0-dfee82ed0861.gif
 
+* Search panel is hidden on small screens.
+
+  .. image:: ../static/img/search_panel.gif
+
 Features for computers:
 
 * Keyboard shortcuts for easier navigation, **using ``Alt + Shift + [key]``**
@@ -81,3 +85,11 @@ Features for computers:
   width preview clicking on the new maximize button.
 
   .. image:: ../static/img/document_viewer.gif
+
+* Bigger checkboxes in list view
+
+  .. image:: ../static/img/big_checkboxes.gif
+
+* Scrollable dropdowns
+
+  .. image:: ../static/img/dropdown_scroll.gif

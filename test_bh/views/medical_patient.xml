@@ -14,9 +14,9 @@
                            img_height="120" width="120" height="120"
                            widget="image"/>
                     <div class="oe_title">
-<!--                        <div class="oe_edit_only">-->
-<!--                            <label for="patient_id"/>-->
-<!--                        </div>-->
+                        <div class="oe_edit_only">
+                            <label for="patient_id"/>
+                        </div>
                         <h1>
                             <field style="width: 100%; text-transform: uppercase;" name="patient_id"
                                    default_focus="1" placeholder="Patient Name"/>
@@ -26,12 +26,11 @@
                     <notebook>
 
 
-                        <!--DemoGraphic Data-->
+                        <!--DemoGraphic Datay-->
                         <page string="DemoGraphic Data">
                             <group>
                                 <group>
                                     <field name="name"/>
-                                    <field name="patient_id" invisible="1"/>
                                     <field name="company_id" invisible="1"/>
                                     <field name="currency_id" invisible="1"/>
                                     <field name="date_of_birth"/>
@@ -85,75 +84,6 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Sign and Symptoms">
-                            <group string="Patient Sign and Symptoms">
-                                <group>
-                                    <field name="dyspnea"/>
-                                </group>
-                                <group attrs="{'invisible':[('dyspnea','!=',True)]}">
-                                    <field name="nyha_class"/>
-                                </group>
-                            </group>
-                            <group string="Angina">
-                                <group>
-                                    <field name="angina"/>
-                                </group>
-                                <group>
-                                    <group attrs="{'invisible':[('angina','!=',True)]}">
-                                        <field name="no_angina"/>
-                                    </group>
-                                    <group attrs="{'invisible':[('angina','!=',True)]}">
-                                        <field name="interval_angina" nolabel="1"/>
-                                    </group>
-                                </group>
-                            </group>
-                        </page>
-
-                        <page string="Diagnosis">
-                            <group string="CAD/CHF/Refractory Angina">
-                                <field name="cad"/>
-                                <field name="chf"/>
-                                <field name="refractory_angina"/>
-                            </group>
-
-                            <group string="Date of Diagnosis">
-                                <group>
-                                    <field name="mi"/>
-                                </group>
-                                <group attrs="{'invisible':[('mi','!=',True)]}">
-                                    <field name="mi_date"/>
-                                </group>
-                            </group>
-
-                            <group string="Procedures">
-                                <group>
-                                    <field name="cabg"/>
-                                </group>
-                                <group attrs="{'invisible':[('cabg','!=',True)]}">
-                                    <field name="cabg_date"/>
-                                    <field name="cabg_text"/>
-                                </group>
-                            </group>
-
-                            <group>
-                                <group>
-                                    <field name="ptca"/>
-                                </group>
-                                <group attrs="{'invisible':[('ptca','!=',True)]}">
-                                    <field name="ptca_date"/>
-                                    <field name="ptca_text"/>
-                                </group>
-                            </group>
-                            <group>
-                                <group>
-                                    <field name="medical_mx"/>
-                                </group>
-                                <group attrs="{'invisible':[('medical_mx','!=',True)]}">
-                                    <field name="medical_mx_text"/>
-                                </group>
-                            </group>
-                        </page>
-
 
                         <page string="Cardiac Tests and Procedures">
                             <notebook>
@@ -163,7 +93,7 @@
                                             <tree strig="ECG " editable="bottom">
                                                 <field name="medical_patient_id" readonly="1"/>
                                                 <field name="text"/>
-                                                <field name="documents" widget="binary" filename="name"/>
+                                                <field name="documents"/>
                                             </tree>
                                         </field>
                                     </group>
@@ -241,6 +171,31 @@
                             </notebook>
 
                         </page>
+
+                        <page string="Sign and Symptoms">
+                            <group string="Patient Sign and Symptoms">
+                                <group>
+                                    <field name="dyspnea"/>
+                                </group>
+                                <group attrs="{'invisible':[('dyspnea','!=',True)]}">
+                                    <field name="nyha_class"/>
+                                </group>
+                            </group>
+                            <group string="Angina">
+                                <group>
+                                    <field name="angina"/>
+                                </group>
+                                <group>
+                                    <group attrs="{'invisible':[('angina','!=',True)]}">
+                                        <field name="no_angina"/>
+                                    </group>
+                                    <group attrs="{'invisible':[('angina','!=',True)]}">
+                                        <field name="interval_angina" nolabel="1"/>
+                                    </group>
+                                </group>
+                            </group>
+                        </page>
+
 
                         <page string="CAD Risk Factors">
                             <notebook>
@@ -443,70 +398,8 @@
 
                         <page string="6MWT">
                             <group>
-                                <group>
-                                    <field name="patient_id" readonly="1"/>
-                                    <field name="date_of_birth" readonly="1"/>
-                                    <field name="age" readonly="1"/>
-                                    <field name="target_hr"/>
-                                </group>
-                                <group>
-                                </group>
                             </group>
                             <group>
-                                <group string="PRE EECP">
-                                    <field name="pre_hr"/>
-                                    <field name="pre_bp"/>
-                                    <hr>
-                                        <seperator/>
-                                    </hr>
-                                    <field name="ex_hr_1_min_pre"/>
-                                    <field name="ex_hr_2_min_pre"/>
-                                    <field name="ex_hr_3_min_pre"/>
-                                    <hr>
-                                        <seperator/>
-                                    </hr>
-                                    <field name="recovery_hr_1_min_pre"/>
-                                    <field name="recovery_hr_2_min_pre"/>
-                                    <field name="recovery_hr_3_min_pre"/>
-                                    <hr>
-                                        <seperator/>
-                                    </hr>
-                                    <field name="recovery_bp_1_min_pre"/>
-                                    <field name="recovery_bp_2_min_pre"/>
-                                    <field name="recovery_bp_3_min_pre"/>
-                                    <hr>
-                                        <seperator/>
-                                    </hr>
-                                    <field name="distance_pre"/>
-                                    <field name="rpe_pre"/>
-                                </group>
-                                <group string="PRE EECP">
-                                    <field name="post_hr"/>
-                                    <field name="post_bp"/>
-                                    <hr>
-                                        <seperator/>
-                                    </hr>
-                                    <field name="ex_hr_1_min_post"/>
-                                    <field name="ex_hr_2_min_post"/>
-                                    <field name="ex_hr_3_min_post"/>
-                                    <hr>
-                                        <seperator/>
-                                    </hr>
-                                    <field name="recovery_hr_1_min_post"/>
-                                    <field name="recovery_hr_2_min_post"/>
-                                    <field name="recovery_hr_3_min_post"/>
-                                    <hr>
-                                        <seperator/>
-                                    </hr>
-                                    <field name="recovery_bp_1_min_post"/>
-                                    <field name="recovery_bp_2_min_post"/>
-                                    <field name="recovery_bp_3_min_post"/>
-                                    <hr>
-                                        <seperator/>
-                                    </hr>
-                                    <field name="distance_post"/>
-                                    <field name="rpe_post"/>
-                                </group>
                             </group>
                         </page>
 
@@ -519,28 +412,8 @@
 
                         <page string="Treatment Chart">
                             <group>
-                                <group>
-                                    <field name="patient_id" readonly="1"/>
-                                </group>
-                                <group>
-                                    <field name="age" readonly="1"/>
-                                </group>
                             </group>
                             <group>
-                                <field name='treatment_chart_ids' nolabel="1">
-                                    <tree editable="bottom">
-                                        <field name="sequence" widget="handle"/>
-                                        <field name="date"/>
-                                        <field name="pre_bp"/>
-                                        <field name="hr"/>
-                                        <field name="time"/>
-                                        <field name="post_hr"/>
-                                        <field name="rbs"/>
-                                        <field name="diagnosis_systolic_aug_ratio"/>
-                                        <field name="weight"/>
-                                        <field name="complaints"/>
-                                    </tree>
-                                </field>
                             </group>
                         </page>
 

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_partner_inherit_form_health_center_view" model="ir.ui.view">
+        <field name="name">res.partner.inherit.form.health.center.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_type']" position="attributes">
+                <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>
+            </xpath>
+            <xpath expr="//field[@name='parent_id']" position="attributes">
+                <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>
+            </xpath>
+            <xpath expr="//field[@name='type']" position="attributes">
+                <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>
+            </xpath>
+            <xpath expr="//field[@name='function']" position="attributes">
+                <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>
+            </xpath>
+            <xpath expr="//field[@name='website']" position="attributes">
+                <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>
+            </xpath>
+            <xpath expr="//field[@name='title']" position="attributes">
+                <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="attributes">
+                <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>
+            </xpath>
+            <xpath expr="//field[@name='image_1920']" position="attributes">
+                <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>
+            </xpath>
+            <xpath expr="//notebook" position="attributes">
+                <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>
+            </xpath>
+
+            <xpath expr="//label[@name='address_name']" position="attributes">
+                <attribute name="string">Address</attribute>
+            </xpath>
+
+            <xpath expr="//group[1]" position="attributes">
+                <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>
+            </xpath>
+
+            <notebook>
+                <page string="Medical">
+                    <group colspan="6" col="6">
+                        <field name="is_patient"/>
+                        <field name="is_doctor"/>
+                        <field name="is_institution"/>
+                        <field name="is_person"/>
+                        <field name="is_insurance_company"/>
+                        <field name="is_pharmacy"/>
+                    </group>
+                    <field name="company_insurance_ids" colspan="4"
+                           widget="one2many_list"/>
+                    <field name="patient_insurance_ids" colspan="4"
+                           widget="one2many_list"/>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="sales_partner_button_inherit" model="ir.ui.view">
+        <field name="name">sales_partner_button_inherited.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sale.res_partner_view_buttons"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="attributes">
+                <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="marketing_invisible_view_move_form_inherit" model="ir.ui.view">
+        <field name="name">marketing.account.move.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="sale.account_invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='utm_link']" position="attributes">
+                <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="invoice_partner_button_inherit" model="ir.ui.view">
+        <field name="name">invoice_partner_button_inherited.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.partner_view_buttons"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="attributes">
+                <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_res_partner">
+        <field name="name">Insurances Company</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_insurance_company','=',1)]</field>
+        <field name="context">{'default_is_insurance_company': 1,'search_default_is_insurance_company': 1}
+        </field>
+    </record>
+
+    <record id="patient_partner_action_customer" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'res_partner_search_mode': 'customer', 'default_is_company': True,
+            'default_customer_rank': 1}
+        </field>
+        <field name="domain">[('is_person', '=', True),('is_patient','=', True)]</field>
+    </record>
+
+    <menuitem id="menu_master_patient_1" name="Patients"
+              parent="basic_hms.main_menu_configartion" sequence='0'/>
+
+    <menuitem id="menu_master_patient_2" name="Patients"
+              parent="menu_master_patient_1"
+              action="patient_partner_action_customer"
+              sequence='0'/>
+
+    <menuitem id="menu_health_centers1" name="Health Centers"
+              parent="main_menu_configartion"/>
+
+    <menuitem id="menu_insurance" name="Insurances"
+              parent="main_menu_configartion" sequence='9'/>
+    <menuitem id="menu_insurance_company" action="act_res_partner"
+              sequence="0" parent="menu_insurance"/>
+
+</odoo>
+
