@@ -396,12 +396,74 @@
                             </form>
                         </page>
 
-                        <page string="6MWT">
-                            <group>
-                            </group>
-                            <group>
-                            </group>
-                        </page>
+<!--                        <page string="6MWT">-->
+<!--                            <group>-->
+<!--                                <group>-->
+<!--                                    <field name="patient_id" readonly="1"/>-->
+<!--                                    <field name="date_of_birth" readonly="1"/>-->
+<!--                                    <field name="age" readonly="1"/>-->
+<!--                                    <field name="target_hr"/>-->
+<!--                                </group>-->
+<!--                                <group>-->
+<!--                                </group>-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                <group string="PRE EECP">-->
+<!--                                    <field name="pre_hr"/>-->
+<!--                                    <field name="pre_bp"/>-->
+<!--                                    <hr>-->
+<!--                                        <seperator/>-->
+<!--                                    </hr>-->
+<!--                                    <field name="ex_hr_1_min_pre"/>-->
+<!--                                    <field name="ex_hr_2_min_pre"/>-->
+<!--                                    <field name="ex_hr_3_min_pre"/>-->
+<!--                                    <hr>-->
+<!--                                        <seperator/>-->
+<!--                                    </hr>-->
+<!--                                    <field name="recovery_hr_1_min_pre"/>-->
+<!--                                    <field name="recovery_hr_2_min_pre"/>-->
+<!--                                    <field name="recovery_hr_3_min_pre"/>-->
+<!--                                    <hr>-->
+<!--                                        <seperator/>-->
+<!--                                    </hr>-->
+<!--                                    <field name="recovery_bp_1_min_pre"/>-->
+<!--                                    <field name="recovery_bp_2_min_pre"/>-->
+<!--                                    <field name="recovery_bp_3_min_pre"/>-->
+<!--                                    <hr>-->
+<!--                                        <seperator/>-->
+<!--                                    </hr>-->
+<!--                                    <field name="distance_pre"/>-->
+<!--                                    <field name="rpe_pre"/>-->
+<!--                                </group>-->
+<!--                                <group string="PRE EECP">-->
+<!--                                    <field name="post_hr"/>-->
+<!--                                    <field name="post_bp"/>-->
+<!--                                    <hr>-->
+<!--                                        <seperator/>-->
+<!--                                    </hr>-->
+<!--                                    <field name="ex_hr_1_min_post"/>-->
+<!--                                    <field name="ex_hr_2_min_post"/>-->
+<!--                                    <field name="ex_hr_3_min_post"/>-->
+<!--                                    <hr>-->
+<!--                                        <seperator/>-->
+<!--                                    </hr>-->
+<!--                                    <field name="recovery_hr_1_min_post"/>-->
+<!--                                    <field name="recovery_hr_2_min_post"/>-->
+<!--                                    <field name="recovery_hr_3_min_post"/>-->
+<!--                                    <hr>-->
+<!--                                        <seperator/>-->
+<!--                                    </hr>-->
+<!--                                    <field name="recovery_bp_1_min_post"/>-->
+<!--                                    <field name="recovery_bp_2_min_post"/>-->
+<!--                                    <field name="recovery_bp_3_min_post"/>-->
+<!--                                    <hr>-->
+<!--                                        <seperator/>-->
+<!--                                    </hr>-->
+<!--                                    <field name="distance_post"/>-->
+<!--                                    <field name="rpe_post"/>-->
+<!--                                </group>-->
+<!--                            </group>-->
+<!--                        </page>-->
 
                         <page string="Final Diagnosis">
                             <group>
@@ -410,12 +472,33 @@
                             </group>
                         </page>
 
-                        <page string="Treatment Chart">
-                            <group>
-                            </group>
-                            <group>
-                            </group>
-                        </page>
+<!--                        <page string="Treatment Chart">-->
+<!--                            <group>-->
+<!--                                <group>-->
+<!--                                    <field name="patient_id" readonly="1"/>-->
+<!--                                </group>-->
+<!--                                <group>-->
+<!--                                    <field name="age" readonly="1"/>-->
+<!--                                </group>-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                <field name='treatment_chart_ids' nolabel="1">-->
+<!--                                    <tree editable="bottom">-->
+<!--                                        <field name="sequence" widget="handle"/>-->
+<!--                                        <field name="date"/>-->
+<!--                                        <field name="pre_bp"/>-->
+<!--                                        <field name="hr"/>-->
+<!--                                        <field name="time"/>-->
+<!--                                        <field name="post_hr"/>-->
+<!--                                        <field name="rbs"/>-->
+<!--                                        <field name="diagnosis_systolic_aug_ratio"-->
+<!--                                               string="Diagnosis Systolic Augmentation Ratio" width="30px"/>-->
+<!--                                        <field name="weight"/>-->
+<!--                                        <field name="complaints"/>-->
+<!--                                    </tree>-->
+<!--                                </field>-->
+<!--                            </group>-->
+<!--                        </page>-->
 
                     </notebook>
                 </sheet>

@@ -152,7 +152,65 @@ class MedicalPatient(models.Model):
     statin = fields.Boolean("Statin")
     anti_anginal = fields.Boolean("Anti-Anginal")
 
+    # 6mwt
+    target_hr = fields.Char("TARGET HR")
+    pre_date = fields.Date(string="Date")
+    post_date = fields.Date(string="Date")
+
+    pre_hr = fields.Char("PRE HR")
+    post_hr = fields.Char("POST HR")
+
+    pre_bp = fields.Char("PRE BP")
+    post_bp = fields.Char("POST BP")
+
+    ex_hr_1_min_pre = fields.Integer("Ex.Hr 1 Min")
+    ex_hr_2_min_pre = fields.Integer("Ex.Hr 2 Min")
+    ex_hr_3_min_pre = fields.Integer("Ex.Hr 3 Min")
+
+    ex_hr_1_min_post = fields.Integer("Ex.Hr 1 Min")
+    ex_hr_2_min_post = fields.Integer("Ex.Hr 2 Min")
+    ex_hr_3_min_post = fields.Integer("Ex.Hr 3 Min")
+
+    recovery_hr_1_min_pre = fields.Integer("Recovery.Hr 1 Min")
+    recovery_hr_2_min_pre = fields.Integer("Recovery.Hr 2 Min")
+    recovery_hr_3_min_pre = fields.Integer("Recovery.Hr 3 Min")
+
+    recovery_hr_1_min_post = fields.Integer("Recovery.Hr 1 Min")
+    recovery_hr_2_min_post = fields.Integer("Recovery.Hr 2 Min")
+    recovery_hr_3_min_post = fields.Integer("Recovery.Hr 3 Min")
+
+    recovery_bp_1_min_pre = fields.Integer("Recovery.bp 1 Min")
+    recovery_bp_2_min_pre = fields.Integer("Recovery.bp 2 Min")
+    recovery_bp_3_min_pre = fields.Integer("Recovery.bp 3 Min")
+
+    recovery_bp_1_min_post = fields.Integer("Recovery.bp 1 Min")
+    recovery_bp_2_min_post = fields.Integer("Recovery.bp 2 Min")
+    recovery_bp_3_min_post = fields.Integer("Recovery.bp 3 Min")
+
+    distance_pre = fields.Integer("Distance")
+    distance_post = fields.Integer("Distance")
+
+    rpe_pre = fields.Integer("RPE")
+    rpe_post = fields.Integer("RPE")
+
     # diagnosis
+    cad = fields.Char("CAD")
+    chf = fields.Char("CHF")
+    refractory_angina = fields.Char("Refractory Angina")
+
+    mi = fields.Boolean("MI")
+    mi_date = fields.Date(string='Date of MI')
+
+    cabg = fields.Boolean("CABG")
+    cabg_date = fields.Date(string='Date of CABG')
+    cabg_text = fields.Char("CABG text")
+
+    ptca = fields.Boolean("PTCA")
+    ptca_date = fields.Date(string='Date of PTCA')
+    ptca_text = fields.Char("PTCA text")
+
+    medical_mx = fields.Boolean("Medical MX")
+    medical_mx_text = fields.Char("Medical MX text")
 
     # cardiac test and procedures
     ecg_ids = fields.One2many('patient.ecg', 'medical_patient_id', 'ECG')
@@ -162,6 +220,7 @@ class MedicalPatient(models.Model):
     ptca_stend_ids = fields.One2many('patient.ptca_stent', 'medical_patient_id', 'PTCA / Stent ')
     cabg_ids = fields.One2many('patient.cabg', 'medical_patient_id', 'CABG')
     other_test_ids = fields.One2many('patient.other_tests', 'medical_patient_id', 'Other Tests')
+    treatment_chart_ids = fields.One2many('patient.treatment.chart', 'medical_patient_id', 'ECG')
 
     # Indications Check List
 
@@ -237,3 +296,20 @@ class PatientMedications(models.Model):
     name = fields.Char('Name of Medication')
     dose = fields.Char('Dose')
     frequency = fields.Char('Frequency')
+
+
+class PatientTreatmentChart(models.Model):
+    _name = 'patient.treatment.chart'
+
+    medical_patient_id = fields.Many2one('medical.patient', string="Patient")
+    sequence = fields.Integer('Sequence')
+    date = fields.Date(string='Date', default=datetime.now())
+    pre_bp = fields.Char("PRE BP")
+    hr = fields.Char("HR")
+    time = fields.Char("TIME")
+    diagnosis_systolic_aug_ratio = fields.Integer("Diagnosis Systolic Augmentation Ratio")
+    post_bp = fields.Char("POST BP")
+    post_hr = fields.Char("POST HR")
+    weight = fields.Integer("Weight")
+    rbs = fields.Integer("RBS")
+    complaints = fields.Char("Complaints")
