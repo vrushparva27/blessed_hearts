@@ -14,9 +14,9 @@
                            img_height="120" width="120" height="120"
                            widget="image"/>
                     <div class="oe_title">
-<!--                        <div class="oe_edit_only">-->
-<!--                            <label for="patient_id"/>-->
-<!--                        </div>-->
+                        <!--                        <div class="oe_edit_only">-->
+                        <!--                            <label for="patient_id"/>-->
+                        <!--                        </div>-->
                         <h1>
                             <field style="width: 100%; text-transform: uppercase;" name="patient_id"
                                    default_focus="1" placeholder="Patient Name"/>
@@ -55,12 +55,13 @@
                                                options="{&quot;no_open&quot;: True}"/>
                                         <field name="country_id" placeholder="Country" class="o_address_state"/>
                                         <field name="zip" placeholder="ZIP" class="o_address_zip"/>
-
                                     </div>
-                                    <field name="mobile" placeholder="Enter Mobile ..." class="o_address_street"/>
-                                    <field name="phone" placeholder="Enter Phone..." class="o_address_street"/>
-                                    <field name="mobile_1" placeholder="Enter Mobile 2..." class="o_address_street"/>
-                                    <field name="mobile_2" placeholder="Enter Mobile 3..." class="o_address_street"/>
+                                    <field name="mobile" placeholder="Enter Mobile ..." class="o_address_zip"/>
+                                    <field name="phone" placeholder="Enter Phone..." class="o_address_zip"/>
+                                    <field name="mobile_1" placeholder="Enter Mobile 2..."
+                                           class="o_address_zip"/>
+                                    <field name="mobile_2" placeholder="Enter Mobile 3..."
+                                           class="o_address_zip"/>
                                     <field name="partner_address_id" invisible="1"/>
                                 </group>
                             </group>
@@ -78,12 +79,60 @@
 
 
                         <page string="Medical / Surgical History">
-                            <group string="Patient Medical / Surgical History">
+                            <group>
                                 <group>
+                                    <group>
+                                        <field name="diabetes_mellitus"/>
+                                    </group>
+                                    <group attrs="{'invisible':[('diabetes_mellitus','!=',True)]}">
+                                        <field name="diabetes_type"/>
+                                    </group>
                                 </group>
                                 <group>
+                                    <group>
+                                        <field name="hin"/>
+                                    </group>
+                                    <group attrs="{'invisible':[('hin','!=',True)]}">
+                                        <field name="hin_years"/>
+                                    </group>
                                 </group>
                             </group>
+                            <seperator/>
+                            <group>
+                                <group>
+                                    <group>
+                                        <field name="ckd"/>
+                                    </group>
+                                    <group attrs="{'invisible':[('ckd','!=',True)]}">
+                                        <field name="ckd_years"/>
+                                    </group>
+                                </group>
+
+                                <group>
+                                    <group>
+                                        <field name="leg_fracture"/>
+                                    </group>
+                                    <group attrs="{'invisible':[('leg_fracture','!=',True)]}">
+                                        <field name="fracture_text"/>
+                                    </group>
+                                </group>
+                            </group>
+                            <seperator/>
+                            <group>
+                                <group>
+                                    <group>
+                                        <field name="leg_surgery"/>
+                                    </group>
+                                    <group attrs="{'invisible':[('leg_surgery','!=',True)]}">
+                                        <field name="surgery_text"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group></group>
+                                    <group></group>
+                                </group>
+                            </group>
+
                         </page>
                         <page string="Sign and Symptoms">
                             <group string="Patient Sign and Symptoms">
@@ -346,39 +395,29 @@
                                     </group>
                                 </page>
 
-                                <page string="Physical Examination">
-                                    <group>
-                                        <group>
-                                            <field name="height" style="width: 33%"/>
-                                        </group>
-                                        <group>
-                                            <field name="weight" style="width: 33%"/>
-                                        </group>
-                                        <group>
-                                            <field name="bmi" style="width: 33%"/>
-                                        </group>
-                                    </group>
-                                    <group>
-                                        <field name='pulse'/>
-                                        <field name='blood_pressure'/>
-                                        <field name='auscultatory_finding'/>
-                                        <field name='peripheral_pulses'/>
-                                    </group>
-                                </page>
-
-
                             </notebook>
 
                         </page>
 
-                        <page string="Physical Examinations">
-                            <group string="Patient Physical Examinations">
+                        <group string="Patient Physical Examinations">
+                            <group>
                                 <group>
+                                    <field name="height" style="width: 33%"/>
                                 </group>
                                 <group>
+                                    <field name="weight" style="width: 33%"/>
+                                </group>
+                                <group>
+                                    <field name="bmi" style="width: 33%"/>
                                 </group>
                             </group>
-                        </page>
+                            <group>
+                                <field name='pulse'/>
+                                <field name='blood_pressure'/>
+                                <field name='auscultatory_finding'/>
+                                <field name='peripheral_pulses'/>
+                            </group>
+                        </group>
 
                         <page string="Medications">
                             <group>
@@ -444,8 +483,8 @@
                         <page string="6MWT">
                             <group>
                                 <group>
-                                    <field name="patient_id" readonly="1"/>
-                                    <field name="date_of_birth" readonly="1"/>
+                                    <field name="patient_id"/>
+                                    <field name="date_of_birth"/>
                                     <field name="age" readonly="1"/>
                                     <field name="target_hr"/>
                                 </group>
@@ -512,6 +551,7 @@
 
                         <page string="Final Diagnosis">
                             <group>
+                                <field name="final_html"/>
                             </group>
                             <group>
                             </group>
@@ -520,7 +560,7 @@
                         <page string="Treatment Chart">
                             <group>
                                 <group>
-                                    <field name="patient_id" readonly="1"/>
+                                    <field name="patient_id"/>
                                 </group>
                                 <group>
                                     <field name="age" readonly="1"/>

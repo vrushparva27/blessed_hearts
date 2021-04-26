@@ -10,7 +10,7 @@
     Blessed Hearts
 """,
 
-    "depends": ["base", "sale_management", "stock", "account"],
+    "depends": ["base", 'backend_theme_v13'],
     "data": [
         'data/ir_sequence_data.xml',
         'views/medical_patient.xml',

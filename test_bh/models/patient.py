@@ -22,6 +22,7 @@ class MedicalPatient(models.Model):
 
     @api.depends('date_of_birth')
     def onchange_age(self):
+        print("called")
         for rec in self:
             if rec.date_of_birth:
                 d1 = rec.date_of_birth
@@ -35,7 +36,7 @@ class MedicalPatient(models.Model):
     patient_id = fields.Many2one('res.partner', string="Patient", required=True)
     name = fields.Char(string='ID', readonly=True)
     last_name = fields.Char('Last Name')
-    date_of_birth = fields.Date(string="Date of Birth")
+    date_of_birth = fields.Date(string="Date of Birth", store=True)
     photo = fields.Binary(string="Picture")
     sex = fields.Selection([('m', 'Male'), ('f', 'Female')], string="Sex")
     age = fields.Char(compute=onchange_age, string="Patient Age", store=True)
@@ -87,6 +88,24 @@ class MedicalPatient(models.Model):
                                       ('9', '9'),
                                       ('10', '10')],
                                      string="Rating of Stress on Scale of 1 to 10")
+
+    # Medical /Surgery History
+    diabetes_mellitus = fields.Boolean('Diabetes Mellitus')
+    diabetes_type = fields.Selection([('1', 'Type I'),
+                                      ('2', 'Type II')],
+                                     string='Diabetes Type')
+
+    hin = fields.Boolean('HIN')
+    hin_years = fields.Char('Since How Long Years')
+
+    ckd = fields.Boolean('CKD')
+    ckd_years = fields.Char('Since How Long Years')
+
+    leg_fracture = fields.Boolean('Leg Fracture')
+    fracture_text = fields.Char('Facture Details')
+
+    leg_surgery = fields.Boolean('Leg Surgery')
+    surgery_text = fields.Char('Surgery Details')
 
     # sign and symptoms
     dyspnea = fields.Boolean('Dyspnea')
@@ -212,7 +231,6 @@ class MedicalPatient(models.Model):
     medical_mx = fields.Boolean("Medical MX")
     medical_mx_text = fields.Char("Medical MX text")
 
-
     # cardiac test and procedures
     ecg_ids = fields.One2many('patient.ecg', 'medical_patient_id', 'ECG')
     echo_ids = fields.One2many('patient.echo', 'medical_patient_id', 'Echo')
@@ -227,6 +245,10 @@ class MedicalPatient(models.Model):
 
     chronic_cad = fields.Boolean("Chornic CAD")
 
+    # Final Diagnosis
+    final_html = fields.Html(string='Final Diagnosis')
+
+
     @api.model
     def create(self, val):
         if val.get('date_of_birth'):
@@ -237,10 +259,11 @@ class MedicalPatient(models.Model):
             age = str(rd.years) + "y" + " " + str(rd.months) + "m" + " " + str(rd.days) + "d"
             val.update({'age': age})
 
-        patient_id = self.env['ir.sequence'].next_by_code('medical.patient')
-        if patient_id:
+        patient_name = self.env['ir.sequence'].next_by_code('medical.patient')
+        print("patient_name", patient_name)
+        if patient_name:
             val.update({
-                'name': patient_id,
+                'name': patient_name,
             })
         result = super(MedicalPatient, self).create(val)
         return result
