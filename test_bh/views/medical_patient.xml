@@ -453,31 +453,90 @@
                         </page>
 
                         <page string="Indications / Contra Indi.">
-                            <form>
-                                <div class="o_setting_container">
-                                    <div class="settings_tab"/>
-                                    <div class="settings">
-                                        <div class="app_settings_block" data-string="Patient" string="Patient's Name">
-                                            <h2>Patient's Name</h2>
-                                            <div class="row mt16 o_settings_container">
-                                                <div class="col-12 col-lg-6 o_setting_box">
-                                                    <div class="o_setting_right_pane" id="barcode_settings">
-                                                        <label for="chronic_cad"/>
-                                                        <span class="fa fa-envelope-square"
-                                                              title="Values set here are set sender email of marketplace."/>
-                                                        <div class="text-muted" name="email_from">
-                                                            Values set here are set sender email of marketplace.
-                                                        </div>
-                                                        <div class="content-group">
-                                                            <field name="chronic_cad" id="chronic_cad"/>
-                                                        </div>
+                            <notebook>
+                                <page string="Contra Indication CheckList">
+                                    <group>
+                                        <div class="col-12 col-lg-6 o_setting_box" title="Patients">
+                                            <div class="o_setting_right_pane">
+                                                <div class="content-group" name="hr_presence_options">
+                                                    <div class="row">
+                                                        <field name="con_indication_1" class="col-lg-1 ml16"/>
+                                                        <label for="con_indication_1" class="o_light_label"/>
+                                                    </div>
+                                                    <div class="row">
+                                                        <field name="con_indication_2" class="col-lg-1 ml16"/>
+                                                        <label for="con_indication_2" class="o_light_label"/>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <field name="con_indication_3" class="col-lg-1 ml16"/>
+                                                        <label for="con_indication_3" class="o_light_label"/>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <field name="con_indication_4" class="col-lg-1 ml16"/>
+                                                        <label for="con_indication_4" class="o_light_label"/>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <field name="con_indication_5" class="col-lg-1 ml16"/>
+                                                        <label for="con_indication_5" class="o_light_label"/>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <field name="con_indication_6" class="col-lg-1 ml16"/>
+                                                        <label for="con_indication_6" class="o_light_label"/>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <field name="con_indication_7" class="col-lg-1 ml16"/>
+                                                        <label for="con_indication_7" class="o_light_label"/>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <field name="con_indication_8" class="col-lg-1 ml16"/>
+                                                        <label for="con_indication_8" class="o_light_label"/>
+                                                    </div>
+                                                    <div class="row">
+                                                        <field name="con_indication_9" class="col-lg-1 ml16"/>
+                                                        <label for="con_indication_9" class="o_light_label"/>
+                                                    </div>
+                                                    <div class="row">
+                                                        <field name="con_indication_10" class="col-lg-1 ml16"/>
+                                                        <label for="con_indication_10" class="o_light_label"/>
+                                                    </div>
+                                                    <div class="row">
+                                                        <field name="con_indication_11" class="col-lg-1 ml16"/>
+                                                        <label for="con_indication_11" class="o_light_label"/>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </form>
+                                    </group>
+                                </page>
+                                <page string="Indication(s) Check List">
+                                    <group>
+                                        <div class="col-12 col-lg-6 o_setting_box" title="Patient">
+                                            <div class="o_setting_right_pane">
+                                                <div class="content-group" name="hr_presence_options">
+<!--                                                    <div class="row">-->
+<!--                                                        <field name="indication_1" class="col-lg-1 ml16"/>-->
+<!--                                                        <label for="indication_1" class="o_light_label"/>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="row">-->
+<!--                                                        <field name="indication_2" class="col-lg-1 ml16"/>-->
+<!--                                                        <label for="indication_2" class="o_light_label"/>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="row">-->
+<!--                                                        <field name="indication_3" class="col-lg-1 ml16"/>-->
+<!--                                                        <label for="indication_3" class="o_light_label"/>-->
+<!--                                                    </div>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </group>
+                                </page>
+                            </notebook>
                         </page>
 
                         <page string="6MWT">

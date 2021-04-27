@@ -243,11 +243,30 @@ class MedicalPatient(models.Model):
 
     # Indications Check List
 
-    chronic_cad = fields.Boolean("Chornic CAD")
+    con_indication_1 = fields.Boolean("Uncontrolled Ventricular/Supraventricular arrhythmias", default=True)
+    con_indication_2 = fields.Boolean(
+        "Decompensated heart Failure (raised central venous pressure > 7mmHg or Pulmonary oedema)", default=True)
+    con_indication_3 = fields.Boolean("Severe Pulmonary hypertension(MRsn pulm. artery pressure > 50mmHg)",
+                                      default=True)
+    con_indication_4 = fields.Boolean("Uncontrolled systemic hypertension", default=True)
+    con_indication_5 = fields.Boolean("Severe aortic insufficiency", default=True)
+    con_indication_6 = fields.Boolean(
+        "Severe Lower Extremity peripheral vascular diesase with rest claudication or no -healing ulcers", default=True)
+    con_indication_7 = fields.Boolean("Aortic aneurysm surgical repair", default=True)
+    con_indication_8 = fields.Boolean("Current Or recent  (< 2 months) Lower extremity thyombophlebitis", default=True)
+    con_indication_9 = fields.Boolean("Lower extermity deep vein thrombosis", default=True)
+    con_indication_10 = fields.Boolean("Bleeding diathesis or on warfarin with INR > 3.0", default=True)
+    con_indication_11 = fields.Boolean("Pregnancy", default=True)
+
+    # indication_1 = fields.Boolean("CHROMIC CAD \n"
+    #                               "(a). Surgery / PTCA not contemplated \n"
+    #                               "1. Patient refused due to.")
+    # indication_2 = fields.Boolean("Diffuse Distal Disease")
+    # indication_3 = fields.Boolean("Systemic Disorder-High Risk Surgery")
+    # indication_4 = fields.Boolean("LV Dysfunction - High Risk CABG; EF < 35%")
 
     # Final Diagnosis
     final_html = fields.Html(string='Final Diagnosis')
-
 
     @api.model
     def create(self, val):
