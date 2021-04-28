@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
 
-    "name": "Vrushparva Vaishav",
+    "name": "Blessed Hearts",
     "version": "13.0.0.0",
     "currency": 'INR',
     "summary": "Based ",
@@ -13,6 +13,7 @@
     "depends": ["base", 'backend_theme_v13'],
     "data": [
         'data/ir_sequence_data.xml',
+        'views/assets.xml',
         'views/medical_patient.xml',
         'security/ir.model.access.csv',
     ],
@@ -20,6 +21,6 @@
     "installable": True,
     "application": True,
     "auto_install": False,
-    "images": ["static/description/Banner.png"],
+    # "images": ["static/description/Banner.png"],
 
 }

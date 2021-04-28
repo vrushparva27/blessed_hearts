@@ -34,7 +34,7 @@
                                     <field name="patient_id" invisible="1"/>
                                     <field name="company_id" invisible="1"/>
                                     <field name="currency_id" invisible="1"/>
-                                    <field name="date_of_birth"/>
+                                    <field name="date_of_birth" required="1"/>
                                     <field name="age" readonly="1"/>
                                     <field name="create_date"/>
                                     <field name="marital_status"/>
@@ -455,86 +455,359 @@
                         <page string="Indications / Contra Indi.">
                             <notebook>
                                 <page string="Contra Indication CheckList">
-                                    <group>
-                                        <div class="col-12 col-lg-6 o_setting_box" title="Patients">
-                                            <div class="o_setting_right_pane">
-                                                <div class="content-group" name="hr_presence_options">
-                                                    <div class="row">
-                                                        <field name="con_indication_1" class="col-lg-1 ml16"/>
-                                                        <label for="con_indication_1" class="o_light_label"/>
-                                                    </div>
-                                                    <div class="row">
-                                                        <field name="con_indication_2" class="col-lg-1 ml16"/>
-                                                        <label for="con_indication_2" class="o_light_label"/>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <field name="con_indication_3" class="col-lg-1 ml16"/>
-                                                        <label for="con_indication_3" class="o_light_label"/>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <field name="con_indication_4" class="col-lg-1 ml16"/>
-                                                        <label for="con_indication_4" class="o_light_label"/>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <field name="con_indication_5" class="col-lg-1 ml16"/>
-                                                        <label for="con_indication_5" class="o_light_label"/>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <field name="con_indication_6" class="col-lg-1 ml16"/>
-                                                        <label for="con_indication_6" class="o_light_label"/>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <field name="con_indication_7" class="col-lg-1 ml16"/>
-                                                        <label for="con_indication_7" class="o_light_label"/>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <field name="con_indication_8" class="col-lg-1 ml16"/>
-                                                        <label for="con_indication_8" class="o_light_label"/>
-                                                    </div>
-                                                    <div class="row">
-                                                        <field name="con_indication_9" class="col-lg-1 ml16"/>
-                                                        <label for="con_indication_9" class="o_light_label"/>
-                                                    </div>
-                                                    <div class="row">
-                                                        <field name="con_indication_10" class="col-lg-1 ml16"/>
-                                                        <label for="con_indication_10" class="o_light_label"/>
-                                                    </div>
-                                                    <div class="row">
-                                                        <field name="con_indication_11" class="col-lg-1 ml16"/>
-                                                        <label for="con_indication_11" class="o_light_label"/>
-                                                    </div>
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box"
+                                                 title="(a.)Surgery / PTCA not contemplated">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_1"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        1. Uncontrolled Ventricular/Supraventricular arrhythmias
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
-                                    </group>
+                                    </div>
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_2"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        2. Decompensated heart Failure (raised central venous pressure >
+                                                        7mmHg or Pulmonary oedema)
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_3"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        3. Severe Pulmonary hypertension(MRsn pulm. artery pressure >
+                                                        50mmHg)
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_4"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        4. Uncontrolled systemic hypertension
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_5"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        5. Severe aortic insufficiency
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_6"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        6. Severe Lower Extremity peripheral vascular diesase with rest
+                                                        claudication or no -healing ulcers
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_7"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        7. Aortic aneurysm surgical repair
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_8"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        8. Current Or recent (less then 2 months) Lower extremity
+                                                        thyombophlebitis
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_9"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        9. Lower extermity deep vein thrombosis
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_10"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        10. Bleeding diathesis or on warfarin with INR > 3.0
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_11"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        11. Pregnancy
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </page>
+
+
+                                <!--============   2nd page =========-->
                                 <page string="Indication(s) Check List">
-                                    <group>
-                                        <div class="col-12 col-lg-6 o_setting_box" title="Patient">
-                                            <div class="o_setting_right_pane">
-                                                <div class="content-group" name="hr_presence_options">
-<!--                                                    <div class="row">-->
-<!--                                                        <field name="indication_1" class="col-lg-1 ml16"/>-->
-<!--                                                        <label for="indication_1" class="o_light_label"/>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="row">-->
-<!--                                                        <field name="indication_2" class="col-lg-1 ml16"/>-->
-<!--                                                        <label for="indication_2" class="o_light_label"/>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="row">-->
-<!--                                                        <field name="indication_3" class="col-lg-1 ml16"/>-->
-<!--                                                        <label for="indication_3" class="o_light_label"/>-->
-<!--                                                    </div>-->
+                                    <h2>1. CHRONIC CAD</h2>
+                                    <div style="margin-left:20px;">
+                                        <span>(a.) Surgery / PTCA not contemplated</span>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box"
+                                                 title="(a.)Surgery / PTCA not contemplated">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_1"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        1. Patient Refused Due to :
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
-                                    </group>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_2"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">2. Diffuse Distal Disease</span>
+                                                    <br/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_3"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">3. Systemic Disorder-High Risk
+                                                        Surgery</span>
+                                                    <br/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_4"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">4. LV Dysfunction - High Risk CABG; EF
+                                                        less
+                                                        than 35%</span>
+                                                    <br/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left:20px;">
+                                        <span>(b.) Preparation For Revascularization.</span>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_5"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">1. Severe , LV dysfunction with log if
+                                                        Hibernation to stabilize heart function.</span>
+                                                    <br/>
+                                                    <span class="o_form_label">
+                                                        2. Waiting Due to Other reason/Very elderly patient.
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <h2>2. ACUTE CORONARY SYNDROME</h2>
+                                    <div style="margin-left:20px;">
+                                        <span/>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_a"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        A. Unstable Angina
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_b"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        B. Acute MI
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_c"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        C. Cardiogenic Shock.
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_d"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        D. Restricted activity to avoid angina symptoms.
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <h2>3. CHRONIC CCF; Also no responce to medical therapy. </h2>
+                                    <div style="margin-left:20px;">
+                                        <span/>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_non_cad_333"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        CHRONIC CCF; Also no responce to medical therapy.
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <h2>4. NON - CAD CASE</h2>
+                                    <div style="margin-left:20px;">
+                                        <span/>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_non_cad_1"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        1. Preventive care
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_non_cad_2"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        2. Atherosclerotic disease involving brain,kidneys
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_non_cad_3"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        3. Repeat case
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </page>
                             </notebook>
                         </page>
@@ -685,7 +958,11 @@
                                     <a type="open">
                                         <field name="patient_id"/>
                                     </a>
+                                    <a style="float:right;" type="open">
+                                        <field name="name"/>
+                                    </a>
                                 </h4>
+
                                 <ul>
                                     <li>DOB:
                                         <field name="date_of_birth"/>

@@ -258,12 +258,23 @@ class MedicalPatient(models.Model):
     con_indication_10 = fields.Boolean("Bleeding diathesis or on warfarin with INR > 3.0", default=True)
     con_indication_11 = fields.Boolean("Pregnancy", default=True)
 
-    # indication_1 = fields.Boolean("CHROMIC CAD \n"
-    #                               "(a). Surgery / PTCA not contemplated \n"
-    #                               "1. Patient refused due to.")
-    # indication_2 = fields.Boolean("Diffuse Distal Disease")
-    # indication_3 = fields.Boolean("Systemic Disorder-High Risk Surgery")
-    # indication_4 = fields.Boolean("LV Dysfunction - High Risk CABG; EF < 35%")
+    indication_1 = fields.Boolean("CHROMIC CAD \n"
+                                  "(a). Surgery / PTCA not contemplated \n"
+                                  "1. Patient refused due to.", default=True)
+    indication_2 = fields.Boolean("Diffuse Distal Disease", default=True)
+    indication_3 = fields.Boolean("Systemic Disorder-High Risk Surgery", default=True)
+    indication_4 = fields.Boolean("LV Dysfunction - High Risk CABG; EF < 35%", default=True)
+    indication_5 = fields.Boolean("b. preparation for reva.", default=True)
+
+    indication_a = fields.Boolean("A", default=True)
+    indication_b = fields.Boolean("B", default=True)
+    indication_c = fields.Boolean("C", default=True)
+    indication_d = fields.Boolean("D", default=True)
+    indication_non_cad_333 = fields.Boolean("333", default=True)
+
+    indication_non_cad_1 = fields.Boolean("nc 1", default=True)
+    indication_non_cad_2 = fields.Boolean("nc 2", default=True)
+    indication_non_cad_3 = fields.Boolean("nc 3", default=True)
 
     # Final Diagnosis
     final_html = fields.Html(string='Final Diagnosis')
@@ -279,7 +290,6 @@ class MedicalPatient(models.Model):
             val.update({'age': age})
 
         patient_name = self.env['ir.sequence'].next_by_code('medical.patient')
-        print("patient_name", patient_name)
         if patient_name:
             val.update({
                 'name': patient_name,
