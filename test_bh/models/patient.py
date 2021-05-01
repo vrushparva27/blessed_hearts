@@ -91,6 +91,7 @@ class MedicalPatient(models.Model):
 
     # Medical /Surgery History
     diabetes_mellitus = fields.Boolean('Diabetes Mellitus')
+    diabetes_years = fields.Char('Since How Long Years')
     diabetes_type = fields.Selection([('1', 'Type I'),
                                       ('2', 'Type II')],
                                      string='Diabetes Type')
@@ -116,9 +117,9 @@ class MedicalPatient(models.Model):
                                    ('4', 'IV')],
                                   string='NYHA Class')
     angina = fields.Boolean('Angina')
-    interval_angina = fields.Selection([('day', 'Days'),
-                                        ('week', 'Week'),
-                                        ('month', 'Month')],
+    interval_angina = fields.Selection([('day', 'Per Day'),
+                                        ('week', 'Per Week'),
+                                        ('month', 'Per Month')],
                                        string='NYHA Class')
     no_angina = fields.Selection([('1', '1'),
                                   ('2', '2'),
@@ -214,11 +215,13 @@ class MedicalPatient(models.Model):
 
     # diagnosis
     cad = fields.Char("CAD")
+    cad_history_text = fields.Char("Family History Text")
+
     chf = fields.Char("CHF")
     refractory_angina = fields.Char("Refractory Angina")
 
     mi = fields.Boolean("MI")
-    mi_date = fields.Date(string='Date of MI')
+    mi_date = fields.Char(string='Date of MI')
 
     cabg = fields.Boolean("CABG")
     cabg_date = fields.Date(string='Date of CABG')
@@ -230,6 +233,10 @@ class MedicalPatient(models.Model):
 
     medical_mx = fields.Boolean("Medical MX")
     medical_mx_text = fields.Char("Medical MX text")
+
+    # diabetes
+    how_long = fields.Char('Since How Long Years')
+    medications = fields.Char('Medications')
 
     # cardiac test and procedures
     ecg_ids = fields.One2many('patient.ecg', 'medical_patient_id', 'ECG')
@@ -336,8 +343,6 @@ class PatientDiabetes(models.Model):
     fast_blood_suger = fields.Char('Fast Blood Suger')
     ppbs = fields.Char('PPBS')
     hba1c = fields.Char('HBA 1c')
-    how_long = fields.Char('Since How Long Years')
-    medications = fields.Char('Medications')
 
 
 class PatientMedications(models.Model):

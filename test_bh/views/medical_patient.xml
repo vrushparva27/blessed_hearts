@@ -86,6 +86,7 @@
                                     </group>
                                     <group attrs="{'invisible':[('diabetes_mellitus','!=',True)]}">
                                         <field name="diabetes_type"/>
+                                        <field name="diabetes_years"/>
                                     </group>
                                 </group>
                                 <group>
@@ -98,41 +99,23 @@
                                 </group>
                             </group>
                             <seperator/>
+                            <hr/>
                             <group>
-                                <group>
-                                    <group>
-                                        <field name="ckd"/>
-                                    </group>
-                                    <group attrs="{'invisible':[('ckd','!=',True)]}">
-                                        <field name="ckd_years"/>
-                                    </group>
-                                </group>
-
-                                <group>
-                                    <group>
-                                        <field name="leg_fracture"/>
-                                    </group>
-                                    <group attrs="{'invisible':[('leg_fracture','!=',True)]}">
-                                        <field name="fracture_text"/>
-                                    </group>
-                                </group>
+                                <field name="ckd"/>
+                                <field name="ckd_years" attrs="{'invisible':[('ckd','!=',True)]}"/>
                             </group>
                             <seperator/>
+                            <hr/>
                             <group>
-                                <group>
-                                    <group>
-                                        <field name="leg_surgery"/>
-                                    </group>
-                                    <group attrs="{'invisible':[('leg_surgery','!=',True)]}">
-                                        <field name="surgery_text"/>
-                                    </group>
-                                </group>
-                                <group>
-                                    <group></group>
-                                    <group></group>
-                                </group>
+                                <field name="leg_fracture"/>
+                                <field name="fracture_text" attrs="{'invisible':[('leg_fracture','!=',True)]}"/>
                             </group>
-
+                            <seperator/>
+                            <hr/>
+                            <group>
+                                <field name="leg_surgery"/>
+                                <field name="surgery_text" attrs="{'invisible':[('leg_surgery','!=',True)]}"/>
+                            </group>
                         </page>
                         <page string="Sign and Symptoms">
                             <group string="Patient Sign and Symptoms">
@@ -294,11 +277,11 @@
                         <page string="CAD Risk Factors">
                             <notebook>
                                 <page string="Family History of CAD">
-
+                                    <field name="cad_history_text" nolabel="1"/>
                                 </page>
                                 <page string="Cholesterol">
                                     <group>
-                                        <field name="is_chol_bool" widget="boolean_toggle"/>
+                                        <field name="is_chol_bool"  />
                                     </group>
                                     <group string="Cholesterol Details"
                                            attrs="{'invisible':[('is_chol_bool','!=',True)]}">
@@ -320,11 +303,14 @@
                                 </page>
                                 <page string="Diabetes">
                                     <group>
-                                        <field name="is_diabetes_bool" widget="boolean_toggle"/>
+                                        <field name="is_diabetes_bool"  />
+                                    </group>
+                                    <group attrs="{'invisible':[('is_diabetes_bool','!=',True)]}">
+                                        <field name="how_long"/>
+                                        <field name="medications"/>
                                     </group>
                                     <group string="Diabetes Details"
                                            attrs="{'invisible':[('is_diabetes_bool','!=',True)]}">
-                                        <group>
                                             <field name='patient_diabetes_ids' nolabel="1">
                                                 <tree strig="Diabetes " editable="bottom">
                                                     <field name="medical_patient_id" readonly="1"/>
@@ -333,16 +319,13 @@
                                                     <field name="fast_blood_suger"/>
                                                     <field name="ppbs"/>
                                                     <field name="hba1c"/>
-                                                    <field name="how_long"/>
-                                                    <field name="medications"/>
                                                 </tree>
                                             </field>
-                                        </group>
                                     </group>
                                 </page>
                                 <page string="Stress">
                                     <group>
-                                        <field name="is_stress"/>
+                                        <field name="is_stress"  />
                                     </group>
                                     <group string="Stress"
                                            attrs="{'invisible':[('is_stress','!=',True)]}">
@@ -354,10 +337,10 @@
                                 <page string="Nutrition">
                                     <group>
                                         <group>
-                                            <field name="veg"/>
+                                            <field name="veg"  />
                                         </group>
                                         <group>
-                                            <field name="non_veg"/>
+                                            <field name="non_veg"  />
                                         </group>
                                     </group>
                                     <group string="Nutrition">
@@ -370,7 +353,7 @@
 
                                 <page string="Alcohol">
                                     <group>
-                                        <field name="is_drinking"/>
+                                        <field name="is_drinking"  />
                                     </group>
                                     <group string="Alcohol"
                                            attrs="{'invisible':[('is_drinking','!=',True)]}">
@@ -380,7 +363,7 @@
 
                                 <page string="Exercise">
                                     <group>
-                                        <field name="is_exercise"/>
+                                        <field name="is_exercise"  />
                                     </group>
                                     <group string="Exercise"
                                            attrs="{'invisible':[('is_exercise','!=',True)]}">
