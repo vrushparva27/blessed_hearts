@@ -193,7 +193,7 @@
                                     <group string="ECG">
                                         <field name='ecg_ids' nolabel="1">
                                             <tree strig="ECG " editable="bottom">
-                                                <field name="medical_patient_id" readonly="1"/>
+                                                <field name="medical_patient_id" invisible="1"/>
                                                 <field name="text"/>
                                                 <field name="documents" widget="binary" filename="name"/>
                                             </tree>
@@ -204,7 +204,7 @@
                                     <group string="Echo">
                                         <field name='echo_ids' nolabel="1">
                                             <tree strig="Echo " editable="bottom">
-                                                <field name="medical_patient_id" readonly="1"/>
+                                                <field name="medical_patient_id" invisible="1"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
@@ -215,7 +215,7 @@
                                     <group string="Stress Echo / Thallium Echo">
                                         <field name='stress_echo_ids' nolabel="1">
                                             <tree strig="Stress Echo / Thallium Echo " editable="bottom">
-                                                <field name="medical_patient_id" readonly="1"/>
+                                                <field name="medical_patient_id" invisible="1"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
@@ -226,7 +226,7 @@
                                     <group string="Cardiac Cath / Angiography ">
                                         <field name='angiography_ids' nolabel="1">
                                             <tree strig="Cardiac Cath / Angiography  " editable="bottom">
-                                                <field name="medical_patient_id" readonly="1"/>
+                                                <field name="medical_patient_id" invisible="1"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
@@ -238,7 +238,7 @@
                                     <group string="PTCA / Stent ">
                                         <field name='ptca_stend_ids' nolabel="1">
                                             <tree strig="PTCA / Stent  " editable="bottom">
-                                                <field name="medical_patient_id" readonly="1"/>
+                                                <field name="medical_patient_id" invisible="1"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
@@ -250,7 +250,7 @@
                                     <group string="CABG">
                                         <field name='cabg_ids' nolabel="1">
                                             <tree strig="CABG " editable="bottom">
-                                                <field name="medical_patient_id" readonly="1"/>
+                                                <field name="medical_patient_id" invisible="1"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
@@ -262,7 +262,7 @@
                                     <group string="Other Tests">
                                         <field name='other_test_ids' nolabel="1">
                                             <tree strig="Other Tests " editable="bottom">
-                                                <field name="medical_patient_id" readonly="1"/>
+                                                <field name="medical_patient_id" invisible="1"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
@@ -281,29 +281,27 @@
                                 </page>
                                 <page string="Cholesterol">
                                     <group>
-                                        <field name="is_chol_bool"  />
+                                        <field name="is_chol_bool"/>
                                     </group>
                                     <group string="Cholesterol Details"
                                            attrs="{'invisible':[('is_chol_bool','!=',True)]}">
-                                        <group>
-                                            <field name='patient_cholesterol_ids' nolabel="1">
-                                                <tree strig="Cholesterol " editable="bottom">
-                                                    <field name="medical_patient_id" readonly="1"/>
-                                                    <field name="date"/>
-                                                    <field name="total_chol"/>
-                                                    <field name="ldl"/>
-                                                    <field name="hdl"/>
-                                                    <field name="triglycerides"/>
-                                                    <field name="other_tests"/>
-                                                    <field name="medications"/>
-                                                </tree>
-                                            </field>
-                                        </group>
+                                        <field name='patient_cholesterol_ids' nolabel="1">
+                                            <tree strig="Cholesterol " editable="bottom">
+                                                <field name="medical_patient_id" invisible="1"/>
+                                                <field name="date"/>
+                                                <field name="total_chol"/>
+                                                <field name="ldl"/>
+                                                <field name="hdl"/>
+                                                <field name="triglycerides"/>
+                                                <field name="other_tests"/>
+                                                <field name="medications"/>
+                                            </tree>
+                                        </field>
                                     </group>
                                 </page>
                                 <page string="Diabetes">
                                     <group>
-                                        <field name="is_diabetes_bool"  />
+                                        <field name="is_diabetes_bool"/>
                                     </group>
                                     <group attrs="{'invisible':[('is_diabetes_bool','!=',True)]}">
                                         <field name="how_long"/>
@@ -311,21 +309,21 @@
                                     </group>
                                     <group string="Diabetes Details"
                                            attrs="{'invisible':[('is_diabetes_bool','!=',True)]}">
-                                            <field name='patient_diabetes_ids' nolabel="1">
-                                                <tree strig="Diabetes " editable="bottom">
-                                                    <field name="medical_patient_id" readonly="1"/>
-                                                    <field name="date"/>
-                                                    <field name="rbs"/>
-                                                    <field name="fast_blood_suger"/>
-                                                    <field name="ppbs"/>
-                                                    <field name="hba1c"/>
-                                                </tree>
-                                            </field>
+                                        <field name='patient_diabetes_ids' nolabel="1">
+                                            <tree strig="Diabetes " editable="bottom">
+                                                <field name="medical_patient_id" invisible="1"/>
+                                                <field name="date"/>
+                                                <field name="rbs"/>
+                                                <field name="fast_blood_suger"/>
+                                                <field name="ppbs"/>
+                                                <field name="hba1c"/>
+                                            </tree>
+                                        </field>
                                     </group>
                                 </page>
                                 <page string="Stress">
                                     <group>
-                                        <field name="is_stress"  />
+                                        <field name="is_stress"/>
                                     </group>
                                     <group string="Stress"
                                            attrs="{'invisible':[('is_stress','!=',True)]}">
@@ -337,10 +335,10 @@
                                 <page string="Nutrition">
                                     <group>
                                         <group>
-                                            <field name="veg"  />
+                                            <field name="veg"/>
                                         </group>
                                         <group>
-                                            <field name="non_veg"  />
+                                            <field name="non_veg"/>
                                         </group>
                                     </group>
                                     <group string="Nutrition">
@@ -353,7 +351,7 @@
 
                                 <page string="Alcohol">
                                     <group>
-                                        <field name="is_drinking"  />
+                                        <field name="is_drinking"/>
                                     </group>
                                     <group string="Alcohol"
                                            attrs="{'invisible':[('is_drinking','!=',True)]}">
@@ -363,7 +361,7 @@
 
                                 <page string="Exercise">
                                     <group>
-                                        <field name="is_exercise"  />
+                                        <field name="is_exercise"/>
                                     </group>
                                     <group string="Exercise"
                                            attrs="{'invisible':[('is_exercise','!=',True)]}">
@@ -406,7 +404,7 @@
                             <group>
                                 <field name='patient_medications_ids' nolabel="1">
                                     <tree strig="Medications " editable="bottom">
-                                        <field name="medical_patient_id" readonly="1"/>
+                                        <field name="medical_patient_id" invisible="1"/>
                                         <field name="date"/>
                                         <field name="name"/>
                                         <field name="dose"/>
