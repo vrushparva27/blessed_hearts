@@ -32,6 +32,27 @@ class MedicalPatient(models.Model):
             else:
                 rec.age = "No Date Of Birth!!"
 
+    # /// deposit and refund + invoice and invoice refund ////
+
+    # invoice_ids = fields.One2many("account.move", 'patient_id', string="Invoices",
+    #                               domain=[('type', '=', 'out_invoice'), ('state', '!=', 'cancel')], store=True)
+    # invoice_refund_ids = fields.One2many("account.move", 'patient_id', string="Refund Invoices",
+    #                                      domain=[('type', '=', 'out_refund'), ('state', '!=', 'cancel')])
+    # deposit_ids = fields.One2many("account.payment", 'patient_id', "Deposits",
+    #                               domain=[('payment_type', '=', 'inbound'), ('state', '!=', 'cancelled')])
+    # deposit_refund_ids = fields.One2many("account.payment", 'patient_id', string="Refund Deposits",
+    #                                      domain=[('payment_type', '=', 'outbound'), ('state', '!=', 'cancelled')])
+    # invoice_count = fields.Integer(string='Invoice Count', readonly=True)
+    # deposit_count = fields.Integer(string='Deposit Count', readonly=True)
+    # deposit_refund_count = fields.Integer(string="Refund Deposit", readonly=True)
+    # invoice_refund_count = fields.Integer(string="Refund Invoice", readonly=True)
+    # total_inv_amt = fields.Monetary(string="Total Invoice", compute='_get_invoiced', readonly=True, store=True)
+    # total_inv_refund_amt = fields.Monetary(string="Total Refund Invoices", readonly=True,
+    #                                        store=True)
+    # total_deposit_amt = fields.Monetary(string="Total Deposit", readonly=True, store=True)
+    # total_deposit_refund_amt = fields.Monetary(string="Total Refund Deposits", readonly=True,
+    #                                            store=True)
+
     # demographic Data
     patient_id = fields.Many2one('res.partner', string="Patient", required=True)
     name = fields.Char(string='ID', readonly=True)
@@ -72,7 +93,32 @@ class MedicalPatient(models.Model):
     patient_diabetes_ids = fields.One2many('patient.diabetes', 'medical_patient_id', 'Diabetes')
     patient_medications_ids = fields.One2many('patient.medications', 'medical_patient_id', 'Medications')
     is_chol_bool = fields.Boolean('Cholesterol')
+    vldl = fields.Char('VLDL')
     is_diabetes_bool = fields.Boolean('Diabetes')
+
+    # smoking and tabacco
+    currently_smoking = fields.Boolean('Current')
+    past_history = fields.Boolean('Past History')
+    how_many_per_day = fields.Selection([('1', '1'),
+                                         ('2', '2'),
+                                         ('3', '3'),
+                                         ('4', '4'),
+                                         ('5', '5'),
+                                         ('6', '6'),
+                                         ('7', '7'),
+                                         ('8', '8'),
+                                         ('9', '9'),
+                                         ('10', '10')],
+                                        string="How Many Per Day")
+    smoking_since_how_long = fields.Char('Since How Long')
+    desire_to_quite = fields.Char('Desire To Quit')
+    date_to_quit_smoking = fields.Char('Date of Quit Smoking')
+
+    # Blood Pressure
+    hypertension = fields.Boolean('Hypertension')
+    hypertension_how_many_years = fields.Char('If Yes, Since How Long')
+    medications_bp = fields.Char('Medication')
+
 
     # Stress
     is_stress = fields.Boolean('Do You Feel Under Stress Often ?')
@@ -329,7 +375,6 @@ class PatientCholesterol(models.Model):
     ldl = fields.Char('LDL')
     hdl = fields.Char('HDL')
     triglycerides = fields.Char('Triglycerides')
-    other_tests = fields.Char('Other_tests')
     medications = fields.Char('Medications')
 
 
@@ -352,7 +397,7 @@ class PatientMedications(models.Model):
 
     date = fields.Date(string='Date', default=datetime.now())
     name = fields.Char('Name of Medication')
-    dose = fields.Char('Dose')
+    dose = fields.Char('Generic name')
     frequency = fields.Char('Frequency')
 
 
@@ -364,8 +409,7 @@ class PatientTreatmentChart(models.Model):
     date = fields.Date(string='Date', default=datetime.now())
     pre_bp = fields.Char("PRE BP")
     hr = fields.Char("HR")
-    time = fields.Char("TIME")
-    diagnosis_systolic_aug_ratio = fields.Integer("Diagnosis Systolic Augmentation Ratio")
+    diagnosis_systolic_aug_ratio = fields.Integer("Diastolic Systolic Augmentation Ratio")
     post_bp = fields.Char("POST BP")
     post_hr = fields.Char("POST HR")
     weight = fields.Integer("Weight")

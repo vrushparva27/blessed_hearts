@@ -279,9 +279,65 @@
                                 <page string="Family History of CAD">
                                     <field name="cad_history_text" nolabel="1"/>
                                 </page>
+
+                                <page string="Smoking /Tabacco">
+                                    <group>
+                                        <group>
+                                            <field name="currently_smoking"/>
+                                        </group>
+                                        <group>
+                                            <field name="past_history"/>
+                                        </group>
+                                        <group>
+                                            <field name="how_many_per_day"
+                                                   attrs="{'invisible':[('currently_smoking','!=',True)]}"/>
+                                        </group>
+                                        <group>
+                                            <field name="smoking_since_how_long"
+                                                   attrs="{'invisible':[('past_history','!=',True)]}"/>
+
+                                        </group>
+                                        <group>
+                                            <field name="desire_to_quite"
+                                                   attrs="{'invisible':[('currently_smoking','!=',True)]}"/>
+                                        </group>
+                                        <group>
+                                            <field name="date_to_quit_smoking"
+                                                   attrs="{'invisible':[('past_history','!=',True)]}"/>
+
+                                        </group>
+                                    </group>
+                                </page>
+
+
+                                <page string="Blood Pressure">
+                                    <group>
+                                        <group>
+                                            <field name="hypertension"/>
+                                        </group>
+                                        <group>
+                                            
+                                        </group>
+                                        <group>
+                                            <field name="hypertension_how_many_years"
+                                                   attrs="{'invisible':[('hypertension','!=',True)]}"/>
+                                        </group>
+                                        <group>
+                                            <field name="medications_bp"
+                                                   attrs="{'invisible':[('hypertension','!=',True)]}"/>
+                                        </group>
+                                    </group>
+                                </page>
+
+
                                 <page string="Cholesterol">
                                     <group>
-                                        <field name="is_chol_bool"/>
+                                        <group>
+                                            <field name="is_chol_bool"/>
+                                        </group>
+                                        <group>
+                                            <field name="vldl" attrs="{'invisible':[('is_chol_bool','!=',True)]}"/>
+                                        </group>
                                     </group>
                                     <group string="Cholesterol Details"
                                            attrs="{'invisible':[('is_chol_bool','!=',True)]}">
@@ -293,7 +349,6 @@
                                                 <field name="ldl"/>
                                                 <field name="hdl"/>
                                                 <field name="triglycerides"/>
-                                                <field name="other_tests"/>
                                                 <field name="medications"/>
                                             </tree>
                                         </field>
@@ -796,9 +851,6 @@
                         <page string="6MWT">
                             <group>
                                 <group>
-                                    <field name="patient_id"/>
-                                    <field name="date_of_birth"/>
-                                    <field name="age" readonly="1"/>
                                     <field name="target_hr"/>
                                 </group>
                                 <group>
@@ -872,21 +924,12 @@
 
                         <page string="Treatment Chart">
                             <group>
-                                <group>
-                                    <field name="patient_id"/>
-                                </group>
-                                <group>
-                                    <field name="age" readonly="1"/>
-                                </group>
-                            </group>
-                            <group>
                                 <field name='treatment_chart_ids' nolabel="1">
                                     <tree editable="bottom">
                                         <field name="sequence" widget="handle"/>
                                         <field name="date"/>
                                         <field name="pre_bp"/>
                                         <field name="hr"/>
-                                        <field name="time"/>
                                         <field name="post_hr"/>
                                         <field name="rbs"/>
                                         <field name="diagnosis_systolic_aug_ratio"/>
