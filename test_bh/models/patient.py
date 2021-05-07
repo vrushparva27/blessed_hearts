@@ -93,7 +93,6 @@ class MedicalPatient(models.Model):
     patient_diabetes_ids = fields.One2many('patient.diabetes', 'medical_patient_id', 'Diabetes')
     patient_medications_ids = fields.One2many('patient.medications', 'medical_patient_id', 'Medications')
     is_chol_bool = fields.Boolean('Cholesterol')
-    vldl = fields.Char('VLDL')
     is_diabetes_bool = fields.Boolean('Diabetes')
 
     # smoking and tabacco
@@ -118,7 +117,6 @@ class MedicalPatient(models.Model):
     hypertension = fields.Boolean('Hypertension')
     hypertension_how_many_years = fields.Char('If Yes, Since How Long')
     medications_bp = fields.Char('Medication')
-
 
     # Stress
     is_stress = fields.Boolean('Do You Feel Under Stress Often ?')
@@ -203,11 +201,11 @@ class MedicalPatient(models.Model):
     physical_limitations = fields.Text('Physical Limitations')
 
     # physical examination
-    height = fields.Float("Height / cms")
-    weight = fields.Float("Weight / Kg")
-    bmi = fields.Float("BMI / kg/ meter square")
-    pulse = fields.Float("pulse / bpm")
-    blood_pressure = fields.Float("Blood Pressure / mmHg")
+    height = fields.Char("Height / cms", default='cm')
+    weight = fields.Char("Weight / Kg", default=' cm')
+    bmi = fields.Char("BMI / kg/ meter square", default=' kg / m2')
+    pulse = fields.Char("pulse / bpm", default=' bpm')
+    blood_pressure = fields.Char("Blood Pressure / mmHg", default=' mmHg')
     auscultatory_finding = fields.Text('Auscultatory Finding')
     peripheral_pulses = fields.Text('Peripheral Pulses')
 
@@ -294,7 +292,11 @@ class MedicalPatient(models.Model):
     other_test_ids = fields.One2many('patient.other_tests', 'medical_patient_id', 'Other Tests')
     treatment_chart_ids = fields.One2many('patient.treatment.chart', 'medical_patient_id', 'ECG')
 
-    # Indications Check List
+
+    renal_liver_ids = fields.One2many('renal.liver.profile', 'medical_patient_id', 'Renal Liver')
+    cad_inr_ids = fields.One2many('cad.inr', 'medical_patient_id', 'INR')
+    cad_pt_ids = fields.One2many('cad.pt', 'medical_patient_id', 'PT')
+    nt_pro_bnp_ids = fields.One2many('nt.pro.bnp', 'medical_patient_id', 'NT pro BNP')
 
     con_indication_1 = fields.Boolean("Uncontrolled Ventricular/Supraventricular arrhythmias", default=True)
     con_indication_2 = fields.Boolean(
@@ -371,10 +373,11 @@ class PatientCholesterol(models.Model):
     medical_patient_id = fields.Many2one('medical.patient', string="Patient")
 
     date = fields.Date(string='Date', default=datetime.now())
-    total_chol = fields.Char('Total Cholesterol')
-    ldl = fields.Char('LDL')
-    hdl = fields.Char('HDL')
-    triglycerides = fields.Char('Triglycerides')
+    total_chol = fields.Char('Total Cholesterol', default=' mg/dl')
+    ldl = fields.Char('LDL', default=' mg/dl')
+    hdl = fields.Char('HDL', default=' mg/dl')
+    triglycerides = fields.Char('Triglycerides', default=' mg/dl')
+    vldl = fields.Char('VLDL')
     medications = fields.Char('Medications')
 
 
@@ -415,3 +418,40 @@ class PatientTreatmentChart(models.Model):
     weight = fields.Integer("Weight")
     rbs = fields.Integer("RBS")
     complaints = fields.Char("Complaints")
+
+
+class NTProBNP(models.Model):
+    _name = 'nt.pro.bnp'
+
+    medical_patient_id = fields.Many2one('medical.patient', string="Patient")
+    date = fields.Date(string='Date', default=datetime.now())
+    nt_pro = fields.Char("NT Pro", default='pg/ml')
+    bnp = fields.Char("BNP", default='pg/ml')
+
+
+class CADPT(models.Model):
+    _name = 'cad.pt'
+
+    medical_patient_id = fields.Many2one('medical.patient', string="Patient")
+    date = fields.Date(string='Date', default=datetime.now())
+    cad_pt = fields.Char("PT")
+
+
+class CADINR(models.Model):
+    _name = 'cad.inr'
+
+    medical_patient_id = fields.Many2one('medical.patient', string="Patient")
+    date = fields.Date(string='Date', default=datetime.now())
+    cad_inr = fields.Char("INR")
+
+
+class RenalLiverProfile(models.Model):
+    _name = 'renal.liver.profile'
+
+    medical_patient_id = fields.Many2one('medical.patient', string="Patient")
+    date = fields.Date(string='Date', default=datetime.now())
+    s_creatinine = fields.Char("S. Creatinine")
+    s_na_plus = fields.Char("S.Na+")
+    s_k_plus = fields.Char("S.K+")
+    s_cl_minus = fields.Char("S.Cl-")
+    sgpt = fields.Char("SGPT")

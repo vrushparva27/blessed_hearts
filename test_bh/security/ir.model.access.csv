@@ -11,4 +11,8 @@ access_patient_angiography,patient.angiography,model_patient_angiography,base.gr
 access_patient_cabg,patient.cabg,model_patient_cabg,base.group_user,1,1,1,1
 access_patient_other_tests,patient.other_tests,model_patient_other_tests,base.group_user,1,1,1,1
 access_patient_treatment_chart,patient.treatment.chart,model_patient_treatment_chart,base.group_user,1,1,1,1
+access_nt_pro_bnp,nt.pro.bnp,model_nt_pro_bnp,base.group_user,1,1,1,1
+access_cad_pt,cad.pt,model_cad_pt,base.group_user,1,1,1,1
+access_cad_inr,cad.inr,model_cad_inr,base.group_user,1,1,1,1
+access_renal_liver_profile,renal.liver.profile,model_renal_liver_profile,base.group_user,1,1,1,1
 

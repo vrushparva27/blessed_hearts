@@ -53,7 +53,10 @@
                                         <field name="city" placeholder="City" class="o_address_street"/>
                                         <field name="state_id" class="o_address_city" placeholder="State"
                                                options="{&quot;no_open&quot;: True}"/>
-                                        <field name="country_id" placeholder="Country" class="o_address_state"/>
+                                        <field name="country_id" placeholder="Country"
+                                               options="{&quot;no_open&quot;: True}"
+                                               class="o_address_state"/>
+
                                         <field name="zip" placeholder="ZIP" class="o_address_zip"/>
                                     </div>
                                     <field name="mobile" placeholder="Enter Mobile ..." class="o_address_zip"/>
@@ -280,6 +283,41 @@
                                     <field name="cad_history_text" nolabel="1"/>
                                 </page>
 
+                                <page string="NT Pro BNP">
+                                    <field name='nt_pro_bnp_ids' nolabel="1">
+                                        <tree strig="Cholesterol " editable="bottom">
+                                            <field name="medical_patient_id" invisible="1"/>
+                                            <field name="date"/>
+                                            <field name="nt_pro"/>
+                                            <field name="bnp"/>
+                                        </tree>
+                                    </field>
+                                </page>
+
+                                <page string="PT INR">
+                                    <notebook>
+                                        <page string="PT details">
+                                            <field name='cad_pt_ids' nolabel="1">
+                                                <tree strig="PT Details" editable="bottom">
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="date"/>
+                                                    <field name="cad_pt"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="INR details">
+                                            <field name='cad_inr_ids' nolabel="1">
+                                                <tree strig="INT Details" editable="bottom">
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="date"/>
+                                                    <field name="cad_inr"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                    </notebook>
+                                </page>
+
+
                                 <page string="Smoking /Tabacco">
                                     <group>
                                         <group>
@@ -316,7 +354,7 @@
                                             <field name="hypertension"/>
                                         </group>
                                         <group>
-                                            
+
                                         </group>
                                         <group>
                                             <field name="hypertension_how_many_years"
@@ -335,9 +373,6 @@
                                         <group>
                                             <field name="is_chol_bool"/>
                                         </group>
-                                        <group>
-                                            <field name="vldl" attrs="{'invisible':[('is_chol_bool','!=',True)]}"/>
-                                        </group>
                                     </group>
                                     <group string="Cholesterol Details"
                                            attrs="{'invisible':[('is_chol_bool','!=',True)]}">
@@ -349,6 +384,7 @@
                                                 <field name="ldl"/>
                                                 <field name="hdl"/>
                                                 <field name="triglycerides"/>
+                                                <field name="vldl"/>
                                                 <field name="medications"/>
                                             </tree>
                                         </field>
