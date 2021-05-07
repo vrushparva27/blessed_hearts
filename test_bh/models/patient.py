@@ -59,6 +59,7 @@ class MedicalPatient(models.Model):
     last_name = fields.Char('Last Name')
     date_of_birth = fields.Date(string="Date of Birth", store=True)
     photo = fields.Binary(string="Picture")
+    patient_consent = fields.Binary(string="Patient Consent")
     sex = fields.Selection([('m', 'Male'), ('f', 'Female')], string="Sex")
     age = fields.Char(compute=onchange_age, string="Patient Age", store=True)
     marital_status = fields.Selection(
@@ -425,8 +426,7 @@ class NTProBNP(models.Model):
 
     medical_patient_id = fields.Many2one('medical.patient', string="Patient")
     date = fields.Date(string='Date', default=datetime.now())
-    nt_pro = fields.Char("NT Pro", default='pg/ml')
-    bnp = fields.Char("BNP", default='pg/ml')
+    nt_pro_bnp = fields.Char("NT Pro BNP", default='pg/ml')
 
 
 class CADPT(models.Model):

@@ -288,8 +288,7 @@
                                         <tree strig="Cholesterol " editable="bottom">
                                             <field name="medical_patient_id" invisible="1"/>
                                             <field name="date"/>
-                                            <field name="nt_pro"/>
-                                            <field name="bnp"/>
+                                            <field name="nt_pro_bnp"/>
                                         </tree>
                                     </field>
                                 </page>
@@ -365,6 +364,20 @@
                                                    attrs="{'invisible':[('hypertension','!=',True)]}"/>
                                         </group>
                                     </group>
+                                </page>
+
+                                <page string="Renal Liver Profile">
+                                    <field name='renal_liver_ids' nolabel="1">
+                                        <tree editable="bottom">
+                                            <field name="medical_patient_id" invisible="1"/>
+                                            <field name="date"/>
+                                            <field name="s_creatinine"/>
+                                            <field name="s_na_plus"/>
+                                            <field name="s_k_plus"/>
+                                            <field name="s_cl_minus"/>
+                                            <field name="sgpt"/>
+                                        </tree>
+                                    </field>
                                 </page>
 
 
@@ -975,7 +988,11 @@
                                 </field>
                             </group>
                         </page>
-
+                        <page string="Patient Consent">
+                            <group>
+                                <field name="patient_consent" nolabel="1" class="oe_left oe_avatar"/>
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
