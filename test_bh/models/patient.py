@@ -293,7 +293,6 @@ class MedicalPatient(models.Model):
     other_test_ids = fields.One2many('patient.other_tests', 'medical_patient_id', 'Other Tests')
     treatment_chart_ids = fields.One2many('patient.treatment.chart', 'medical_patient_id', 'ECG')
 
-
     renal_liver_ids = fields.One2many('renal.liver.profile', 'medical_patient_id', 'Renal Liver')
     cad_inr_ids = fields.One2many('cad.inr', 'medical_patient_id', 'INR')
     cad_pt_ids = fields.One2many('cad.pt', 'medical_patient_id', 'PT')
@@ -334,6 +333,12 @@ class MedicalPatient(models.Model):
 
     # Final Diagnosis
     final_html = fields.Html(string='Final Diagnosis')
+
+    # new added fields UPDATED 12 May
+    all_report_docs = fields.Binary(string="All Documents")
+    other_surgical_conditions = fields.Boolean('Other Medical / Surgical Conditions')
+    other_surgical_conditions_text = fields.Char('Details')
+    patient_refused_due = fields.Char('Patient Refused Due To:')
 
     @api.model
     def create(self, val):

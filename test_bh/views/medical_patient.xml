@@ -119,6 +119,16 @@
                                 <field name="leg_surgery"/>
                                 <field name="surgery_text" attrs="{'invisible':[('leg_surgery','!=',True)]}"/>
                             </group>
+                            <hr/>
+                            <group>
+                                <group>
+                                    <field name="other_surgical_conditions"/>
+                                </group>
+                                <group attrs="{'invisible':[('other_surgical_conditions','!=',True)]}">
+                                    <field name="other_surgical_conditions_text"/>
+                                </group>
+                            </group>
+
                         </page>
                         <page string="Sign and Symptoms">
                             <group string="Patient Sign and Symptoms">
@@ -270,6 +280,11 @@
                                                 <field name="documents"/>
                                             </tree>
                                         </field>
+                                    </group>
+                                </page>
+                                <page string="All Documents">
+                                    <group>
+                                        <field name="all_report_docs" nolabel="1" class="oe_left oe_avatar"/>
                                     </group>
                                 </page>
 
@@ -724,9 +739,14 @@
                                                     <span class="o_form_label">
                                                         1. Patient Refused Due to :
                                                     </span>
+                                                    <field name="patient_refused_due"
+                                                           attrs="{'invisible':[('indication_1','!=',True)]}"
+                                                           nolabel="1"/>
                                                 </div>
                                             </div>
                                         </div>
+
+
                                         <div class="row mt16 o_settings_container">
                                             <div class="col-12 col-lg-6 o_setting_box">
                                                 <div class="o_setting_left_pane">
