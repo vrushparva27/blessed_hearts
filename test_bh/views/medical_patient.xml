@@ -1055,12 +1055,17 @@
                                     <a type="open">
                                         <field name="patient_id"/>
                                     </a>
-                                    <a style="float:right;" type="open">
-                                        <field name="name"/>
-                                    </a>
                                 </h4>
 
                                 <ul>
+                                    <li>
+                                        <h4>
+                                            <a type="open">
+                                                <field name="name"/>
+                                            </a>
+                                        </h4>
+
+                                    </li>
                                     <li>DOB:
                                         <field name="date_of_birth"/>
                                     </li>

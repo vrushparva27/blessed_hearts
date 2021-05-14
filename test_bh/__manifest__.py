@@ -10,13 +10,13 @@
     Blessed Hearts
 """,
 
-    "depends": ["base", 'backend_theme_v13'],
+    "depends": ["base"],
     "data": [
         'data/ir_sequence_data.xml',
-        'views/assets.xml',
         'views/medical_patient.xml',
         # 'views/account_view.xml',
         'security/ir.model.access.csv',
+        'views/assets.xml',
     ],
     "author": "Vrushparva Vaishnav",
     "installable": True,
