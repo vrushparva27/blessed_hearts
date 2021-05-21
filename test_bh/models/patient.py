@@ -32,26 +32,29 @@ class MedicalPatient(models.Model):
             else:
                 rec.age = "No Date Of Birth!!"
 
+    @api.depends('invoice_ids', 'invoice_refund_ids',
+                 'invoice_ids.amount_total', 'invoice_refund_ids.amount_total')
+    def _get_invoiced(self):
+        for rec in self:
+            invoices = rec.mapped('invoice_ids')
+            refund_invoices = rec.mapped('invoice_refund_ids')
+            rec.invoice_count = len(invoices.ids)
+            rec.invoice_refund_count = len(refund_invoices.ids)
+            rec.total_inv_amt = sum([inv.amount_total for inv in invoices.filtered(lambda so: so.state in ('posted'))])
+            rec.total_inv_refund_amt = sum(
+                [rinv.amount_total for rinv in refund_invoices.filtered(lambda so: so.state in ('posted'))])
+
     # /// deposit and refund + invoice and invoice refund ////
 
-    # invoice_ids = fields.One2many("account.move", 'patient_id', string="Invoices",
-    #                               domain=[('type', '=', 'out_invoice'), ('state', '!=', 'cancel')], store=True)
-    # invoice_refund_ids = fields.One2many("account.move", 'patient_id', string="Refund Invoices",
-    #                                      domain=[('type', '=', 'out_refund'), ('state', '!=', 'cancel')])
-    # deposit_ids = fields.One2many("account.payment", 'patient_id', "Deposits",
-    #                               domain=[('payment_type', '=', 'inbound'), ('state', '!=', 'cancelled')])
-    # deposit_refund_ids = fields.One2many("account.payment", 'patient_id', string="Refund Deposits",
-    #                                      domain=[('payment_type', '=', 'outbound'), ('state', '!=', 'cancelled')])
-    # invoice_count = fields.Integer(string='Invoice Count', readonly=True)
-    # deposit_count = fields.Integer(string='Deposit Count', readonly=True)
-    # deposit_refund_count = fields.Integer(string="Refund Deposit", readonly=True)
-    # invoice_refund_count = fields.Integer(string="Refund Invoice", readonly=True)
-    # total_inv_amt = fields.Monetary(string="Total Invoice", compute='_get_invoiced', readonly=True, store=True)
-    # total_inv_refund_amt = fields.Monetary(string="Total Refund Invoices", readonly=True,
-    #                                        store=True)
-    # total_deposit_amt = fields.Monetary(string="Total Deposit", readonly=True, store=True)
-    # total_deposit_refund_amt = fields.Monetary(string="Total Refund Deposits", readonly=True,
-    #                                            store=True)
+    invoice_ids = fields.One2many("account.move", 'patient_id', string="Invoices",
+                                  domain=[('type', '=', 'out_invoice'), ('state', '!=', 'cancel')], store=True)
+    invoice_refund_ids = fields.One2many("account.move", 'patient_id', string="Refund Invoices",
+                                         domain=[('type', '=', 'out_refund'), ('state', '!=', 'cancel')])
+    invoice_count = fields.Integer(string='Invoice Count', readonly=True)
+    invoice_refund_count = fields.Integer(string="Refund Invoice", readonly=True)
+    total_inv_amt = fields.Monetary(string="Total Invoice", compute='_get_invoiced', readonly=True, store=True)
+    total_inv_refund_amt = fields.Monetary(string="Total Refund Invoices", readonly=True,
+                                           store=True)
 
     # demographic Data
     patient_id = fields.Many2one('res.partner', string="Patient", required=True)
@@ -192,7 +195,7 @@ class MedicalPatient(models.Model):
                                         string='ghee Consumption')
     # Alcohol
     is_drinking = fields.Boolean("Is Drinking")
-    drinks_per_peg = fields.Integer("Pegs per Week")
+    drinks_per_peg = fields.Char("Pegs per Week")
 
     # exercise
     is_exercise = fields.Boolean("Doing Exercise")
@@ -370,6 +373,30 @@ class MedicalPatient(models.Model):
             rec.partner_address_id.mobile = rec.mobile
             rec.partner_address_id.zip = rec.zip
         return res
+
+    def action_refund_billing(self):
+        action = self.env.ref('test_bh.action_move_in_invoice_type').read()[0]
+        action['domain'] = [('partner_id', '=', self.patient_id.id),
+                            ('type', '=', 'out_refund'),
+                            ('state', '!=', 'cancel'),
+                            ('patient_id', '=', self.id)]
+        action['context'] = {'from_billing_deposit': 1,
+                             'default_type': 'out_refund',
+                             'default_partner_id': self.patient_id.id,
+                             'default_patient_id': self.id}
+        return action
+
+    def action_open_billing(self):
+        action = self.env.ref('test_bh.action_move_out_invoice_type').read()[0]
+        action['domain'] = [('partner_id', '=', self.patient_id.id),
+                            ('type', '=', 'out_invoice'),
+                            ('state', '!=', 'cancel'),
+                            ('patient_id', '=', self.id)]
+        action['context'] = {'from_billing_deposit': 1,
+                             'default_type': 'out_invoice',
+                             'default_partner_id': self.patient_id.id,
+                             'default_patient_id': self.id}
+        return action
 
 
 class PatientCholesterol(models.Model):
