@@ -6,16 +6,42 @@
         <field name="arch" type="xml">
             <form string="Patient">
                 <header>
-                    <button name='start_treatment' type='object' string="Start Treatment" class='oe_highlight'/>
+                    <button name='start_treatment' type='object' string="Start Treatment"
+                            attrs="{'invisible':[('state','not in','inquiry')]}"
+                            class='oe_highlight'/>
+                    <button name='stop_treatment' type='object' string="Stop Treatment"
+                            attrs="{'invisible':[('state','not in','eecp_started')]}"
+                            class='oe_highlight'/>
+                    <button name='cancel' type='object' string="Cancel"
+                            attrs="{'invisible':[('state','not in',('inquiry','eecp_started'))]}"
+                            class='oe_highlight'/>
+                    <button name='reset_to_inquiry' type='object' string="Reset To Inquiry"
+                            attrs="{'invisible':[('state','not in','cancel')]}"
+                            class='oe_highlight'/>
 
+                    <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
+                    <div class="oe_button_box" name="button_box"
+                         attrs="{'invisible':[('state','in','inquiry')]}">
+                        <button type="object"
+                                name="nothing"
+                                class="oe_stat_button"
+                                icon="fa-inr">
+                            <div class="o_form_field o_stat_info" modifiers="{}">
+                                <span class="o_stat_value" modifiers="{}">
+                                    <field name="remain_amount" widget="monetary" style="color:red;"
+                                           modifiers="{'readonly':true}"/>
+                                </span>
+                                <span class="o_stat_text" modifiers="{}">
+                                    Remain
+                                </span>
+                            </div>
+                        </button>
                         <button type="object"
                                 name="action_open_billing"
                                 class="oe_stat_button"
                                 icon="fa-credit-card-alt">
-
                             <div class="o_form_field o_stat_info" modifiers="{}">
                                 <span class="o_stat_value" modifiers="{}">
                                     <field name="total_inv_amt" widget="monetary"
@@ -46,9 +72,6 @@
                            img_height="120" width="120" height="120"
                            widget="image"/>
                     <div class="oe_title">
-                        <!--                        <div class="oe_edit_only">-->
-                        <!--                            <label for="patient_id"/>-->
-                        <!--                        </div>-->
                         <h1>
                             <field style="width: 100%; text-transform: uppercase;" name="patient_id"
                                    default_focus="1" placeholder="Patient Name"/>
@@ -98,6 +121,28 @@
                                     <field name="mobile_2" placeholder="Enter Mobile 3..."
                                            class="o_address_zip"/>
                                     <field name="partner_address_id" invisible="1"/>
+                                </group>
+                            </group>
+                            <hr>
+                                <seperator></seperator>
+                            </hr>
+                            <group string="Treatment"
+                                   attrs="{'invisible':[('state','not in',('eecp_started','eecp_completed'))]}">
+                                <group>
+                                    <field name="treatment_start_date"/>
+                                </group>
+                                <group>
+                                    <field name="treatment_stop_date"/>
+                                </group>
+                                <group attrs="{'invisible':[('comp_treatment_bool','=', True)]}">
+                                    <field name="treatment_day"/>
+                                </group>
+                                <group attrs="{'invisible':[('comp_treatment_bool','!=', True)]}">
+                                    <field name="comp_treatment_day"/>
+                                </group>
+                                <group>
+                                    <field name="comp_treatment_bool" invisible="1"/>
+                                    <field name="remain_amount"/>
                                 </group>
                             </group>
 

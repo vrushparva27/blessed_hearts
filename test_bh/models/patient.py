@@ -8,7 +8,51 @@ class MedicalPatient(models.Model):
     _name = 'medical.patient'
     _rec_name = 'name'
 
+    state = fields.Selection([('inquiry', 'Inquiry'),
+                              ('eecp_started', 'In EECP'),
+                              ('eecp_completed', 'Completed EECP'),
+                              ('cancel', 'Cancel')],
+                             'State', size=16,
+                             default='inquiry', index=True)
+
+    def treatment_computations(self):
+        today = datetime.today().date()
+        for rec in self:
+            if rec.treatment_start_date:
+                rec.treatment_day = (today - rec.treatment_start_date).days
+            else:
+                rec.treatment_day = 0
+
+    def complete_t_day(self):
+        for rec in self:
+            if rec.treatment_stop_date:
+                rec.comp_treatment_day = (rec.treatment_stop_date - rec.treatment_start_date).days
+                rec.comp_treatment_bool = True
+            else:
+                rec.comp_treatment_day = 0
+                rec.comp_treatment_bool = False
+
+    # // TREATMENT
+    treatment_day = fields.Integer("Treatment Day(s)", compute="treatment_computations")
+    comp_treatment_day = fields.Integer("Treatment Day(s)", compute="complete_t_day")
+    comp_treatment_bool = fields.Boolean("Boolean", compute="treatment_computations", default=False)
+    treatment_start_date = fields.Date(string="EECP  Started")
+    treatment_stop_date = fields.Date(string="EECP Completed")
+
+    # // STATES
     def start_treatment(self):
+        return self.write({'state': 'eecp_started'})
+
+    def stop_treatment(self):
+        return self.write({'state': 'eecp_completed'})
+
+    def cancel(self):
+        return self.write({'state': 'cancel'})
+
+    def reset_to_inquiry(self):
+        return self.write({'state': 'inquiry'})
+
+    def nothing(self):
         return
 
     @api.onchange('patient_id')
@@ -22,7 +66,6 @@ class MedicalPatient(models.Model):
 
     @api.depends('date_of_birth')
     def onchange_age(self):
-        print("called")
         for rec in self:
             if rec.date_of_birth:
                 d1 = rec.date_of_birth
@@ -32,7 +75,21 @@ class MedicalPatient(models.Model):
             else:
                 rec.age = "No Date Of Birth!!"
 
-    @api.depends('invoice_ids', 'invoice_refund_ids',
+    def check_remain_amount(self, invoices):
+        paid_amount = (sum(
+            [inv.amount_total for inv in invoices.filtered(lambda so: so.state in ('posted'))])
+                       - sum(
+                    [inv.amount_residual for inv in invoices.filtered(lambda so: so.state in ('posted'))]))
+        if (0 < self.treatment_day <= 10) and paid_amount < 50000:
+            self.remain_amount = 50000 - paid_amount
+        elif (10 < self.treatment_day <= 20) and paid_amount < 80000:
+            self.remain_amount = 80000 - paid_amount
+        elif (20 < self.treatment_day) and paid_amount < 110000:
+            self.remain_amount = 110000 - paid_amount
+        else:
+            self.remain_amount = 0
+
+    @api.depends('invoice_ids', 'invoice_refund_ids', 'treatment_start_date',
                  'invoice_ids.amount_total', 'invoice_refund_ids.amount_total')
     def _get_invoiced(self):
         for rec in self:
@@ -43,6 +100,9 @@ class MedicalPatient(models.Model):
             rec.total_inv_amt = sum([inv.amount_total for inv in invoices.filtered(lambda so: so.state in ('posted'))])
             rec.total_inv_refund_amt = sum(
                 [rinv.amount_total for rinv in refund_invoices.filtered(lambda so: so.state in ('posted'))])
+            rec.check_remain_amount(invoices)
+            # rec.remain_amount = sum(
+            #     [inv.amount_residual for inv in invoices.filtered(lambda so: so.state in ('posted'))])
 
     # /// deposit and refund + invoice and invoice refund ////
 
@@ -55,6 +115,7 @@ class MedicalPatient(models.Model):
     total_inv_amt = fields.Monetary(string="Total Invoice", compute='_get_invoiced', readonly=True, store=True)
     total_inv_refund_amt = fields.Monetary(string="Total Refund Invoices", readonly=True,
                                            store=True)
+    remain_amount = fields.Integer("Remain Amount", compute="_get_invoiced")
 
     # demographic Data
     patient_id = fields.Many2one('res.partner', string="Patient", required=True)
