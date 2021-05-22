@@ -15,4 +15,5 @@ access_nt_pro_bnp,nt.pro.bnp,model_nt_pro_bnp,base.group_user,1,1,1,1
 access_cad_pt,cad.pt,model_cad_pt,base.group_user,1,1,1,1
 access_cad_inr,cad.inr,model_cad_inr,base.group_user,1,1,1,1
 access_renal_liver_profile,renal.liver.profile,model_renal_liver_profile,base.group_user,1,1,1,1
+access_patient_holiday,patient.holiday,model_patient_holiday,base.group_user,1,1,1,1
 

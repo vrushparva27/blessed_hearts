@@ -145,9 +145,20 @@
                                     <field name="remain_amount"/>
                                 </group>
                             </group>
-
+                            <hr>
+                                <seperator></seperator>
+                            </hr>
+                            <group string="Holiday's"
+                                   attrs="{'invisible':[('state','not in',('eecp_started','eecp_completed'))]}">
+                                <field name='patient_holidays_ids' nolabel="1">
+                                    <tree strig="Patient Leave" editable="bottom">
+                                        <field name="medical_patient_id" invisible="1"/>
+                                        <field name="date"/>
+                                        <field name="remarks"/>
+                                    </tree>
+                                </field>
+                            </group>
                         </page>
-
 
                         <!--Cardiac History-->
                         <page string="Cardiac History">

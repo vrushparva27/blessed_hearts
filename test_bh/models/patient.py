@@ -19,14 +19,16 @@ class MedicalPatient(models.Model):
         today = datetime.today().date()
         for rec in self:
             if rec.treatment_start_date:
-                rec.treatment_day = (today - rec.treatment_start_date).days
+                rec.treatment_day = ((today - rec.treatment_start_date).days - len(
+                    rec.patient_holidays_ids))
             else:
                 rec.treatment_day = 0
 
     def complete_t_day(self):
         for rec in self:
             if rec.treatment_stop_date:
-                rec.comp_treatment_day = (rec.treatment_stop_date - rec.treatment_start_date).days
+                rec.comp_treatment_day = ((rec.treatment_stop_date - rec.treatment_start_date).days - len(
+                    rec.patient_holidays_ids))
                 rec.comp_treatment_bool = True
             else:
                 rec.comp_treatment_day = 0
@@ -159,6 +161,8 @@ class MedicalPatient(models.Model):
     patient_medications_ids = fields.One2many('patient.medications', 'medical_patient_id', 'Medications')
     is_chol_bool = fields.Boolean('Cholesterol')
     is_diabetes_bool = fields.Boolean('Diabetes')
+
+    patient_holidays_ids = fields.One2many('patient.holiday', 'medical_patient_id', 'Holiday')
 
     # smoking and tabacco
     currently_smoking = fields.Boolean('Current')
@@ -458,93 +462,3 @@ class MedicalPatient(models.Model):
                              'default_partner_id': self.patient_id.id,
                              'default_patient_id': self.id}
         return action
-
-
-class PatientCholesterol(models.Model):
-    _name = 'patient.cholesterol'
-    _rec_name = 'total_chol'
-
-    medical_patient_id = fields.Many2one('medical.patient', string="Patient")
-
-    date = fields.Date(string='Date', default=datetime.now())
-    total_chol = fields.Char('Total Cholesterol', default=' mg/dl')
-    ldl = fields.Char('LDL', default=' mg/dl')
-    hdl = fields.Char('HDL', default=' mg/dl')
-    triglycerides = fields.Char('Triglycerides', default=' mg/dl')
-    vldl = fields.Char('VLDL')
-    medications = fields.Char('Medications')
-
-
-class PatientDiabetes(models.Model):
-    _name = 'patient.diabetes'
-
-    medical_patient_id = fields.Many2one('medical.patient', string="Patient")
-
-    date = fields.Date(string='Date', default=datetime.now())
-    rbs = fields.Char('RBS')
-    fast_blood_suger = fields.Char('Fast Blood Suger')
-    ppbs = fields.Char('PPBS')
-    hba1c = fields.Char('HBA 1c')
-
-
-class PatientMedications(models.Model):
-    _name = 'patient.medications'
-
-    medical_patient_id = fields.Many2one('medical.patient', string="Patient")
-
-    date = fields.Date(string='Date', default=datetime.now())
-    name = fields.Char('Name of Medication')
-    dose = fields.Char('Generic name')
-    frequency = fields.Char('Frequency')
-
-
-class PatientTreatmentChart(models.Model):
-    _name = 'patient.treatment.chart'
-
-    medical_patient_id = fields.Many2one('medical.patient', string="Patient")
-    sequence = fields.Integer('Sequence')
-    date = fields.Date(string='Date', default=datetime.now())
-    pre_bp = fields.Char("PRE BP")
-    hr = fields.Char("HR")
-    diagnosis_systolic_aug_ratio = fields.Integer("Diastolic Systolic Augmentation Ratio")
-    post_bp = fields.Char("POST BP")
-    post_hr = fields.Char("POST HR")
-    weight = fields.Integer("Weight")
-    rbs = fields.Integer("RBS")
-    complaints = fields.Char("Complaints")
-
-
-class NTProBNP(models.Model):
-    _name = 'nt.pro.bnp'
-
-    medical_patient_id = fields.Many2one('medical.patient', string="Patient")
-    date = fields.Date(string='Date', default=datetime.now())
-    nt_pro_bnp = fields.Char("NT Pro BNP", default='pg/ml')
-
-
-class CADPT(models.Model):
-    _name = 'cad.pt'
-
-    medical_patient_id = fields.Many2one('medical.patient', string="Patient")
-    date = fields.Date(string='Date', default=datetime.now())
-    cad_pt = fields.Char("PT")
-
-
-class CADINR(models.Model):
-    _name = 'cad.inr'
-
-    medical_patient_id = fields.Many2one('medical.patient', string="Patient")
-    date = fields.Date(string='Date', default=datetime.now())
-    cad_inr = fields.Char("INR")
-
-
-class RenalLiverProfile(models.Model):
-    _name = 'renal.liver.profile'
-
-    medical_patient_id = fields.Many2one('medical.patient', string="Patient")
-    date = fields.Date(string='Date', default=datetime.now())
-    s_creatinine = fields.Char("S. Creatinine")
-    s_na_plus = fields.Char("S.Na+")
-    s_k_plus = fields.Char("S.K+")
-    s_cl_minus = fields.Char("S.Cl-")
-    sgpt = fields.Char("SGPT")

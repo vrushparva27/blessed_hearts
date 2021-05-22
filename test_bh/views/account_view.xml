@@ -21,34 +21,23 @@
                         'out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt',
                         'in_receipt')), ('is_from_hms', '=', True)]}</attribute>
                 </xpath>
-                <!--                <xpath expr="//group[@id='other_tab_group']/group[4]" position="attributes">-->
-                <!--                    <attribute name="attrs">{'invisible': [('is_from_hms', '=', True)]}</attribute>-->
-                <!--                </xpath>-->
-                <!--                <xpath expr="//group[@name='utm_link']" position="attributes">-->
-                <!--                    <attribute name="attrs">{'invisible': ['|', ('type', 'not in', ('out_invoice', 'out_refund')),-->
-                <!--                                                           ('is_from_hms', '=', True)]}</attribute>-->
-                <!--                </xpath>-->
-                <!--                <field name="invoice_user_id" position="attributes">-->
-                <!--                    <attribute name="string">Receptionist</attribute>-->
-                <!--                </field>-->
-                <!--                <field name="team_id" position="attributes">-->
-                <!--                    <attribute name="attrs">{'invisible': [('is_from_hms', '=', True)]}</attribute>-->
-                <!--                </field>-->
+                <xpath expr="//page[@id='other_tab']" position="attributes">
+                    <attribute name="attrs">{'invisible': True}</attribute>
+                </xpath>
                 <xpath expr="//div[hasclass('o_td_label')]/label[@for='partner_id'][1]" position="attributes">
                     <attribute name="string">Patient</attribute>
                 </xpath>
                 <xpath expr="//field[@name='invoice_line_ids']//field[@name='product_id']" position="attributes">
                     <attribute name="string">Service</attribute>
                 </xpath>
-                <!--                <xpath expr="//page[@name='other_info']//group[@name='accounting_info_group']" position="attributes">-->
-                <!--                    <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>-->
-                <!--                </xpath>-->
-                <!--                <xpath expr="//field[@name='team_id']" position="attributes">-->
-                <!--                    <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>-->
-                <!--                </xpath>-->
-                <!--                <xpath expr="//page[@id='other_tab']/group/group[4]" position="attributes">-->
-                <!--                    <attribute name="groups">hspl_hide_menu.hspl_hide_menu_group</attribute>-->
-                <!--                </xpath>-->
+                <xpath expr="//field[@name='invoice_line_ids']//field[@name='name']" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']//field[@name='quantity']" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']//field[@name='quantity']" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']//field[@name='discount']" position="replace">
+                </xpath>
             </field>
         </record>
 
@@ -61,7 +50,7 @@
                     <attribute name="string">Patient</attribute>
                 </xpath>
                 <field name="invoice_user_id" position="attributes">
-                    <attribute name="string">Receptionist</attribute>
+                    <attribute name="string">Patient</attribute>
                 </field>
             </field>
         </record>
