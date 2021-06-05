@@ -13,6 +13,7 @@
     "depends": ["base", 'account'],
     "data": [
         'data/ir_sequence_data.xml',
+        'report/invoice_report.xml',
         'views/account_view.xml',
         'views/medical_patient.xml',
         'security/ir.model.access.csv',

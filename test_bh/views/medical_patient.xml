@@ -626,6 +626,17 @@
                                 </field>
                             </group>
 
+                            <group string="Medicine Documents">
+                                <field name='medicine_docs_ids' nolabel="1">
+                                    <tree strig="Medicine Documents " editable="bottom">
+                                        <field name="medical_patient_id" invisible="1"/>
+                                        <field name="date"/>
+                                        <field name="remarks"/>
+                                        <field name="documents"/>
+                                    </tree>
+                                </field>
+                            </group>
+
                             <!--                            One2many field-->
                             <group string="Check-list">
                                 <group>

@@ -355,6 +355,7 @@ class MedicalPatient(models.Model):
     ecg_ids = fields.One2many('patient.ecg', 'medical_patient_id', 'ECG')
     echo_ids = fields.One2many('patient.echo', 'medical_patient_id', 'Echo')
     stress_echo_ids = fields.One2many('patient.stress_echo', 'medical_patient_id', 'Stress Echo / Thallium Echo')
+    medicine_docs_ids = fields.One2many('patient.medicine.documents', 'medical_patient_id', 'Medicine Document')
     angiography_ids = fields.One2many('patient.angiography', 'medical_patient_id', 'Cardiac Cath / Angiography ')
     ptca_stend_ids = fields.One2many('patient.ptca_stent', 'medical_patient_id', 'PTCA / Stent ')
     cabg_ids = fields.One2many('patient.cabg', 'medical_patient_id', 'CABG')

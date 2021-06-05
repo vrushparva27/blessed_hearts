@@ -70,7 +70,7 @@ class PatientCholesterol(models.Model):
     ldl = fields.Char('LDL', default=' mg/dl')
     hdl = fields.Char('HDL', default=' mg/dl')
     triglycerides = fields.Char('Triglycerides', default=' mg/dl')
-    vldl = fields.Char('VLDL')
+    vldl = fields.Char('VLDL', default=' mg/dl')
     medications = fields.Char('Medications')
 
 
@@ -156,3 +156,13 @@ class PatientHoliday(models.Model):
     medical_patient_id = fields.Many2one('medical.patient', string="Patient")
     date = fields.Date(string='Date', default=datetime.now())
     remarks = fields.Char("Leave Remarks")
+
+
+class PatientMedicineDocuments(models.Model):
+    _name = 'patient.medicine.documents'
+    _description = "Patient medicine documents"
+
+    medical_patient_id = fields.Many2one('medical.patient', string="Patient")
+    date = fields.Date(string='Date', default=datetime.now())
+    remarks = fields.Char("Leave Remarks")
+    documents = fields.Binary('Documents', attachement=True)
