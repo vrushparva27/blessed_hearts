@@ -9,17 +9,17 @@
             <field name="inherit_id" ref="account.view_move_form"/>
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
-                    <field name="is_from_hms" invisible="1"/>
+                    <field name="is_from_bh" invisible="1"/>
                 </field>
                 <xpath expr="//label[@for='invoice_payment_term_id']" position="attributes">
                     <attribute name="attrs">{'invisible': ['|', ('type', 'not in', (
                         'out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt',
-                        'in_receipt')), ('is_from_hms', '=', True)]}</attribute>
+                        'in_receipt')), ('is_from_bh', '=', True)]}</attribute>
                 </xpath>
                 <xpath expr="//div[hasclass('d-flex')]" position="attributes">
                     <attribute name="attrs">{'invisible': ['|', ('type', 'not in', (
                         'out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt',
-                        'in_receipt')), ('is_from_hms', '=', True)]}</attribute>
+                        'in_receipt')), ('is_from_bh', '=', True)]}</attribute>
                 </xpath>
                 <xpath expr="//page[@id='other_tab']" position="attributes">
                     <attribute name="attrs">{'invisible': True}</attribute>

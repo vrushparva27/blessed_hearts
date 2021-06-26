@@ -11,18 +11,18 @@ class AccountMove(models.Model):
     def default_get(self, fields):
         res = super(AccountMove, self).default_get(fields)
         if self._context.get('from_billing_deposit'):
-            res['is_from_hms'] = True
+            res['is_from_bh'] = True
         return res
 
     patient_id = fields.Many2one('medical.patient', 'Patient')
-    is_from_hms = fields.Boolean(compute='check_is_hms')
+    is_from_bh = fields.Boolean(compute='check_is_bh')
 
-    def check_is_hms(self):
+    def check_is_bh(self):
         for rec in self:
             if self._context.get('from_billing_deposit'):
-                rec.is_from_hms = 1
+                rec.is_from_bh = 1
             else:
-                rec.is_from_hms = 0
+                rec.is_from_bh = 0
 
     @api.model
     def create(self, vals):
