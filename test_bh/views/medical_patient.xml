@@ -1134,8 +1134,9 @@
                 <field name="occupation"/>
                 <field name="phone"/>
                 <field name="date_of_birth"/>
-                <field name="total_inv_amt"/>
-                <field name="total_inv_refund_amt"/>
+                <field name="total_inv_amt" sum="Total Invoiced"/>
+                <field name="total_paid_amt" sum="Total Paid"/>
+                <field name="total_inv_refund_amt" sum="Total Refund"/>
             </tree>
         </field>
     </record>

@@ -77,11 +77,7 @@ class MedicalPatient(models.Model):
             else:
                 rec.age = "No Date Of Birth!!"
 
-    def check_remain_amount(self, invoices):
-        paid_amount = (sum(
-            [inv.amount_total for inv in invoices.filtered(lambda so: so.state in ('posted'))])
-                       - sum(
-                    [inv.amount_residual for inv in invoices.filtered(lambda so: so.state in ('posted'))]))
+    def check_remain_amount(self, paid_amount):
         if (0 < self.treatment_day <= 10) and paid_amount < 50000:
             self.remain_amount = 50000 - paid_amount
         elif (10 < self.treatment_day <= 20) and paid_amount < 80000:
@@ -102,10 +98,12 @@ class MedicalPatient(models.Model):
             rec.total_inv_amt = sum([inv.amount_total for inv in invoices.filtered(lambda so: so.state in ('posted'))])
             rec.total_inv_refund_amt = sum(
                 [rinv.amount_total for rinv in refund_invoices.filtered(lambda so: so.state in ('posted'))])
-            rec.check_remain_amount(invoices)
-            # rec.remain_amount = sum(
-            #     [inv.amount_residual for inv in invoices.filtered(lambda so: so.state in ('posted'))])
-
+            paid_amount = (sum(
+                [inv.amount_total for inv in invoices.filtered(lambda so: so.state in ('posted'))])
+                           - sum(
+                        [inv.amount_residual for inv in invoices.filtered(lambda so: so.state in ('posted'))]))
+            rec.total_paid_amt = paid_amount
+            rec.check_remain_amount(paid_amount)
     # /// deposit and refund + invoice and invoice refund ////
 
     invoice_ids = fields.One2many("account.move", 'patient_id', string="Invoices",
@@ -115,6 +113,7 @@ class MedicalPatient(models.Model):
     invoice_count = fields.Integer(string='Invoice Count', readonly=True)
     invoice_refund_count = fields.Integer(string="Refund Invoice", readonly=True)
     total_inv_amt = fields.Monetary(string="Total Invoice", compute='_get_invoiced', readonly=True, store=True)
+    total_paid_amt = fields.Monetary(string="Paid Amount", compute='_get_invoiced', readonly=True, store=True)
     total_inv_refund_amt = fields.Monetary(string="Total Refund Invoices", readonly=True,
                                            store=True)
     remain_amount = fields.Integer("Remain Amount", compute="_get_invoiced")
