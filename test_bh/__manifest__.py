@@ -16,6 +16,8 @@
         'report/invoice_report.xml',
         'views/account_view.xml',
         'views/medical_patient.xml',
+        'report/report.xml',
+        'report/report_all.xml',
         'security/ir.model.access.csv',
         'views/assets.xml',
     ],

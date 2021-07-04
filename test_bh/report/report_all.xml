@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Demographic Report-->
+        <report
+                id="bh_report_demographic_data"
+                string="Demographic Data Report"
+                model="medical.patient"
+                report_type="qweb-pdf"
+                file="test_bh.report_demographic_data"
+                name="test_bh.report_demographic_data"
+                print_report_name="'Demographic Data'"/>
+
+
+        <!-- Cardiac History Report-->
+        <report
+                id="bh_report_cardiac_history"
+                string="Cardiac History Report"
+                model="medical.patient"
+                report_type="qweb-pdf"
+                file="test_bh.report_cardiac_history"
+                name="test_bh.report_cardiac_history"
+                print_report_name="'Cardiac History'"/>
+
+        <!-- Final Diagnosis Report-->
+        <report
+                id="bh_report_final_diagnosis"
+                string="Final Diagnosis Report"
+                model="medical.patient"
+                report_type="qweb-pdf"
+                file="test_bh.report_final_diagnosis"
+                name="test_bh.report_final_diagnosis"
+                print_report_name="'Final Diagnosis'"/>
+
+        <!-- Diagnosis Report-->
+        <report
+                id="bh_report_diagnosis"
+                string="Diagnosis Report"
+                model="medical.patient"
+                report_type="qweb-pdf"
+                file="test_bh.report_diagnosis"
+                name="test_bh.report_diagnosis"
+                print_report_name="'Diagnosis'"/>
+
+
+    </data>
+</odoo>

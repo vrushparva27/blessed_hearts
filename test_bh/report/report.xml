@@ -1,0 +1,419 @@
+<odoo>
+    <data>
+
+        <!-- t-call PATIENT INFO-->
+        <template id="test_bh.patient_info">
+            <div class="row">
+                <div class="col-6">
+                </div>
+                <div class="col-6" style="text-align: right">
+                    <div>
+                        <b>
+                            <t t-esc="o.patient_id.name"/>
+                        </b>
+                    </div>
+                    <div>
+                        <t t-esc="o.age"/>
+                    </div>
+                    <div>
+                        <t t-esc="o.phone"/>
+                    </div>
+                    <div>
+                        <b><t t-esc="o.city"/></b>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!--CARDIAC HISTORY-->
+        <template id="test_bh.report_cardiac_history">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="container">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <t t-call="test_bh.patient_info"></t>
+                                <br/>
+                                <br/>
+                                <div class="text-center">
+                                    <h5>
+                                        <span style="text-align:center;color:red">
+                                            Cardiac History</span>
+                                    </h5>
+                                </div>
+                                <div>
+                                    <span t-if="o.cardiac_history">
+                                        <span t-raw="o.cardiac_history"/>
+                                    </span>
+                                </div>
+                                <br/>
+                                <div class="text-center">
+                                    <h5>
+                                        <span style="text-align:center;color:red">
+                                            ICU Stay : Eventful/Uneventful
+                                        </span>
+                                    </h5>
+                                </div>
+                                <div>
+                                    <span t-if="o.icu_stay">
+                                        <span t-raw="o.icu_stay"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <!--FINAL DIAGNOSIS-->
+        <template id="test_bh.report_final_diagnosis">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="container">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <t t-call="test_bh.patient_info"></t>
+                                <br/>
+                                <br/>
+                                <div class="text-center">
+                                    <h5>
+                                        <span style="text-align:center;color:red">
+                                            Final Diagnosis</span>
+                                    </h5>
+                                </div>
+                                <br/>
+                                <div>
+                                    <t t-if="o.final_html">
+                                        <span t-raw="o.final_html"/>
+                                    </t>
+                                    <t t-else="">
+                                        No Data !!!
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <!--DIAGNOSIS-->
+        <template id="test_bh.report_diagnosis">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="container">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <t t-call="test_bh.patient_info"></t>
+                                <br/>
+                                <br/>
+
+                                <!-- 1 part CAD /CHF / refrac Angina >-->
+                                <div class="text-center">
+                                    <h5>
+                                        <span style="text-align:center;color:red">
+                                            CAD/CHF/Refractory Angina</span>
+                                    </h5>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <strong>CAD :- </strong>
+                                    </div>
+                                    <div class="col-9">
+                                        <span t-field="o.cad"/><br/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <strong>CHF: </strong>
+                                    </div>
+                                    <div class="col-9">
+                                        <span t-field="o.chf"/><br/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <strong>Refractory Angina: </strong>
+                                    </div>
+                                    <div class="col-9">
+                                        <span t-field="o.refractory_angina"/><br/>
+                                    </div>
+                                </div>
+
+                                <br/>
+                                <br/>
+                                <!-- 1 part CAD /CHF / refrac Angina completed-->
+
+
+                                <!-- 2 part date of diagnosis -->
+                                <t t-if="o.mi">
+                                    <div class="text-center">
+                                        <h5>
+                                            <span style="text-align:center;color:red">
+                                                Date of Diagnosis</span>
+                                        </h5>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <strong>MI :- </strong>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-field="o.mi_date"/><br/>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                </t>
+                                <!-- 2 part date of diagnosis completed-->
+
+
+                                <!-- 3 part procedure -->
+                                <t t-if="o.cabg or o.ptca or o.medical_mx">
+                                    <div class="text-center">
+                                        <h5>
+                                            <span style="text-align:center;color:red">
+                                                Procedures</span>
+                                        </h5>
+                                    </div>
+                                    <br/>
+
+                                    <t t-if="o.cabg">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <strong>CABG :- </strong>
+                                            </div>
+                                            <div class="col-9">
+                                                <span t-field="o.cabg_date"/><br/>
+                                                <span t-field="o.cabg_text"/><br/>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                    </t>
+
+
+                                    <t t-if="o.ptca">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <strong>PTCA :- </strong>
+                                            </div>
+                                            <div class="col-9">
+                                                <span t-field="o.ptca_date"/><br/>
+                                                <span t-field="o.ptca_text"/><br/>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                    </t>
+
+
+                                    <t t-if="o.medical_mx">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <strong>Medical MX :- </strong>
+                                            </div>
+                                            <div class="col-9">
+                                                <span t-field="o.medical_mx_text"/><br/>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                    </t>
+
+                                </t>
+                                <!-- 3 part procedure completed-->
+
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <!--DEMOGRAPHIC DATA-->
+        <template id="test_bh.report_demographic_data">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="container">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <t t-call="test_bh.patient_info"></t>
+                                <br/>
+                                <br/>
+
+                                <!-- 1 part ALL INFO >-->
+                                <div class="text-center">
+                                    <h5>
+                                        <span style="text-align:center;color:red">
+                                            DemoGraphic Data</span>
+                                    </h5>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <strong>NAME </strong>
+                                    </div>
+                                    <div class="col-4">
+                                        : <span t-field="o.name"/><br/>
+                                    </div>
+                                    <div class="col-2">
+                                        <strong>DOB :</strong>
+                                    </div>
+                                    <div class="col-4">
+                                        : <span t-field="o.date_of_birth"/><br/>
+                                    </div>
+                                </div>
+                                <br/>
+
+                                <!--2-->
+                                <div class="row">
+                                    <div class="col-2">
+                                        <strong>AGE </strong>
+                                    </div>
+                                    <div class="col-4">
+                                        : <span t-field="o.age"/><br/>
+                                    </div>
+                                    <div class="col-2">
+                                        <strong>Marital Status </strong>
+                                    </div>
+                                    <div class="col-4">
+                                        : <span t-field="o.marital_status"/><br/>
+                                    </div>
+                                </div>
+                                <br/>
+
+                                <!--3-->
+                                <div class="row">
+                                    <div class="col-2">
+                                        <strong>GENDER </strong>
+                                    </div>
+                                    <div class="col-4">
+                                        : <span t-field="o.sex"/><br/>
+                                    </div>
+                                    <div class="col-2">
+                                        <strong>ADDRESS </strong>
+                                    </div>
+                                    <div class="col-4">
+                                        : <span t-field="o.address_1"/><br/>
+                                        : <span t-field="o.address_2"/><br/>
+                                        : <span t-field="o.city"/><br/>
+                                        : <span t-field="o.state_id"/>, <span t-field="o.country_id"/><br/>
+                                    </div>
+                                </div>
+                                <br/>
+
+                                <!--4-->
+                                <div class="row">
+                                    <div class="col-2">
+                                        <strong>OCCUPATION </strong>
+                                    </div>
+                                    <div class="col-4">
+                                        : <span t-field="o.occupation"/><br/>
+                                    </div>
+                                    <div class="col-2">
+                                        <strong>REF. DOC. </strong>
+                                    </div>
+                                    <div class="col-4">
+                                        : <span t-field="o.referring_doctor"/>
+                                    </div>
+                                </div>
+                                <br/>
+
+                                <!--5-->
+                                <div class="row">
+                                    <div class="col-2">
+                                        <strong>TEL. NO. </strong>
+                                    </div>
+                                    <div class="col-4">
+                                        : <span t-field="o.mobile"/><br/>
+                                    </div>
+                                    <div class="col-2">
+                                        <strong>MOBILE </strong>
+                                    </div>
+                                    <div class="col-4">
+                                        : <span t-field="o.phone"/>
+                                    </div>
+                                </div>
+                                <br/>
+
+                                <!--6-->
+                                <t t-if="o.hight_light">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <strong>HIGH LIGHT </strong>
+                                        </div>
+                                        <div class="col-4">
+                                            : <span t-field="o.hight_light"/><br/>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                </t>
+                                <!-- 1 part ALL INFO completed-->
+
+
+                                <!-- 2 part TREATMENT >-->
+                                <t t-if="o.treatment_start_date">
+                                    <div class="text-center">
+                                        <h5>
+                                            <span style="text-align:center;color:red">
+                                                EECP Treatment </span>
+                                        </h5>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <strong>EECP STARTED </strong>
+                                        </div>
+                                        <div class="col-4">
+                                            : <span t-field="o.treatment_start_date"/><br/>
+                                        </div>
+                                        <div class="col-2">
+                                            <strong>EECP COMPLETED</strong>
+                                        </div>
+                                        <div class="col-4">
+                                            : <span t-field="o.treatment_stop_date"/><br/>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <strong>Treatment Day(s) </strong>
+                                        </div>
+                                        <div class="col-4">
+                                            : <span t-field="o.comp_treatment_day"/><br/>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                </t>
+                                <!-- 2 part TREATMENT COMPLETED >-->
+
+                                <!-- 3rd part Holidays >-->
+                                <t t-if="len(o.patient_holidays_ids) > 0">
+                                    : <span>Holiday's</span><br/>
+                                </t>
+
+                                <!-- 3rd part Holidays COMPLETED >-->
+
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

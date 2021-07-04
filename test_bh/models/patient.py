@@ -150,7 +150,7 @@ class MedicalPatient(models.Model):
                                default=lambda s: s.env['res.country.state'].search([('name', '=', 'Gujarat')], limit=1))
     country_id = fields.Many2one('res.country', string='Country', ondelete='restrict',
                                  default=lambda s: s.env['res.country'].search([('name', '=', 'India')], limit=1))
-    hight_light = fields.Char('Hight Light')
+    hight_light = fields.Char('High Light')
 
     # cardiac history
     cardiac_history = fields.Text('Cardiac History')
