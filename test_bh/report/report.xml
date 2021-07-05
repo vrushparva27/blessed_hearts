@@ -253,7 +253,7 @@
                                 <t t-call="test_bh.patient_info"></t>
                                 <br/>
                                 <br/>
-
+                                <!--                                dddddddddddddddddddddddd-->
                                 <!-- 1 part ALL INFO >-->
                                 <div class="text-center">
                                     <h5>
@@ -267,16 +267,15 @@
                                         <strong>NAME </strong>
                                     </div>
                                     <div class="col-4">
-                                        : <span t-field="o.name"/><br/>
+                                       <span t-field="o.name"/><br/>
                                     </div>
                                     <div class="col-2">
                                         <strong>DOB :</strong>
                                     </div>
                                     <div class="col-4">
-                                        : <span t-field="o.date_of_birth"/><br/>
+                                       <span t-field="o.date_of_birth"/><br/>
                                     </div>
                                 </div>
-                                <br/>
 
                                 <!--2-->
                                 <div class="row">
@@ -284,13 +283,13 @@
                                         <strong>AGE </strong>
                                     </div>
                                     <div class="col-4">
-                                        : <span t-field="o.age"/><br/>
+                                       <span t-field="o.age"/>
                                     </div>
                                     <div class="col-2">
                                         <strong>Marital Status </strong>
                                     </div>
                                     <div class="col-4">
-                                        : <span t-field="o.marital_status"/><br/>
+                                       <span t-field="o.marital_status"/>
                                     </div>
                                 </div>
                                 <br/>
@@ -301,16 +300,16 @@
                                         <strong>GENDER </strong>
                                     </div>
                                     <div class="col-4">
-                                        : <span t-field="o.sex"/><br/>
+                                       <span t-field="o.sex"/>
                                     </div>
                                     <div class="col-2">
                                         <strong>ADDRESS </strong>
                                     </div>
                                     <div class="col-4">
-                                        : <span t-field="o.address_1"/><br/>
-                                        : <span t-field="o.address_2"/><br/>
-                                        : <span t-field="o.city"/><br/>
-                                        : <span t-field="o.state_id"/>, <span t-field="o.country_id"/><br/>
+                                       <span t-field="o.address_1"/>
+                                       <span t-field="o.address_2"/>
+                                       <span t-field="o.city"/>
+                                       <span t-field="o.state_id"/>, <span t-field="o.country_id"/>
                                     </div>
                                 </div>
                                 <br/>
@@ -321,13 +320,13 @@
                                         <strong>OCCUPATION </strong>
                                     </div>
                                     <div class="col-4">
-                                        : <span t-field="o.occupation"/><br/>
+                                       <span t-field="o.occupation"/>
                                     </div>
                                     <div class="col-2">
                                         <strong>REF. DOC. </strong>
                                     </div>
                                     <div class="col-4">
-                                        : <span t-field="o.referring_doctor"/>
+                                       <span t-field="o.referring_doctor"/>
                                     </div>
                                 </div>
                                 <br/>
@@ -338,13 +337,13 @@
                                         <strong>TEL. NO. </strong>
                                     </div>
                                     <div class="col-4">
-                                        : <span t-field="o.mobile"/><br/>
+                                       <span t-field="o.mobile"/>
                                     </div>
                                     <div class="col-2">
                                         <strong>MOBILE </strong>
                                     </div>
                                     <div class="col-4">
-                                        : <span t-field="o.phone"/>
+                                       <span t-field="o.phone"/>
                                     </div>
                                 </div>
                                 <br/>
@@ -356,7 +355,7 @@
                                             <strong>HIGH LIGHT </strong>
                                         </div>
                                         <div class="col-4">
-                                            : <span t-field="o.hight_light"/><br/>
+                                           <span t-field="o.hight_light"/>
                                         </div>
                                     </div>
                                     <br/>
@@ -378,13 +377,13 @@
                                             <strong>EECP STARTED </strong>
                                         </div>
                                         <div class="col-4">
-                                            : <span t-field="o.treatment_start_date"/><br/>
+                                           <span t-field="o.treatment_start_date"/>
                                         </div>
                                         <div class="col-2">
                                             <strong>EECP COMPLETED</strong>
                                         </div>
                                         <div class="col-4">
-                                            : <span t-field="o.treatment_stop_date"/><br/>
+                                           <span t-field="o.treatment_stop_date"/>
                                         </div>
                                     </div>
                                     <br/>
@@ -393,7 +392,7 @@
                                             <strong>Treatment Day(s) </strong>
                                         </div>
                                         <div class="col-4">
-                                            : <span t-field="o.comp_treatment_day"/><br/>
+                                           <span t-field="o.comp_treatment_day"/>
                                         </div>
                                     </div>
                                     <br/>
@@ -402,7 +401,44 @@
 
                                 <!-- 3rd part Holidays >-->
                                 <t t-if="len(o.patient_holidays_ids) > 0">
-                                    : <span>Holiday's</span><br/>
+                                    <br/>
+                                    <div class="text-center">
+                                        <h5>
+                                            <span style="text-align:center;color:red">
+                                                Holiday's</span>
+                                        </h5>
+                                    </div>
+                                    <table class="table table-sm border" style="">
+                                        <thead>
+                                            <tr>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    SR. No.</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    Date</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    Remarks</span></th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <t t-set="sequence" t-value="1"/>
+                                            <t t-foreach="o.patient_holidays_ids" t-as="holiday_line">
+                                                <tr>
+                                                    <td style="text-align: center;">
+                                                        <t t-esc="sequence"/>
+                                                        <t t-set="sequence" t-value="sequence + 1"/>
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        <span
+                                                                t-field="holiday_line.date"/></td>
+                                                    <td style="text-align: center;">
+                                                        <span
+                                                                t-field="holiday_line.remarks"/></td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+
+                                    </table>
                                 </t>
 
                                 <!-- 3rd part Holidays COMPLETED >-->
