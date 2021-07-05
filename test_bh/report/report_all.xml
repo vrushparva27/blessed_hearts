@@ -42,6 +42,47 @@
                 name="test_bh.report_diagnosis"
                 print_report_name="'Diagnosis'"/>
 
+        <!-- Medications Report-->
+        <report
+                id="bh_report_medications"
+                string="Medications Report"
+                model="medical.patient"
+                report_type="qweb-pdf"
+                file="test_bh.report_medications"
+                name="test_bh.report_medications"
+                print_report_name="'Medications'"/>
+
+        <!-- Medical Surgery and History-->
+        <report
+                id="bh_report_medical_surgery_and_history"
+                string="Medical Surgery and History Report"
+                model="medical.patient"
+                report_type="qweb-pdf"
+                file="test_bh.report_medical_surgery_and_history"
+                name="test_bh.report_medical_surgery_and_history"
+                print_report_name="'Medical Surgery and History'"/>
+
+        <!-- Sign And Symptoms-->
+        <report
+                id="bh_report_sign_and_symptoms"
+                string="Sign And Symptoms Report"
+                model="medical.patient"
+                report_type="qweb-pdf"
+                file="test_bh.report_sign_and_symptoms"
+                name="test_bh.report_sign_and_symptoms"
+                print_report_name="'Sign And Symptoms'"/>
+
+        <!-- Physical Examinations-->
+        <report
+                id="bh_report_physical_examinations"
+                string="Physical Examinations"
+                model="medical.patient"
+                report_type="qweb-pdf"
+                file="test_bh.report_physical_examinations"
+                name="test_bh.report_physical_examinations"
+                print_report_name="'Physical Examinations'"/>
+
+
 
     </data>
 </odoo>
