@@ -424,14 +424,14 @@
                                             <t t-set="sequence" t-value="1"/>
                                             <t t-foreach="o.patient_holidays_ids" t-as="holiday_line">
                                                 <tr>
-                                                    <td style="text-align: center;">
+                                                    <td style="text-align: center; border-style: inset;">
                                                         <t t-esc="sequence"/>
                                                         <t t-set="sequence" t-value="sequence + 1"/>
                                                     </td>
-                                                    <td style="text-align: center;">
+                                                    <td style="text-align: center; border-style: inset;">
                                                         <span
                                                                 t-field="holiday_line.date"/></td>
-                                                    <td style="text-align: center;">
+                                                    <td style="text-align: center; border-style: inset;">
                                                         <span
                                                                 t-field="holiday_line.remarks"/></td>
                                                 </tr>
@@ -883,6 +883,480 @@
                                 </div>
                                 <br/>
                             </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <!--CAD RISK FACTOR -->
+        <template id="test_bh.report_cad_risk_factor">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="container">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <t t-call="test_bh.patient_info"></t>
+                                <br/>
+                                <br/>
+                                <!-- 1 part-->
+                                <div class="text-center">
+                                    <h5>
+                                        <span style="text-align:center;color:red">
+                                            CAD RISK FACTOR</span>
+                                    </h5>
+                                </div>
+                                <br/>
+                                <br/>
+                                <!-- 1nd-->
+                                <div class="text-left">
+                                    <h5>
+                                        <span style="text-align:left;color:orange">
+                                            1) Family History of CAD :-</span>
+                                    </h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span t-field="o.cad_history_text"/><br/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+
+                                <!-- 2nd-->
+                                <div class="text-left">
+                                    <h5>
+                                        <span style="text-align:left;color:orange">
+                                            2) Smoking/Tabacco :-</span>
+                                    </h5>
+                                </div>
+                                <t t-if="o.currently_smoking">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <strong>Currently Smoking</strong>
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="checkbox" name="checkbox_currently_smoking"
+                                                   t-att-checked="'checked' if o.currently_smoking else None"/>
+                                        </div>
+                                        <div class="col-3">
+                                            <strong>How Many Per Day</strong>
+                                            <strong>Desire To Quit </strong>
+                                        </div>
+                                        <div class="col-3">
+                                            <span t-field="o.how_many_per_day"/><br/>
+                                            <span t-field="o.desire_to_quite"/><br/>
+                                        </div>
+                                    </div>
+                                </t>
+                                <br/>
+                                <br/>
+                                <t t-if="o.past_history">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <strong>Past History</strong>
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="checkbox" name="checkbox_past_smoking"
+                                                   t-att-checked="'checked' if o.past_history else None"/>
+                                        </div>
+                                        <div class="col-3">
+                                            <strong>Since How Long</strong>
+                                            <strong>Date of Quit Smoking </strong>
+                                        </div>
+                                        <div class="col-3">
+                                            <span t-field="o.smoking_since_how_long"/><br/>
+                                            <span t-field="o.date_to_quit_smoking"/><br/>
+                                        </div>
+                                    </div>
+                                </t>
+                                <br/>
+                                <br/>
+
+                                <!-- 3rd-->
+                                <div class="text-left">
+                                    <h5>
+                                        <span style="text-align:left;color:orange">
+                                            3) Blood Pressure :-</span>
+                                    </h5>
+                                </div>
+                                <t t-if="o.hypertension">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <strong>Hypertension</strong>
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="checkbox" name="checkbox_hypertension"
+                                                   t-att-checked="'checked' if o.hypertension else None"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <strong>If Yes, Since How Long</strong>
+                                        </div>
+                                        <div class="col-3">
+                                            <span t-field="o.hypertension_how_many_years"/><br/>
+                                        </div>
+                                        <div class="col-3">
+                                            <strong>Medication</strong>
+                                        </div>
+                                        <div class="col-3">
+                                            <span t-field="o.medications_bp"/><br/>
+                                        </div>
+                                    </div>
+                                </t>
+                                <br/>
+                                <br/>
+
+                            </div>
+                        </div>
+
+                        <!-- 2nd page with page break-->
+                        <p style="page-break-before:always;"></p>
+                        <div class="page">
+                            <!-- 4rd-->
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div class="container">
+                                <!--cholestrol-->
+                                <t t-if="o.is_chol_bool">
+                                    <div class="text-left">
+                                        <h5>
+                                            <span style="text-align:left;color:orange">
+                                                4) Cholesterol :-</span>
+                                        </h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <strong>Cholesterol</strong>
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="checkbox" name="checkbox_is_chol_bool"
+                                                   t-att-checked="'checked' if o.is_chol_bool else None"/>
+                                        </div>
+                                    </div>
+
+                                    <br/>
+                                    <table class="table table-sm border" style="">
+                                        <thead>
+                                            <tr>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    SR. No.</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    Date</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    Total Chol.</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    LDL.</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    HDL.</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    Triglycerides.</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    VLDL.</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    Medications.</span></th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <t t-set="sequence" t-value="1"/>
+                                            <t t-foreach="o.patient_cholesterol_ids" t-as="choles_line">
+                                                <tr>
+                                                    <td style="text-align: center; border-style: inset;">
+                                                        <t t-esc="sequence"/>
+                                                        <t t-set="sequence" t-value="sequence + 1"/>
+                                                    </td>
+                                                    <td style="text-align: center; border-style: inset;">
+                                                        <span
+                                                                t-field="choles_line.date"/></td>
+                                                    <td style="text-align: center; border-style: inset;">
+                                                        <span
+                                                                t-field="choles_line.total_chol"/></td>
+                                                    <td style="text-align: center; border-style: inset;">
+                                                        <span
+                                                                t-field="choles_line.ldl"/></td>
+                                                    <td style="text-align: center; border-style: inset;">
+                                                        <span
+                                                                t-field="choles_line.hdl"/></td>
+                                                    <td style="text-align: center; border-style: inset;">
+                                                        <span
+                                                                t-field="choles_line.triglycerides"/></td>
+                                                    <td style="text-align: center; border-style: inset;">
+                                                        <span
+                                                                t-field="choles_line.vldl"/></td>
+                                                    <td style="text-align: center; border-style: inset;">
+                                                        <span
+                                                                t-field="choles_line.medications"/></td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+
+                                    </table>
+
+                                </t>
+                                <br/>
+                                <br/>
+                                <!--diabeties-->
+                                <t t-if="o.is_diabetes_bool">
+                                    <div class="text-left">
+                                        <h5>
+                                            <span style="text-align:left;color:orange">
+                                                5) Diabetes :-</span>
+                                        </h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <strong>Diabetes</strong>
+                                        </div>
+                                        <div class="col-9">
+                                            <input type="checkbox" name="checkbox_is_diabetes_bool"
+                                                   t-att-checked="'checked' if o.is_diabetes_bool else None"/>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <strong>Since How Long Years</strong>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-field="o.how_long"/><br/>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <strong>Medications</strong>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-field="o.medications"/><br/>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <table class="table table-sm border" style="">
+                                        <thead>
+                                            <tr>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    SR. No.</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    Date</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    RBS.</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    Fast Blood Suger.</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    PPBS.</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    HBA 1c.</span></th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <t t-set="sequence" t-value="1"/>
+                                            <t t-foreach="o.patient_diabetes_ids" t-as="diabetes_line">
+                                                <tr>
+                                                    <td style="text-align: center; border-style: inset;">
+                                                        <t t-esc="sequence"/>
+                                                        <t t-set="sequence" t-value="sequence + 1"/>
+                                                    </td>
+                                                    <td style="text-align: center; border-style: inset;">
+                                                        <span
+                                                                t-field="diabetes_line.date"/></td>
+                                                    <td style="text-align: center; border-style: inset;">
+                                                        <span
+                                                                t-field="diabetes_line.rbs"/></td>
+                                                    <td style="text-align: center; border-style: inset;">
+                                                        <span
+                                                                t-field="diabetes_line.fast_blood_suger"/></td>
+                                                    <td style="text-align: center; border-style: inset;">
+                                                        <span
+                                                                t-field="diabetes_line.ppbs"/></td>
+                                                    <td style="text-align: center; border-style: inset;">
+                                                        <span
+                                                                t-field="diabetes_line.hba1c"/></td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+
+                                    </table>
+                                </t>
+                                <br/>
+                                <br/>
+                                <!--stress-->
+                                <t t-if="o.is_stress">
+                                    <div class="text-left">
+                                        <h5>
+                                            <span style="text-align:left;color:orange">
+                                                6) Stress :-</span>
+                                        </h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <strong>Do You Feel Under Stress Often ?</strong>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="checkbox" name="checkbox_stress"
+                                                   t-att-checked="'checked' if o.is_stress else None"/>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <strong>Source of Stress</strong><br/>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-field="o.source_of_stress"/><br/>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <strong>Rating of Stress on Scale of 1 to 10F</strong><br/>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-field="o.rating_stress"/><br/>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+
+                        <!-- 3rd page with page break-->
+                        <p style="page-break-before:always;"></p>
+                        <div class="page">
+                            <!-- 4rd-->
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div class="container">
+                                <!--nutrition-->
+                                <br/>
+                                <br/>
+
+                                <!--stress-->
+                                <div class="text-left">
+                                    <h5>
+                                        <span style="text-align:left;color:orange">
+                                            7) Nutrition :-</span>
+                                    </h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <strong>Veg</strong>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="checkbox" name="checkbox_stress"
+                                               t-att-checked="'checked' if o.veg else None"/>
+                                    </div>
+                                    <div class="col-3">
+                                        <strong>Non-Veg</strong>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="checkbox" name="checkbox_stress"
+                                               t-att-checked="'checked' if o.non_veg else None"/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <strong>Consumption of Oil per Month For Whole Family</strong><br/>
+                                    </div>
+                                    <div class="col-3">
+                                        <span t-field="o.oil_consumption"/><br/>
+                                    </div>
+                                    <div class="col-3">
+                                        <strong>Consumption of Ghee per Month For Whole Family</strong><br/>
+                                    </div>
+                                    <div class="col-3">
+                                        <span t-field="o.ghee_consumption"/><br/>
+                                    </div>
+                                </div>
+
+                                <br/>
+                                <br/>
+                                <!--alcohol-->
+                                <t t-if="o.is_drinking">
+                                    <div class="text-left">
+                                        <h5>
+                                            <span style="text-align:left;color:orange">
+                                                8) Alcohol :-</span>
+                                        </h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <strong>Is Drinking</strong><br/>
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="checkbox" name="checkbox_is_drinking"
+                                                   t-att-checked="'checked' if o.is_drinking else None"/></div>
+                                        <div class="col-3">
+                                            <strong>Pegs per Week</strong><br/>
+                                        </div>
+                                        <div class="col-3">
+                                            <span t-field="o.drinks_per_peg"/><br/>
+                                        </div>
+                                    </div>
+                                </t>
+
+                                <br/>
+                                <br/>
+                                <!--exercise-->
+                                <t t-if="o.is_exercise">
+                                    <div class="text-left">
+                                        <h5>
+                                            <span style="text-align:left;color:orange">
+                                                9) Exercise :-</span>
+                                        </h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <strong>Doing Exercise ?</strong>
+                                        </div>
+                                        <div class="col-9">
+                                            <input type="checkbox" name="checkbox_is_exercise"
+                                                   t-att-checked="'checked' if o.is_exercise else None"/>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <strong>Type of Exercise</strong><br/>
+                                        </div>
+                                        <div class="col-3">
+                                            <span t-field="o.exercise_type"/><br/>
+                                        </div>
+                                        <div class="col-3">
+                                            <strong>Duration</strong><br/>
+                                        </div>
+                                        <div class="col-3">
+                                            <span t-field="o.exercise_duration"/><br/>
+                                        </div>
+
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <strong>How Often ?</strong><br/>
+                                        </div>
+                                        <div class="col-3">
+                                            <span t-field="o.how_ofter_exercise"/><br/>
+                                        </div>
+                                        <div class="col-3">
+                                            <strong>Physical Limitations </strong><br/>
+                                        </div>
+                                        <div class="col-3">
+                                            <span t-field="o.physical_limitations"/><br/>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+
                         </div>
                     </t>
                 </t>

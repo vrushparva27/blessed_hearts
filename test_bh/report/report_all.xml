@@ -82,6 +82,15 @@
                 name="test_bh.report_physical_examinations"
                 print_report_name="'Physical Examinations'"/>
 
+     <!-- CAD risk factor-->
+        <report
+                id="bh_report_cad_risk_factor"
+                string="CAD risk factor"
+                model="medical.patient"
+                report_type="qweb-pdf"
+                file="test_bh.report_cad_risk_factor"
+                name="test_bh.report_cad_risk_factor"
+                print_report_name="'CAD ALL data'"/>
 
 
     </data>
