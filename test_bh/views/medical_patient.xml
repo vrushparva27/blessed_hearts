@@ -293,47 +293,96 @@
                                 <page string="ECG">
                                     <group string="ECG">
                                         <field name='ecg_ids' nolabel="1">
-                                            <tree strig="ECG " editable="bottom">
+                                            <tree strig="ECG">
                                                 <field name="medical_patient_id" invisible="1"/>
                                                 <field name="date"/>
+                                                <field name="pre_eecp"/>
+                                                <field name="post_eecp"/>
                                                 <field name="text"/>
                                                 <field name="documents" widget="binary" filename="name"/>
                                             </tree>
+                                            <form>
+                                                <group>
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="date"/>
+                                                    <field name="documents"/>
+                                                    <field name="text"/>
+                                                </group>
+                                                <group>
+                                                    <field name="pre_eecp"/>
+                                                    <field name="post_eecp"/>
+                                                </group>
+                                            </form>
                                         </field>
+
                                     </group>
                                 </page>
                                 <page string="Echo">
                                     <group string="Echo">
                                         <field name='echo_ids' nolabel="1">
-                                            <tree strig="Echo " editable="bottom">
+                                            <tree strig="Echo ">
                                                 <field name="medical_patient_id" invisible="1"/>
                                                 <field name="date"/>
+                                                <field name="pre_eecp"/>
+                                                <field name="post_eecp"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
+                                            <form>
+                                                <group>
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="date"/>
+                                                    <field name="documents"/>
+                                                </group>
+                                                <group>
+                                                    <field name="text"/>
+                                                </group>
+                                            </form>
                                         </field>
                                     </group>
                                 </page>
-                                <page string="Stress Echo / Thallium Echo">
-                                    <group string="Stress Echo / Thallium Echo">
+                                <page string="Treadmill Test/ Stress Test">
+                                    <group string="Treadmill Test/ Stress Test">
                                         <field name='stress_echo_ids' nolabel="1">
-                                            <tree strig="Stress Echo / Thallium Echo " editable="bottom">
+                                            <tree strig="Treadmill Test/ Stress Test">
                                                 <field name="medical_patient_id" invisible="1"/>
                                                 <field name="date"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
+                                            <form>
+                                                <group>
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="date"/>
+                                                    <field name="documents"/>
+                                                </group>
+                                                <group>
+                                                    <field name="text"/>
+                                                </group>
+                                            </form>
                                         </field>
                                     </group>
                                 </page>
 
                                 <page string="NT Pro BNP">
                                     <field name='nt_pro_bnp_ids' nolabel="1">
-                                        <tree strig="Cholesterol " editable="bottom">
+                                        <tree strig="NT pro BNP">
                                             <field name="medical_patient_id" invisible="1"/>
                                             <field name="date"/>
+                                            <field name="pre_eecp"/>
+                                            <field name="post_eecp"/>
                                             <field name="nt_pro_bnp"/>
                                         </tree>
+                                        <form>
+                                            <group>
+                                                <field name="medical_patient_id" invisible="1"/>
+                                                <field name="date"/>
+                                            </group>
+                                            <group>
+                                                <field name="pre_eecp"/>
+                                                <field name="post_eecp"/>
+                                            </group>
+                                        </form>
                                     </field>
                                 </page>
 
@@ -355,6 +404,7 @@
                                                     <field name="date"/>
                                                     <field name="cad_inr"/>
                                                 </tree>
+
                                             </field>
                                         </page>
                                     </notebook>
@@ -379,11 +429,20 @@
                                 <page string="Cardiac Cath / Angiography ">
                                     <group string="Cardiac Cath / Angiography ">
                                         <field name='angiography_ids' nolabel="1">
-                                            <tree strig="Cardiac Cath / Angiography  " editable="bottom">
+                                            <tree strig="Cardiac Cath / Angiography ">
                                                 <field name="medical_patient_id" invisible="1"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
+                                            <form>
+                                                <group>
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="documents"/>
+                                                </group>
+                                                <group>
+                                                    <field name="text"/>
+                                                </group>
+                                            </form>
                                         </field>
                                     </group>
                                 </page>
@@ -391,12 +450,22 @@
                                 <page string="PTCA / Stent  ">
                                     <group string="PTCA / Stent ">
                                         <field name='ptca_stend_ids' nolabel="1">
-                                            <tree strig="PTCA / Stent  " editable="bottom">
+                                            <tree strig="PTCA / Stent">
                                                 <field name="medical_patient_id" invisible="1"/>
                                                 <field name="date"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
+                                            <form>
+                                                <group>
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="documents"/>
+                                                </group>
+                                                <group>
+                                                    <field name="text"/>
+                                                </group>
+                                            </form>
+
                                         </field>
                                     </group>
                                 </page>
@@ -404,11 +473,20 @@
                                 <page string="CABG ">
                                     <group string="CABG">
                                         <field name='cabg_ids' nolabel="1">
-                                            <tree strig="CABG " editable="bottom">
+                                            <tree strig="CABG">
                                                 <field name="medical_patient_id" invisible="1"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
+                                            <form>
+                                                <group>
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="documents"/>
+                                                </group>
+                                                <group>
+                                                    <field name="text"/>
+                                                </group>
+                                            </form>
                                         </field>
                                     </group>
                                 </page>

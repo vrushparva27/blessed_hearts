@@ -8,7 +8,9 @@ class PatientEcg(models.Model):
     date = fields.Date(string='Date', default=datetime.now())
     medical_patient_id = fields.Many2one('medical.patient', string="Patient")
     documents = fields.Binary('Documents', attachement=True)
-    text = fields.Char('Remarks')
+    text = fields.Html('Remarks')
+    pre_eecp = fields.Html('PRE EECP')
+    post_eecp = fields.Html('POST EECP')
 
 
 class PatientEcho(models.Model):
@@ -16,7 +18,9 @@ class PatientEcho(models.Model):
     date = fields.Date(string='Date', default=datetime.now())
     medical_patient_id = fields.Many2one('medical.patient', string="Patient")
     documents = fields.Binary('Documents', attachement=True)
-    text = fields.Char('Remarks')
+    text = fields.Html('Remarks')
+    pre_eecp = fields.Html('PRE EECP')
+    post_eecp = fields.Html('POST EECP')
 
 
 class PatientStressEcho(models.Model):
@@ -25,7 +29,7 @@ class PatientStressEcho(models.Model):
     date = fields.Date(string='Date', default=datetime.now())
     medical_patient_id = fields.Many2one('medical.patient', string="Patient")
     documents = fields.Binary('Documents', attachement=True)
-    text = fields.Char('Remarks')
+    text = fields.Html('Remarks')
 
 
 class PatientAngiography(models.Model):
@@ -33,7 +37,7 @@ class PatientAngiography(models.Model):
     date = fields.Date(string='Date', default=datetime.now())
     medical_patient_id = fields.Many2one('medical.patient', string="Patient")
     documents = fields.Binary('Documents', attachement=True)
-    text = fields.Char('Remarks')
+    text = fields.Html('Remarks')
 
 
 class PatientPtcastent(models.Model):
@@ -42,14 +46,14 @@ class PatientPtcastent(models.Model):
     date = fields.Date(string='Date', default=datetime.now())
     medical_patient_id = fields.Many2one('medical.patient', string="Patient")
     documents = fields.Binary('Documents', attachement=True)
-    text = fields.Char('Remarks')
+    text = fields.Html('Remarks')
 
 
 class PatientCabg(models.Model):
     _name = 'patient.cabg'
     medical_patient_id = fields.Many2one('medical.patient', string="Patient")
     documents = fields.Binary('Documents', attachement=True)
-    text = fields.Char('Remarks')
+    text = fields.Html('Remarks')
 
 
 class PatientOthertests(models.Model):
@@ -119,6 +123,8 @@ class NTProBNP(models.Model):
     medical_patient_id = fields.Many2one('medical.patient', string="Patient")
     date = fields.Date(string='Date', default=datetime.now())
     nt_pro_bnp = fields.Char("NT Pro BNP", default='pg/ml')
+    pre_eecp = fields.Html('PRE EECP')
+    post_eecp = fields.Html('POST EECP')
 
 
 class CADPT(models.Model):

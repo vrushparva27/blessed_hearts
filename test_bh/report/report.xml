@@ -915,7 +915,7 @@
                                 <div class="text-left">
                                     <h5>
                                         <span style="text-align:left;color:orange">
-                                            1) Family History of CAD :-</span>
+                                            <i class="fa fa-angle-right"></i> Family History of CAD :-</span>
                                     </h5>
                                 </div>
                                 <div class="row">
@@ -930,7 +930,7 @@
                                 <div class="text-left">
                                     <h5>
                                         <span style="text-align:left;color:orange">
-                                            2) Smoking/Tabacco :-</span>
+                                            <i class="fa fa-angle-right"></i> Smoking/Tabacco :-</span>
                                     </h5>
                                 </div>
                                 <t t-if="o.currently_smoking">
@@ -980,7 +980,7 @@
                                 <div class="text-left">
                                     <h5>
                                         <span style="text-align:left;color:orange">
-                                            3) Blood Pressure :-</span>
+                                            <i class="fa fa-angle-right"></i> Blood Pressure :-</span>
                                     </h5>
                                 </div>
                                 <t t-if="o.hypertension">
@@ -1028,7 +1028,7 @@
                                     <div class="text-left">
                                         <h5>
                                             <span style="text-align:left;color:orange">
-                                                4) Cholesterol :-</span>
+                                                <i class="fa fa-angle-right"></i> Cholesterol :-</span>
                                         </h5>
                                     </div>
                                     <div class="row">
@@ -1107,7 +1107,7 @@
                                     <div class="text-left">
                                         <h5>
                                             <span style="text-align:left;color:orange">
-                                                5) Diabetes :-</span>
+                                                <i class="fa fa-angle-right"></i> Diabetes :-</span>
                                         </h5>
                                     </div>
                                     <div class="row">
@@ -1192,7 +1192,7 @@
                                     <div class="text-left">
                                         <h5>
                                             <span style="text-align:left;color:orange">
-                                                6) Stress :-</span>
+                                                <i class="fa fa-angle-right"></i> Stress :-</span>
                                         </h5>
                                     </div>
                                     <div class="row">
@@ -1243,7 +1243,7 @@
                                 <div class="text-left">
                                     <h5>
                                         <span style="text-align:left;color:orange">
-                                            7) Nutrition :-</span>
+                                            <i class="fa fa-angle-right"></i> Nutrition :-</span>
                                     </h5>
                                 </div>
                                 <div class="row">
@@ -1285,7 +1285,7 @@
                                     <div class="text-left">
                                         <h5>
                                             <span style="text-align:left;color:orange">
-                                                8) Alcohol :-</span>
+                                                <i class="fa fa-angle-right"> </i>  Alcohol :-</span>
                                         </h5>
                                     </div>
                                     <div class="row">
@@ -1311,7 +1311,7 @@
                                     <div class="text-left">
                                         <h5>
                                             <span style="text-align:left;color:orange">
-                                                9) Exercise :-</span>
+                                                <i class="fa fa-angle-right"> </i>  Exercise :-</span>
                                         </h5>
                                     </div>
                                     <div class="row">

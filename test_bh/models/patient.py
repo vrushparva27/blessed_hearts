@@ -153,7 +153,7 @@ class MedicalPatient(models.Model):
     hight_light = fields.Char('High Light')
 
     # cardiac history
-    cardiac_history = fields.Text('Cardiac History')
+    cardiac_history = fields.Html('Cardiac History')
     icu_stay = fields.Text('ICU Stay : Eventful/Uneventful')
     patient_cholesterol_ids = fields.One2many('patient.cholesterol', 'medical_patient_id', 'Cholesterol')
     patient_diabetes_ids = fields.One2many('patient.diabetes', 'medical_patient_id', 'Diabetes')
