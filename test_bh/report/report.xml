@@ -1285,7 +1285,7 @@
                                     <div class="text-left">
                                         <h5>
                                             <span style="text-align:left;color:orange">
-                                                <i class="fa fa-angle-right"> </i>  Alcohol :-</span>
+                                                <i class="fa fa-angle-right"></i> Alcohol :-</span>
                                         </h5>
                                     </div>
                                     <div class="row">
@@ -1311,7 +1311,7 @@
                                     <div class="text-left">
                                         <h5>
                                             <span style="text-align:left;color:orange">
-                                                <i class="fa fa-angle-right"> </i>  Exercise :-</span>
+                                                <i class="fa fa-angle-right"></i> Exercise :-</span>
                                         </h5>
                                     </div>
                                     <div class="row">
@@ -1363,5 +1363,130 @@
             </t>
         </template>
 
+        <template id="test_bh.report_cardiac_test_and_procedures">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="container">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <t t-call="test_bh.patient_info"></t>
+                                <br/>
+                                <br/>
+                                <!-- 1 part-->
+                                <div class="text-center">
+                                    <h5>
+                                        <span style="text-align:center;color:red">
+                                            CARDIAC TESTS AND PROCEDURES</span>
+                                    </h5>
+                                </div>
+                                <br/>
+                                <br/>
+
+                                <!-- 1nd-->
+                                <t t-if="len(o.ecg_ids) > 0">
+                                    <div class="text-left">
+                                        <h5>
+                                            <span style="text-align:left;color:orange">
+                                                <i class="fa fa-angle-right"></i> ECG :-</span>
+                                        </h5>
+                                    </div>
+                                    <br/>
+                                    <table class="table table-sm border" style="">
+                                        <thead>
+                                            <tr>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    SR. No.</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    Date</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    PRE EECP</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    POST EECP</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
+                                                    REMARKS</span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-set="sequence" t-value="1"/>
+                                            <t t-foreach="o.ecg_ids" t-as="ecg_line">
+                                                <tr>
+                                                    <td style="text-align: center; width:15%; border-style: inset;">
+                                                        <t t-esc="sequence"/>
+                                                        <t t-set="sequence" t-value="sequence + 1"/>
+                                                    </td>
+                                                    <td style="text-align: center; width:15%; border-style: inset;">
+                                                        <span
+                                                                t-field="ecg_line.date"/></td>
+                                                    <td style="text-align: center; width:25%; border-style: inset;">
+                                                        <span
+                                                                t-field="ecg_line.pre_eecp"/></td>
+                                                    <td style="text-align: center; width:25%; border-style: inset;">
+                                                        <span
+                                                                t-field="ecg_line.post_eecp"/></td>
+                                                    <td style="text-align: center; width:25%; border-style: inset;">
+                                                        <span
+                                                                t-field="ecg_line.text"/></td>
+
+                                                </tr>
+                                            </t>
+                                        </tbody>
+
+                                    </table>
+
+                                </t>
+
+
+                                <!-- 2nd-->
+                                <!--                                <t t-if="(len(o.cad_inr_ids) or len(o.cad_pt_ids)) > 0">-->
+                                <!--                                    <div class="text-left">-->
+                                <!--                                        <h5>-->
+                                <!--                                            <span style="text-align:left;color:orange">-->
+                                <!--                                                <i class="fa fa-angle-right"></i> PT INR :-</span>-->
+                                <!--                                        </h5>-->
+                                <!--                                    </div>-->
+                                <!--                                    <br/>-->
+                                <!--                                    <table class="table table-sm border" style="">-->
+                                <!--                                        <thead>-->
+                                <!--                                            <tr>-->
+                                <!--                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>-->
+                                <!--                                                    SR. No.</span></th>-->
+                                <!--                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>-->
+                                <!--                                                    Date</span></th>-->
+                                <!--                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>-->
+                                <!--                                                    PT details</span></th>-->
+                                <!--                                            </tr>-->
+                                <!--                                        </thead>-->
+                                <!--                                        <tbody>-->
+                                <!--                                            <t t-set="sequence" t-value="1"/>-->
+                                <!--                                            <t t-foreach="o.cad_pt_ids" t-as="cad_pt_line">-->
+                                <!--                                                <tr>-->
+                                <!--                                                    <td style="text-align: center; border-style: inset; overflow:visible">-->
+                                <!--                                                        <t t-esc="sequence"/>-->
+                                <!--                                                        <t t-set="sequence" t-value="sequence + 1"/>-->
+                                <!--                                                    </td>-->
+                                <!--                                                    <td style="text-align: center; border-style: inset; overflow:visible">-->
+                                <!--                                                        <span-->
+                                <!--                                                                t-field="cad_pt.date"/></td>-->
+                                <!--                                                    <td style="text-align: center; border-style: inset; overflow:visible">-->
+                                <!--                                                        <span-->
+                                <!--                                                                t-field="cad_pt.pt_de"/></td>-->
+                                <!--                                                </tr>-->
+                                <!--                                            </t>-->
+                                <!--                                        </tbody>-->
+
+                                <!--                                    </table>-->
+
+                                <!--                                </t>-->
+
+
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
     </data>
 </odoo>

@@ -293,7 +293,7 @@
                                 <page string="ECG">
                                     <group string="ECG">
                                         <field name='ecg_ids' nolabel="1">
-                                            <tree strig="ECG">
+                                            <tree strig="ECG" editable="bottom">
                                                 <field name="medical_patient_id" invisible="1"/>
                                                 <field name="date"/>
                                                 <field name="pre_eecp"/>

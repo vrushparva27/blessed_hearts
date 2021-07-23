@@ -8,9 +8,9 @@ class PatientEcg(models.Model):
     date = fields.Date(string='Date', default=datetime.now())
     medical_patient_id = fields.Many2one('medical.patient', string="Patient")
     documents = fields.Binary('Documents', attachement=True)
-    text = fields.Html('Remarks')
-    pre_eecp = fields.Html('PRE EECP')
-    post_eecp = fields.Html('POST EECP')
+    text = fields.Char('Remarks')
+    pre_eecp = fields.Char('PRE EECP')
+    post_eecp = fields.Char('POST EECP')
 
 
 class PatientEcho(models.Model):

@@ -67,5 +67,44 @@
                 </tbody>
             </table>
         </xpath>
+
+
+        <!--        <xpath expr="//p[@id='total_in_words']" position="replace">-->
+        <!--            <p id="bh_total_in_words" class="mb16">-->
+        <!--                <span t-field="o.bh_total_amount"/>-->
+        <!--            </p>-->
+        <!--        </xpath>-->
+
+        <xpath expr="//p[@t-if='o.narration']" position="after">
+            <div id="total_in_words" class="d-flex align-items-end flex-column bd-highlight mb-3"
+                 style="height:200px;">
+                <div class="mt-auto p-2 bd-highlight">
+                    <strong>Authorised Signature</strong>
+                </div>
+            </div>
+        </xpath>
+
+
+        <!--        <xpath expr="//div[@class='clearfix']" position="after">-->
+        <!--            <div class="col-xs-6">-->
+        <!--                <table class="table table-condensed">-->
+        <!--                    <thead>-->
+        <!--                        <tr>-->
+        <!--                            <th>HSN</th>-->
+        <!--                            <th>Tax</th>-->
+        <!--                            <th class="text-right">Amount</th>-->
+        <!--                        </tr>-->
+        <!--                    </thead>-->
+        <!--                    <tbody>-->
+        <!--                        <tr>-->
+        <!--                            <td><span>1</span></td>-->
+        <!--                            <td><span>2</span></td>-->
+        <!--                            <td><span>3</span></td>-->
+        <!--                        </tr>-->
+        <!--                    </tbody>-->
+        <!--                </table>-->
+        <!--            </div>-->
+        <!--        </xpath>-->
+
     </template>
 </odoo>

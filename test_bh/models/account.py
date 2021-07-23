@@ -16,6 +16,7 @@ class AccountMove(models.Model):
 
     patient_id = fields.Many2one('medical.patient', 'Patient')
     is_from_bh = fields.Boolean(compute='check_is_bh')
+    bh_total_amount = fields.Char("Total (In Words)", default="1 Lac Twenty Five Thousands Only")
 
     def check_is_bh(self):
         for rec in self:
@@ -37,7 +38,8 @@ class AccountMove(models.Model):
     def write(self, vals):
         res = super(AccountMove, self).write(vals)
         for rec in self:
-            if rec.type == 'out_refund' and rec.state != 'posted' and self._context.get('active_model') == 'medical.patient':
+            if rec.type == 'out_refund' and rec.state != 'posted' and self._context.get(
+                    'active_model') == 'medical.patient':
                 medical_patient = self.env[self._context.get('active_model')].browse(
                     self._context.get('active_id')) or rec.patient_id
                 total_refund_amt = medical_patient.total_inv_amt - medical_patient.total_inv_refund_amt
