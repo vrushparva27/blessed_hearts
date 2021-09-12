@@ -13,6 +13,8 @@
                         <t t-set="colspan" t-value="6"/>
                         <th name="th_service" style="background-color:dodgerblue;" class="text-left"><span
                                 style="color:white;">Service</span></th>
+                        <th name="th_session_date" style="background-color:dodgerblue;" class="text-left"><span
+                                style="color:white;">Session Date</span></th>
                         <th name="th_priceunit" style="background-color:dodgerblue;"
                             t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span
                                 style="color:white;">
@@ -40,6 +42,8 @@
                             <t t-if="not line.display_type" name="account_invoice_line_accountable">
                                 <td name="account_invoice_line_name"><span t-field="line.name"
                                                                            t-options="{'widget': 'text'}"/></td>
+                                <td name="account_invoice_line_session_date"><span t-field="line.session_date"
+                                                                                   t-options="{'widget': 'text'}"/></td>
                                 <td t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                     <span class="text-nowrap" t-field="line.price_unit"/>
                                 </td>
@@ -67,7 +71,6 @@
                 </tbody>
             </table>
         </xpath>
-
 
         <!--        <xpath expr="//p[@id='total_in_words']" position="replace">-->
         <!--            <p id="bh_total_in_words" class="mb16">-->
