@@ -55,3 +55,10 @@ class AccountMove(models.Model):
             if self.amount_total > total_refund_amt:
                 raise UserError(_("Sorry !!! amount cannot be more than deposit."))
         return super(AccountMove, self).action_post()
+    
+ 
+class AccountMoveLine(models.Model):
+    _inherit = 'account.move.line'
+
+    session_date = fields.Date(string='Session Date', default=lambda self: fields.datetime.now())
+
