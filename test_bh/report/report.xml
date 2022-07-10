@@ -19,7 +19,9 @@
                         <t t-esc="o.phone"/>
                     </div>
                     <div>
-                        <b><t t-esc="o.city"/></b>
+                        <b>
+                            <t t-esc="o.city"/>
+                        </b>
                     </div>
                 </div>
             </div>
@@ -41,7 +43,8 @@
                                 <div class="text-center">
                                     <h5>
                                         <span style="text-align:center;color:red">
-                                            Cardiac History</span>
+                                            Cardiac History
+                                        </span>
                                     </h5>
                                 </div>
                                 <div>
@@ -85,7 +88,8 @@
                                 <div class="text-center">
                                     <h5>
                                         <span style="text-align:center;color:red">
-                                            Final Diagnosis</span>
+                                            Final Diagnosis
+                                        </span>
                                     </h5>
                                 </div>
                                 <br/>
@@ -122,34 +126,38 @@
                                 <div class="text-center">
                                     <h5>
                                         <span style="text-align:center;color:red">
-                                            CAD/CHF/Refractory Angina</span>
+                                            CAD/CHF/Refractory Angina
+                                        </span>
                                     </h5>
                                 </div>
                                 <br/>
                                 <div class="row">
                                     <div class="col-3">
-                                        <strong>CAD :- </strong>
+                                        <strong>CAD :-</strong>
                                     </div>
                                     <div class="col-9">
-                                        <span t-field="o.cad"/><br/>
+                                        <span t-field="o.cad"/>
+                                        <br/>
                                     </div>
                                 </div>
                                 <br/>
                                 <div class="row">
                                     <div class="col-3">
-                                        <strong>CHF: </strong>
+                                        <strong>CHF:</strong>
                                     </div>
                                     <div class="col-9">
-                                        <span t-field="o.chf"/><br/>
+                                        <span t-field="o.chf"/>
+                                        <br/>
                                     </div>
                                 </div>
                                 <br/>
                                 <div class="row">
                                     <div class="col-3">
-                                        <strong>Refractory Angina: </strong>
+                                        <strong>Refractory Angina:</strong>
                                     </div>
                                     <div class="col-9">
-                                        <span t-field="o.refractory_angina"/><br/>
+                                        <span t-field="o.refractory_angina"/>
+                                        <br/>
                                     </div>
                                 </div>
 
@@ -163,16 +171,18 @@
                                     <div class="text-center">
                                         <h5>
                                             <span style="text-align:center;color:red">
-                                                Date of Diagnosis</span>
+                                                Date of Diagnosis
+                                            </span>
                                         </h5>
                                     </div>
                                     <br/>
                                     <div class="row">
                                         <div class="col-3">
-                                            <strong>MI :- </strong>
+                                            <strong>MI :-</strong>
                                         </div>
                                         <div class="col-9">
-                                            <span t-field="o.mi_date"/><br/>
+                                            <span t-field="o.mi_date"/>
+                                            <br/>
                                         </div>
                                     </div>
                                     <br/>
@@ -185,7 +195,8 @@
                                     <div class="text-center">
                                         <h5>
                                             <span style="text-align:center;color:red">
-                                                Procedures</span>
+                                                Procedures
+                                            </span>
                                         </h5>
                                     </div>
                                     <br/>
@@ -193,11 +204,13 @@
                                     <t t-if="o.cabg">
                                         <div class="row">
                                             <div class="col-3">
-                                                <strong>CABG :- </strong>
+                                                <strong>CABG :-</strong>
                                             </div>
                                             <div class="col-9">
-                                                <span t-field="o.cabg_date"/><br/>
-                                                <span t-field="o.cabg_text"/><br/>
+                                                <span t-field="o.cabg_date"/>
+                                                <br/>
+                                                <span t-field="o.cabg_text"/>
+                                                <br/>
                                             </div>
                                         </div>
                                         <br/>
@@ -207,11 +220,13 @@
                                     <t t-if="o.ptca">
                                         <div class="row">
                                             <div class="col-3">
-                                                <strong>PTCA :- </strong>
+                                                <strong>PTCA :-</strong>
                                             </div>
                                             <div class="col-9">
-                                                <span t-field="o.ptca_date"/><br/>
-                                                <span t-field="o.ptca_text"/><br/>
+                                                <span t-field="o.ptca_date"/>
+                                                <br/>
+                                                <span t-field="o.ptca_text"/>
+                                                <br/>
                                             </div>
                                         </div>
                                         <br/>
@@ -221,10 +236,11 @@
                                     <t t-if="o.medical_mx">
                                         <div class="row">
                                             <div class="col-3">
-                                                <strong>Medical MX :- </strong>
+                                                <strong>Medical MX :-</strong>
                                             </div>
                                             <div class="col-9">
-                                                <span t-field="o.medical_mx_text"/><br/>
+                                                <span t-field="o.medical_mx_text"/>
+                                                <br/>
                                             </div>
                                         </div>
                                         <br/>
@@ -258,35 +274,38 @@
                                 <div class="text-center">
                                     <h5>
                                         <span style="text-align:center;color:red">
-                                            DemoGraphic Data</span>
+                                            DemoGraphic Data
+                                        </span>
                                     </h5>
                                 </div>
                                 <br/>
                                 <div class="row">
                                     <div class="col-2">
-                                        <strong>NAME </strong>
+                                        <strong>NAME</strong>
                                     </div>
                                     <div class="col-4">
-                                        <span t-field="o.name"/><br/>
+                                        <span t-field="o.name"/>
+                                        <br/>
                                     </div>
                                     <div class="col-2">
                                         <strong>DOB :</strong>
                                     </div>
                                     <div class="col-4">
-                                        <span t-field="o.date_of_birth"/><br/>
+                                        <span t-field="o.date_of_birth"/>
+                                        <br/>
                                     </div>
                                 </div>
 
                                 <!--2-->
                                 <div class="row">
                                     <div class="col-2">
-                                        <strong>AGE </strong>
+                                        <strong>AGE</strong>
                                     </div>
                                     <div class="col-4">
                                         <span t-field="o.age"/>
                                     </div>
                                     <div class="col-2">
-                                        <strong>Marital Status </strong>
+                                        <strong>Marital Status</strong>
                                     </div>
                                     <div class="col-4">
                                         <span t-field="o.marital_status"/>
@@ -297,19 +316,20 @@
                                 <!--3-->
                                 <div class="row">
                                     <div class="col-2">
-                                        <strong>GENDER </strong>
+                                        <strong>GENDER</strong>
                                     </div>
                                     <div class="col-4">
                                         <span t-field="o.sex"/>
                                     </div>
                                     <div class="col-2">
-                                        <strong>ADDRESS </strong>
+                                        <strong>ADDRESS</strong>
                                     </div>
                                     <div class="col-4">
                                         <span t-field="o.address_1"/>
                                         <span t-field="o.address_2"/>
                                         <span t-field="o.city"/>
-                                        <span t-field="o.state_id"/>, <span t-field="o.country_id"/>
+                                        <span t-field="o.state_id"/>,
+                                        <span t-field="o.country_id"/>
                                     </div>
                                 </div>
                                 <br/>
@@ -317,13 +337,13 @@
                                 <!--4-->
                                 <div class="row">
                                     <div class="col-2">
-                                        <strong>OCCUPATION </strong>
+                                        <strong>OCCUPATION</strong>
                                     </div>
                                     <div class="col-4">
                                         <span t-field="o.occupation"/>
                                     </div>
                                     <div class="col-2">
-                                        <strong>REF. DOC. </strong>
+                                        <strong>REF. DOC.</strong>
                                     </div>
                                     <div class="col-4">
                                         <span t-field="o.referring_doctor"/>
@@ -334,13 +354,13 @@
                                 <!--5-->
                                 <div class="row">
                                     <div class="col-2">
-                                        <strong>TEL. NO. </strong>
+                                        <strong>TEL. NO.</strong>
                                     </div>
                                     <div class="col-4">
                                         <span t-field="o.mobile"/>
                                     </div>
                                     <div class="col-2">
-                                        <strong>MOBILE </strong>
+                                        <strong>MOBILE</strong>
                                     </div>
                                     <div class="col-4">
                                         <span t-field="o.phone"/>
@@ -352,7 +372,7 @@
                                 <t t-if="o.hight_light">
                                     <div class="row">
                                         <div class="col-2">
-                                            <strong>HIGH LIGHT </strong>
+                                            <strong>HIGH LIGHT</strong>
                                         </div>
                                         <div class="col-4">
                                             <span t-field="o.hight_light"/>
@@ -368,13 +388,14 @@
                                     <div class="text-center">
                                         <h5>
                                             <span style="text-align:center;color:red">
-                                                EECP Treatment </span>
+                                                EECP Treatment
+                                            </span>
                                         </h5>
                                     </div>
                                     <br/>
                                     <div class="row">
                                         <div class="col-2">
-                                            <strong>EECP STARTED </strong>
+                                            <strong>EECP STARTED</strong>
                                         </div>
                                         <div class="col-4">
                                             <span t-field="o.treatment_start_date"/>
@@ -389,7 +410,7 @@
                                     <br/>
                                     <div class="row">
                                         <div class="col-2">
-                                            <strong>Treatment Day(s) </strong>
+                                            <strong>Treatment Day(s)</strong>
                                         </div>
                                         <div class="col-4">
                                             <span t-field="o.comp_treatment_day"/>
@@ -405,18 +426,28 @@
                                     <div class="text-center">
                                         <h5>
                                             <span style="text-align:center;color:red">
-                                                Holiday's</span>
+                                                Holiday's
+                                            </span>
                                         </h5>
                                     </div>
                                     <table class="table table-sm border" style="">
                                         <thead>
                                             <tr>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    SR. No.</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    Date</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    Remarks</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        SR. No.
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        Date
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        Remarks
+                                                    </span>
+                                                </th>
                                             </tr>
                                         </thead>
 
@@ -430,10 +461,12 @@
                                                     </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="holiday_line.date"/></td>
+                                                                t-field="holiday_line.date"/>
+                                                    </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="holiday_line.remarks"/></td>
+                                                                t-field="holiday_line.remarks"/>
+                                                    </td>
                                                 </tr>
                                             </t>
                                         </tbody>
@@ -467,20 +500,21 @@
                                 <div class="text-center">
                                     <h5>
                                         <span style="text-align:center;color:red">
-                                            Check-List</span>
+                                            Check-List
+                                        </span>
                                     </h5>
                                 </div>
                                 <br/>
                                 <div class="row">
                                     <div class="col-4">
-                                        <strong>Antiplatelet Agent </strong>
+                                        <strong>Antiplatelet Agent</strong>
                                     </div>
                                     <div class="col-2">
                                         <input type="checkbox" name="checkbox_1"
                                                t-att-checked="'checked' if o.antiplatelet_agent else None"/>
                                     </div>
                                     <div class="col-4">
-                                        <strong>ACE-1 Or ARB </strong>
+                                        <strong>ACE-1 Or ARB</strong>
                                     </div>
                                     <div class="col-2">
                                         <input type="checkbox" name="checkbox_1"
@@ -490,14 +524,14 @@
 
                                 <div class="row">
                                     <div class="col-4">
-                                        <strong>B-Blocker </strong>
+                                        <strong>B-Blocker</strong>
                                     </div>
                                     <div class="col-2">
                                         <input type="checkbox" name="checkbox_1"
                                                t-att-checked="'checked' if o.beta_blocker else None"/>
                                     </div>
                                     <div class="col-4">
-                                        <strong>Statin </strong>
+                                        <strong>Statin</strong>
                                     </div>
                                     <div class="col-2">
                                         <input type="checkbox" name="checkbox_1"
@@ -521,22 +555,38 @@
                                     <div class="text-center">
                                         <h5>
                                             <span style="text-align:center;color:red">
-                                                Medications</span>
+                                                Medications
+                                            </span>
                                         </h5>
                                     </div>
                                     <table class="table table-sm border" style="">
                                         <thead>
                                             <tr>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    SR. No.</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    Date</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    Name Of Medicine</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    Generic Name</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    Frequency</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        SR. No.
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        Date
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        Name Of Medicine
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        Generic Name
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        Frequency
+                                                    </span>
+                                                </th>
                                             </tr>
                                         </thead>
 
@@ -550,16 +600,20 @@
                                                     </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="m_line.date"/></td>
+                                                                t-field="m_line.date"/>
+                                                    </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="m_line.name"/></td>
+                                                                t-field="m_line.name"/>
+                                                    </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="m_line.dose"/></td>
+                                                                t-field="m_line.dose"/>
+                                                    </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="m_line.frequency"/></td>
+                                                                t-field="m_line.frequency"/>
+                                                    </td>
 
                                                 </tr>
                                             </t>
@@ -594,7 +648,8 @@
                                 <div class="text-center">
                                     <h5>
                                         <span style="text-align:center;color:red">
-                                            Medical Surgery And History</span>
+                                            Medical Surgery And History
+                                        </span>
                                     </h5>
                                 </div>
                                 <br/>
@@ -602,19 +657,23 @@
                                 <t t-if="o.diabetes_mellitus">
                                     <div class="row">
                                         <div class="col-2">
-                                            <strong>Diabetes Mellitus </strong>
+                                            <strong>Diabetes Mellitus</strong>
                                         </div>
                                         <div class="col-2">
                                             <input type="checkbox" name="checkbox_1"
                                                    t-att-checked="'checked' if o.diabetes_mellitus else None"/>
                                         </div>
                                         <div class="col-3">
-                                            <strong>Diabetes Type</strong><br/>
-                                            <strong>Since How Long Years</strong><br/>
+                                            <strong>Diabetes Type</strong>
+                                            <br/>
+                                            <strong>Since How Long Years</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-5">
-                                            <span t-field="o.diabetes_type"/><br/>
-                                            <span t-field="o.diabetes_years"/><br/>
+                                            <span t-field="o.diabetes_type"/>
+                                            <br/>
+                                            <span t-field="o.diabetes_years"/>
+                                            <br/>
                                         </div>
                                     </div>
                                 </t>
@@ -623,17 +682,19 @@
                                 <t t-if="o.hin">
                                     <div class="row">
                                         <div class="col-2">
-                                            <strong>HIN </strong>
+                                            <strong>HIN</strong>
                                         </div>
                                         <div class="col-2">
                                             <input type="checkbox" name="checkbox_1"
                                                    t-att-checked="'checked' if o.hin else None"/>
                                         </div>
                                         <div class="col-3">
-                                            <strong>Since How Long Years</strong><br/>
+                                            <strong>Since How Long Years</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-5">
-                                            <span t-field="o.hin_years"/><br/>
+                                            <span t-field="o.hin_years"/>
+                                            <br/>
                                         </div>
                                     </div>
                                 </t>
@@ -641,17 +702,19 @@
                                 <t t-if="o.ckd">
                                     <div class="row">
                                         <div class="col-2">
-                                            <strong>CKD </strong>
+                                            <strong>CKD</strong>
                                         </div>
                                         <div class="col-2">
                                             <input type="checkbox" name="checkbox_ckd"
                                                    t-att-checked="'checked' if o.ckd else None"/>
                                         </div>
                                         <div class="col-3">
-                                            <strong>Since How Long Years</strong><br/>
+                                            <strong>Since How Long Years</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-5">
-                                            <span t-field="o.ckd_years"/><br/>
+                                            <span t-field="o.ckd_years"/>
+                                            <br/>
                                         </div>
                                     </div>
                                 </t>
@@ -661,17 +724,19 @@
                                 <t t-if="o.leg_fracture">
                                     <div class="row">
                                         <div class="col-2">
-                                            <strong>LEG FRACTURE </strong>
+                                            <strong>LEG FRACTURE</strong>
                                         </div>
                                         <div class="col-2">
                                             <input type="checkbox" name="checkbox_leg_fracture"
                                                    t-att-checked="'checked' if o.leg_fracture else None"/>
                                         </div>
                                         <div class="col-3">
-                                            <strong>Facture Details</strong><br/>
+                                            <strong>Facture Details</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-5">
-                                            <span t-field="o.fracture_text"/><br/>
+                                            <span t-field="o.fracture_text"/>
+                                            <br/>
                                         </div>
                                     </div>
                                 </t>
@@ -680,17 +745,19 @@
                                 <t t-if="o.leg_surgery">
                                     <div class="row">
                                         <div class="col-2">
-                                            <strong>LEG SURGERY </strong>
+                                            <strong>LEG SURGERY</strong>
                                         </div>
                                         <div class="col-2">
                                             <input type="checkbox" name="checkbox_leg_surgery"
                                                    t-att-checked="'checked' if o.leg_surgery else None"/>
                                         </div>
                                         <div class="col-3">
-                                            <strong>Surgery Details</strong><br/>
+                                            <strong>Surgery Details</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-5">
-                                            <span t-field="o.surgery_text"/><br/>
+                                            <span t-field="o.surgery_text"/>
+                                            <br/>
                                         </div>
                                     </div>
                                 </t>
@@ -699,17 +766,19 @@
                                 <t t-if="o.other_surgical_conditions">
                                     <div class="row">
                                         <div class="col-2">
-                                            <strong>Other Medical / Surgical Conditions </strong>
+                                            <strong>Other Medical / Surgical Conditions</strong>
                                         </div>
                                         <div class="col-2">
                                             <input type="checkbox" name="checkbox_other_surgical_conditions"
                                                    t-att-checked="'checked' if o.other_surgical_conditions else None"/>
                                         </div>
                                         <div class="col-3">
-                                            <strong> Details</strong><br/>
+                                            <strong>Details</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-5">
-                                            <span t-field="o.other_surgical_conditions_text"/><br/>
+                                            <span t-field="o.other_surgical_conditions_text"/>
+                                            <br/>
                                         </div>
                                     </div>
                                 </t>
@@ -737,7 +806,8 @@
                                 <div class="text-center">
                                     <h5>
                                         <span style="text-align:center;color:red">
-                                            Patient Sign and Symptoms</span>
+                                            Patient Sign and Symptoms
+                                        </span>
                                     </h5>
                                 </div>
                                 <br/>
@@ -752,10 +822,12 @@
                                                    t-att-checked="'checked' if o.diabetes_mellitus else None"/>
                                         </div>
                                         <div class="col-3">
-                                            <strong>NYHA Class</strong><br/>
+                                            <strong>NYHA Class</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-5">
-                                            <span t-field="o.nyha_class"/><br/>
+                                            <span t-field="o.nyha_class"/>
+                                            <br/>
                                         </div>
                                     </div>
                                 </t>
@@ -765,7 +837,8 @@
                                 <div class="text-center">
                                     <h5>
                                         <span style="text-align:center;color:red">
-                                            Angina</span>
+                                            Angina
+                                        </span>
                                     </h5>
                                 </div>
                                 <br/>
@@ -779,13 +852,16 @@
                                                    t-att-checked="'checked' if o.angina else None"/>
                                         </div>
                                         <div class="col-3">
-                                            <strong>No. of Angina Episodes/Day</strong><br/>
+                                            <strong>No. of Angina Episodes/Day</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-2">
-                                            <span t-field="o.no_angina"/><br/>
+                                            <span t-field="o.no_angina"/>
+                                            <br/>
                                         </div>
                                         <div class="col-3">
-                                            <span t-field="o.interval_angina"/><br/>
+                                            <span t-field="o.interval_angina"/>
+                                            <br/>
                                         </div>
                                     </div>
                                 </t>
@@ -815,7 +891,8 @@
                                 <div class="text-center">
                                     <h5>
                                         <span style="text-align:center;color:red">
-                                            Physical Examinations</span>
+                                            Physical Examinations
+                                        </span>
                                     </h5>
                                 </div>
                                 <br/>
@@ -825,13 +902,15 @@
                                         <strong>Height / Cms</strong>
                                     </div>
                                     <div class="col-3">
-                                        <span t-field="o.height"/><br/>
+                                        <span t-field="o.height"/>
+                                        <br/>
                                     </div>
                                     <div class="col-3">
                                         <strong>Weight / Kg</strong>
                                     </div>
                                     <div class="col-3">
-                                        <span t-field="o.weight"/><br/>
+                                        <span t-field="o.weight"/>
+                                        <br/>
                                     </div>
                                 </div>
                                 <br/>
@@ -840,13 +919,15 @@
                                         <strong>BMI / kg/ meter square</strong>
                                     </div>
                                     <div class="col-3">
-                                        <span t-field="o.bmi"/><br/>
+                                        <span t-field="o.bmi"/>
+                                        <br/>
                                     </div>
                                     <div class="col-3">
-                                        <strong>Pulse / bpm </strong>
+                                        <strong>Pulse / bpm</strong>
                                     </div>
                                     <div class="col-3">
-                                        <span t-field="o.pulse"/><br/>
+                                        <span t-field="o.pulse"/>
+                                        <br/>
                                     </div>
                                 </div>
                                 <br/>
@@ -855,7 +936,8 @@
                                         <strong>Blood Pressure / mmHg</strong>
                                     </div>
                                     <div class="col-3">
-                                        <span t-field="o.blood_pressure"/><br/>
+                                        <span t-field="o.blood_pressure"/>
+                                        <br/>
                                     </div>
                                     <div class="col-3">
                                     </div>
@@ -869,7 +951,8 @@
                                         <strong>Auscultatory Finding</strong>
                                     </div>
                                     <div class="col-9">
-                                        <span t-field="o.auscultatory_finding"/><br/>
+                                        <span t-field="o.auscultatory_finding"/>
+                                        <br/>
                                     </div>
                                 </div>
                                 <br/>
@@ -878,7 +961,8 @@
                                         <strong>Peripheral Pulses</strong>
                                     </div>
                                     <div class="col-9">
-                                        <span t-field="o.peripheral_pulses"/><br/>
+                                        <span t-field="o.peripheral_pulses"/>
+                                        <br/>
                                     </div>
                                 </div>
                                 <br/>
@@ -906,7 +990,8 @@
                                 <div class="text-center">
                                     <h5>
                                         <span style="text-align:center;color:red">
-                                            CAD RISK FACTOR</span>
+                                            CAD RISK FACTOR
+                                        </span>
                                     </h5>
                                 </div>
                                 <br/>
@@ -915,12 +1000,15 @@
                                 <div class="text-left">
                                     <h5>
                                         <span style="text-align:left;color:orange">
-                                            <i class="fa fa-angle-right"></i> Family History of CAD :-</span>
+                                            <i class="fa fa-angle-right"></i>
+                                            Family History of CAD :-
+                                        </span>
                                     </h5>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <span t-field="o.cad_history_text"/><br/>
+                                        <span t-field="o.cad_history_text"/>
+                                        <br/>
                                     </div>
                                 </div>
                                 <br/>
@@ -930,7 +1018,9 @@
                                 <div class="text-left">
                                     <h5>
                                         <span style="text-align:left;color:orange">
-                                            <i class="fa fa-angle-right"></i> Smoking/Tabacco :-</span>
+                                            <i class="fa fa-angle-right"></i>
+                                            Smoking/Tabacco :-
+                                        </span>
                                     </h5>
                                 </div>
                                 <t t-if="o.currently_smoking">
@@ -944,11 +1034,13 @@
                                         </div>
                                         <div class="col-3">
                                             <strong>How Many Per Day</strong>
-                                            <strong>Desire To Quit </strong>
+                                            <strong>Desire To Quit</strong>
                                         </div>
                                         <div class="col-3">
-                                            <span t-field="o.how_many_per_day"/><br/>
-                                            <span t-field="o.desire_to_quite"/><br/>
+                                            <span t-field="o.how_many_per_day"/>
+                                            <br/>
+                                            <span t-field="o.desire_to_quite"/>
+                                            <br/>
                                         </div>
                                     </div>
                                 </t>
@@ -965,11 +1057,13 @@
                                         </div>
                                         <div class="col-3">
                                             <strong>Since How Long</strong>
-                                            <strong>Date of Quit Smoking </strong>
+                                            <strong>Date of Quit Smoking</strong>
                                         </div>
                                         <div class="col-3">
-                                            <span t-field="o.smoking_since_how_long"/><br/>
-                                            <span t-field="o.date_to_quit_smoking"/><br/>
+                                            <span t-field="o.smoking_since_how_long"/>
+                                            <br/>
+                                            <span t-field="o.date_to_quit_smoking"/>
+                                            <br/>
                                         </div>
                                     </div>
                                 </t>
@@ -980,7 +1074,9 @@
                                 <div class="text-left">
                                     <h5>
                                         <span style="text-align:left;color:orange">
-                                            <i class="fa fa-angle-right"></i> Blood Pressure :-</span>
+                                            <i class="fa fa-angle-right"></i>
+                                            Blood Pressure :-
+                                        </span>
                                     </h5>
                                 </div>
                                 <t t-if="o.hypertension">
@@ -998,13 +1094,15 @@
                                             <strong>If Yes, Since How Long</strong>
                                         </div>
                                         <div class="col-3">
-                                            <span t-field="o.hypertension_how_many_years"/><br/>
+                                            <span t-field="o.hypertension_how_many_years"/>
+                                            <br/>
                                         </div>
                                         <div class="col-3">
                                             <strong>Medication</strong>
                                         </div>
                                         <div class="col-3">
-                                            <span t-field="o.medications_bp"/><br/>
+                                            <span t-field="o.medications_bp"/>
+                                            <br/>
                                         </div>
                                     </div>
                                 </t>
@@ -1028,7 +1126,9 @@
                                     <div class="text-left">
                                         <h5>
                                             <span style="text-align:left;color:orange">
-                                                <i class="fa fa-angle-right"></i> Cholesterol :-</span>
+                                                <i class="fa fa-angle-right"></i>
+                                                Cholesterol :-
+                                            </span>
                                         </h5>
                                     </div>
                                     <div class="row">
@@ -1045,22 +1145,46 @@
                                     <table class="table table-sm border" style="">
                                         <thead>
                                             <tr>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    SR. No.</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    Date</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    Total Chol.</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    LDL.</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    HDL.</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    Triglycerides.</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    VLDL.</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    Medications.</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        SR. No.
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        Date
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        Total Chol.
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        LDL.
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        HDL.
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        Triglycerides.
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        VLDL.
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        Medications.
+                                                    </span>
+                                                </th>
                                             </tr>
                                         </thead>
 
@@ -1074,25 +1198,32 @@
                                                     </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="choles_line.date"/></td>
+                                                                t-field="choles_line.date"/>
+                                                    </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="choles_line.total_chol"/></td>
+                                                                t-field="choles_line.total_chol"/>
+                                                    </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="choles_line.ldl"/></td>
+                                                                t-field="choles_line.ldl"/>
+                                                    </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="choles_line.hdl"/></td>
+                                                                t-field="choles_line.hdl"/>
+                                                    </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="choles_line.triglycerides"/></td>
+                                                                t-field="choles_line.triglycerides"/>
+                                                    </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="choles_line.vldl"/></td>
+                                                                t-field="choles_line.vldl"/>
+                                                    </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="choles_line.medications"/></td>
+                                                                t-field="choles_line.medications"/>
+                                                    </td>
                                                 </tr>
                                             </t>
                                         </tbody>
@@ -1107,7 +1238,9 @@
                                     <div class="text-left">
                                         <h5>
                                             <span style="text-align:left;color:orange">
-                                                <i class="fa fa-angle-right"></i> Diabetes :-</span>
+                                                <i class="fa fa-angle-right"></i>
+                                                Diabetes :-
+                                            </span>
                                         </h5>
                                     </div>
                                     <div class="row">
@@ -1125,7 +1258,8 @@
                                             <strong>Since How Long Years</strong>
                                         </div>
                                         <div class="col-9">
-                                            <span t-field="o.how_long"/><br/>
+                                            <span t-field="o.how_long"/>
+                                            <br/>
                                         </div>
                                     </div>
                                     <br/>
@@ -1134,25 +1268,44 @@
                                             <strong>Medications</strong>
                                         </div>
                                         <div class="col-9">
-                                            <span t-field="o.medications"/><br/>
+                                            <span t-field="o.medications"/>
+                                            <br/>
                                         </div>
                                     </div>
                                     <br/>
                                     <table class="table table-sm border" style="">
                                         <thead>
                                             <tr>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    SR. No.</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    Date</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    RBS.</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    Fast Blood Suger.</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    PPBS.</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    HBA 1c.</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        SR. No.
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        Date
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        RBS.
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        Fast Blood Suger.
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        PPBS.
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        HBA 1c.
+                                                    </span>
+                                                </th>
                                             </tr>
                                         </thead>
 
@@ -1166,19 +1319,24 @@
                                                     </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="diabetes_line.date"/></td>
+                                                                t-field="diabetes_line.date"/>
+                                                    </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="diabetes_line.rbs"/></td>
+                                                                t-field="diabetes_line.rbs"/>
+                                                    </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="diabetes_line.fast_blood_suger"/></td>
+                                                                t-field="diabetes_line.fast_blood_suger"/>
+                                                    </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="diabetes_line.ppbs"/></td>
+                                                                t-field="diabetes_line.ppbs"/>
+                                                    </td>
                                                     <td style="text-align: center; border-style: inset;">
                                                         <span
-                                                                t-field="diabetes_line.hba1c"/></td>
+                                                                t-field="diabetes_line.hba1c"/>
+                                                    </td>
                                                 </tr>
                                             </t>
                                         </tbody>
@@ -1192,7 +1350,9 @@
                                     <div class="text-left">
                                         <h5>
                                             <span style="text-align:left;color:orange">
-                                                <i class="fa fa-angle-right"></i> Stress :-</span>
+                                                <i class="fa fa-angle-right"></i>
+                                                Stress :-
+                                            </span>
                                         </h5>
                                     </div>
                                     <div class="row">
@@ -1207,19 +1367,23 @@
                                     <br/>
                                     <div class="row">
                                         <div class="col-6">
-                                            <strong>Source of Stress</strong><br/>
+                                            <strong>Source of Stress</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-6">
-                                            <span t-field="o.source_of_stress"/><br/>
+                                            <span t-field="o.source_of_stress"/>
+                                            <br/>
                                         </div>
                                     </div>
                                     <br/>
                                     <div class="row">
                                         <div class="col-6">
-                                            <strong>Rating of Stress on Scale of 1 to 10F</strong><br/>
+                                            <strong>Rating of Stress on Scale of 1 to 10F</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-6">
-                                            <span t-field="o.rating_stress"/><br/>
+                                            <span t-field="o.rating_stress"/>
+                                            <br/>
                                         </div>
                                     </div>
                                 </t>
@@ -1243,7 +1407,9 @@
                                 <div class="text-left">
                                     <h5>
                                         <span style="text-align:left;color:orange">
-                                            <i class="fa fa-angle-right"></i> Nutrition :-</span>
+                                            <i class="fa fa-angle-right"></i>
+                                            Nutrition :-
+                                        </span>
                                     </h5>
                                 </div>
                                 <div class="row">
@@ -1265,16 +1431,20 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-3">
-                                        <strong>Consumption of Oil per Month For Whole Family</strong><br/>
+                                        <strong>Consumption of Oil per Month For Whole Family</strong>
+                                        <br/>
                                     </div>
                                     <div class="col-3">
-                                        <span t-field="o.oil_consumption"/><br/>
+                                        <span t-field="o.oil_consumption"/>
+                                        <br/>
                                     </div>
                                     <div class="col-3">
-                                        <strong>Consumption of Ghee per Month For Whole Family</strong><br/>
+                                        <strong>Consumption of Ghee per Month For Whole Family</strong>
+                                        <br/>
                                     </div>
                                     <div class="col-3">
-                                        <span t-field="o.ghee_consumption"/><br/>
+                                        <span t-field="o.ghee_consumption"/>
+                                        <br/>
                                     </div>
                                 </div>
 
@@ -1285,21 +1455,27 @@
                                     <div class="text-left">
                                         <h5>
                                             <span style="text-align:left;color:orange">
-                                                <i class="fa fa-angle-right"></i> Alcohol :-</span>
+                                                <i class="fa fa-angle-right"></i>
+                                                Alcohol :-
+                                            </span>
                                         </h5>
                                     </div>
                                     <div class="row">
                                         <div class="col-3">
-                                            <strong>Is Drinking</strong><br/>
+                                            <strong>Is Drinking</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-3">
                                             <input type="checkbox" name="checkbox_is_drinking"
-                                                   t-att-checked="'checked' if o.is_drinking else None"/></div>
-                                        <div class="col-3">
-                                            <strong>Pegs per Week</strong><br/>
+                                                   t-att-checked="'checked' if o.is_drinking else None"/>
                                         </div>
                                         <div class="col-3">
-                                            <span t-field="o.drinks_per_peg"/><br/>
+                                            <strong>Pegs per Week</strong>
+                                            <br/>
+                                        </div>
+                                        <div class="col-3">
+                                            <span t-field="o.drinks_per_peg"/>
+                                            <br/>
                                         </div>
                                     </div>
                                 </t>
@@ -1311,7 +1487,9 @@
                                     <div class="text-left">
                                         <h5>
                                             <span style="text-align:left;color:orange">
-                                                <i class="fa fa-angle-right"></i> Exercise :-</span>
+                                                <i class="fa fa-angle-right"></i>
+                                                Exercise :-
+                                            </span>
                                         </h5>
                                     </div>
                                     <div class="row">
@@ -1326,32 +1504,40 @@
                                     <br/>
                                     <div class="row">
                                         <div class="col-3">
-                                            <strong>Type of Exercise</strong><br/>
+                                            <strong>Type of Exercise</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-3">
-                                            <span t-field="o.exercise_type"/><br/>
+                                            <span t-field="o.exercise_type"/>
+                                            <br/>
                                         </div>
                                         <div class="col-3">
-                                            <strong>Duration</strong><br/>
+                                            <strong>Duration</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-3">
-                                            <span t-field="o.exercise_duration"/><br/>
+                                            <span t-field="o.exercise_duration"/>
+                                            <br/>
                                         </div>
 
                                     </div>
                                     <br/>
                                     <div class="row">
                                         <div class="col-3">
-                                            <strong>How Often ?</strong><br/>
+                                            <strong>How Often ?</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-3">
-                                            <span t-field="o.how_ofter_exercise"/><br/>
+                                            <span t-field="o.how_ofter_exercise"/>
+                                            <br/>
                                         </div>
                                         <div class="col-3">
-                                            <strong>Physical Limitations </strong><br/>
+                                            <strong>Physical Limitations</strong>
+                                            <br/>
                                         </div>
                                         <div class="col-3">
-                                            <span t-field="o.physical_limitations"/><br/>
+                                            <span t-field="o.physical_limitations"/>
+                                            <br/>
                                         </div>
                                     </div>
                                 </t>
@@ -1379,7 +1565,8 @@
                                 <div class="text-center">
                                     <h5>
                                         <span style="text-align:center;color:red">
-                                            CARDIAC TESTS AND PROCEDURES</span>
+                                            CARDIAC TESTS AND PROCEDURES
+                                        </span>
                                     </h5>
                                 </div>
                                 <br/>
@@ -1390,23 +1577,40 @@
                                     <div class="text-left">
                                         <h5>
                                             <span style="text-align:left;color:orange">
-                                                <i class="fa fa-angle-right"></i> ECG :-</span>
+                                                <i class="fa fa-angle-right"></i>
+                                                ECG :-
+                                            </span>
                                         </h5>
                                     </div>
                                     <br/>
                                     <table class="table table-sm border" style="">
                                         <thead>
                                             <tr>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    SR. No.</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    Date</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    PRE EECP</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    POST EECP</span></th>
-                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px"><span>
-                                                    REMARKS</span></th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        SR. No.
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        Date
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        PRE EECP
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        POST EECP
+                                                    </span>
+                                                </th>
+                                                <th style="border-color: white;border-style: inset;background-color:#000000;text-align: center;color:white;font-size: 13px">
+                                                    <span>
+                                                        REMARKS
+                                                    </span>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1419,16 +1623,20 @@
                                                     </td>
                                                     <td style="text-align: center; width:15%; border-style: inset;">
                                                         <span
-                                                                t-field="ecg_line.date"/></td>
+                                                                t-field="ecg_line.date"/>
+                                                    </td>
                                                     <td style="text-align: center; width:25%; border-style: inset;">
                                                         <span
-                                                                t-field="ecg_line.pre_eecp"/></td>
+                                                                t-field="ecg_line.pre_eecp"/>
+                                                    </td>
                                                     <td style="text-align: center; width:25%; border-style: inset;">
                                                         <span
-                                                                t-field="ecg_line.post_eecp"/></td>
+                                                                t-field="ecg_line.post_eecp"/>
+                                                    </td>
                                                     <td style="text-align: center; width:25%; border-style: inset;">
                                                         <span
-                                                                t-field="ecg_line.text"/></td>
+                                                                t-field="ecg_line.text"/>
+                                                    </td>
 
                                                 </tr>
                                             </t>
@@ -1488,5 +1696,167 @@
                 </t>
             </t>
         </template>
+
+        <!--MEDICINES PATIENT -->
+        <template id="test_bh.report_medicines_patient">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="test_bh.md_external_layout">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <h4 class="mt16 text-left">
+                                <span>Patient Name &amp;nbsp;&amp;nbsp; : &amp;nbsp;
+                                    <span t-field="o.name"/>
+                                </span>
+                            </h4>
+                            <div style="clear:both"/>
+                            <br/>
+                            <table>
+                                <table border="0" cellpadding="0" cellspacing="0" width="30%" class="float-left">
+                                    <thead>
+                                        <tr t-if="o.hr" style="border-style:hidden;">
+                                            <td>
+                                                Heart Rate.
+                                            </td>
+                                            <td>
+                                                :&amp;nbsp;
+                                            </td>
+                                            <td>
+                                                <span t-field="o.hr"/>
+                                            </td>
+                                        </tr>
+
+                                        <tr t-if="o.weight" style="border-style:hidden;">
+                                            <td>
+                                                Weight.
+                                            </td>
+                                            <td>
+                                                :&amp;nbsp;
+                                            </td>
+                                            <td>
+                                                <span t-field="o.weight"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-if="o.bp" style="border-style:hidden;">
+                                            <td>
+                                                Blood Pressure.
+                                            </td>
+                                            <td>
+                                                :&amp;nbsp;
+                                            </td>
+                                            <td>
+                                                <span t-field="o.bp"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-if="o.spo2" style="border-style:hidden;">
+                                            <td>
+                                                Spo2.
+                                            </td>
+                                            <td>
+                                                :&amp;nbsp;
+                                            </td>
+                                            <td>
+                                                <span t-field="o.spo2"/>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <table border="0" cellpadding="0" cellspacing="0" width="40%" class="float-right">
+                                </table>
+                                <table border="0" cellpadding="0" cellspacing="0" width="30%" class="float-right">
+                                    <thead>
+                                        <tr t-if="o.fbs" style="border-style:hidden;">
+                                            <td width="15px">
+                                                FBS
+                                            </td>
+                                            <td width="25px">
+                                                :
+                                                <span t-field="o.fbs"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-if="o.pp2bs" style="border-style:hidden;">
+                                            <td width="15px">
+                                                PP2BS
+                                            </td>
+                                            <td width="25px">
+                                                :
+                                                <span t-field="o.pp2bs"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-if="o.s_creatinine" style="border-style:hidden;">
+                                            <td width="15px">
+                                                S. Creatinine
+                                            </td>
+                                            <td width="25px">
+                                                :
+                                                <span t-field="o.s_creatinine"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-if="o.rbs" style="border-style:hidden;">
+                                            <td width="15px">
+                                                RBS
+                                            </td>
+                                            <td width="25px">
+                                                :
+                                                <span t-field="o.rbs"/>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </table>
+                            <div style="clear:both"/>
+                            <br/>
+                            <table class="table table-bordered  table-sm o_main_table">
+                                <thead>
+                                    <tr >
+                                        <th style="width:10%;background-color:#808080;text-align: center;color:white"
+                                            class="text-left">
+                                            <span>SR NO.</span>
+                                        </th>
+                                        <th style="width:20%;background-color:#808080;text-align: center;color:white"
+                                            class="text-left">
+                                            <span>NAME</span>
+                                        </th>
+                                        <th style="width:50%;background-color:#808080;text-align: center;color:white"
+                                            name="dw_desc" class="text-left">DESCRIPTION
+                                        </th>
+                                        <th style="width:20%;background-color:#808080;text-align: center;color:white"
+                                            name="dw_frequency"
+                                            class="text-left"
+                                        >FREQUENCY
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="sale_tbody">
+                                    <t t-set="sequence" t-value="1"/>
+                                    <t t-foreach="o.medicines_list_ids" t-as="medicines_line">
+                                        <tr >
+                                            <td name="td_sequence"
+                                                style=";text-align: left;color:black">
+                                                <t t-esc="sequence"/>
+                                                <t t-set="sequence" t-value="sequence + 1"/>
+                                            </td>
+                                            <td name="td_name"
+                                                style=";text-align: left;color:black">
+                                                <span t-field="medicines_line.name"/>
+                                            </td>
+                                            <td name="td_description"
+                                                style=";text-align: left;color:black">
+                                                <span t-field="medicines_line.description"/>
+                                            </td>
+                                            <td name="td_frequency"
+                                                style=";text-align: left;color:black">
+                                                <span t-field="medicines_line.frequency"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
     </data>
 </odoo>
