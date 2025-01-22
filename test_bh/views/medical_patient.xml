@@ -6,17 +6,72 @@
         <field name="arch" type="xml">
             <form string="Patient">
                 <header>
-                    <button name='start_treatment' type='object' string="Initiated EECP" class='oe_highlight'/>
+                    <button name='start_treatment' type='object' string="Start Treatment"
+                            attrs="{'invisible':[('state','not in','inquiry')]}"
+                            class='oe_highlight'/>
+                    <button name='stop_treatment' type='object' string="Stop Treatment"
+                            attrs="{'invisible':[('state','not in','eecp_started')]}"
+                            class='oe_highlight'/>
+                    <button name='cancel' type='object' string="Cancel"
+                            attrs="{'invisible':[('state','not in',('inquiry','eecp_started'))]}"
+                            class='oe_highlight'/>
+                    <button name='reset_to_inquiry' type='object' string="Reset To Inquiry"
+                            attrs="{'invisible':[('state','not in','cancel')]}"
+                            class='oe_highlight'/>
 
+                    <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box"
+                         attrs="{'invisible':[('state','in','inquiry')]}">
+                        <button type="object"
+                                name="nothing"
+                                class="oe_stat_button"
+                                icon="fa-inr">
+                            <div class="o_form_field o_stat_info" modifiers="{}">
+                                <span class="o_stat_value" modifiers="{}">
+                                    <field name="remain_amount" widget="monetary" style="color:red;"
+                                           modifiers="{'readonly':true}"/>
+                                </span>
+                                <span class="o_stat_text" modifiers="{}">
+                                    Remain
+                                </span>
+                            </div>
+                        </button>
+                        <button type="object"
+                                name="action_open_billing"
+                                class="oe_stat_button"
+                                icon="fa-credit-card-alt">
+                            <div class="o_form_field o_stat_info" modifiers="{}">
+                                <span class="o_stat_value" modifiers="{}">
+                                    <field name="total_inv_amt" widget="monetary"
+                                           options="{'currency_field': 'currency_id'}" modifiers="{'readonly':true}"/>
+                                </span>
+                                <span class="o_stat_text" modifiers="{}">
+                                    Payment
+                                </span>
+                            </div>
+                        </button>
+                        <button type="object"
+                                name="action_refund_billing"
+                                class="oe_stat_button"
+                                icon="fa-credit-card-alt">
+                            <div class="o_form_field o_stat_info" modifiers="{}">
+                                <span class="o_stat_value" modifiers="{}">
+                                    <field name="total_inv_refund_amt" widget="monetary"
+                                           options="{'currency_field': 'currency_id'}" modifiers="{'readonly':true}"/>
+                                </span>
+                                <span class="o_stat_text" modifiers="{}">
+                                    Return
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+
                     <field name="photo" nolabel="1" class="oe_left oe_avatar" img_width="120"
                            img_height="120" width="120" height="120"
                            widget="image"/>
                     <div class="oe_title">
-<!--                        <div class="oe_edit_only">-->
-<!--                            <label for="patient_id"/>-->
-<!--                        </div>-->
                         <h1>
                             <field style="width: 100%; text-transform: uppercase;" name="patient_id"
                                    default_focus="1" placeholder="Patient Name"/>
@@ -34,7 +89,7 @@
                                     <field name="patient_id" invisible="1"/>
                                     <field name="company_id" invisible="1"/>
                                     <field name="currency_id" invisible="1"/>
-                                    <field name="date_of_birth"/>
+                                    <field name="date_of_birth" required="1"/>
                                     <field name="age" readonly="1"/>
                                     <field name="create_date"/>
                                     <field name="marital_status"/>
@@ -53,20 +108,57 @@
                                         <field name="city" placeholder="City" class="o_address_street"/>
                                         <field name="state_id" class="o_address_city" placeholder="State"
                                                options="{&quot;no_open&quot;: True}"/>
-                                        <field name="country_id" placeholder="Country" class="o_address_state"/>
-                                        <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                        <field name="country_id" placeholder="Country"
+                                               options="{&quot;no_open&quot;: True}"
+                                               class="o_address_state"/>
 
+                                        <field name="zip" placeholder="ZIP" class="o_address_zip"/>
                                     </div>
-                                    <field name="mobile" placeholder="Enter Mobile ..." class="o_address_street"/>
-                                    <field name="phone" placeholder="Enter Phone..." class="o_address_street"/>
-                                    <field name="mobile_1" placeholder="Enter Mobile 2..." class="o_address_street"/>
-                                    <field name="mobile_2" placeholder="Enter Mobile 3..." class="o_address_street"/>
+                                    <field name="mobile" placeholder="Enter Mobile ..." class="o_address_zip"/>
+                                    <field name="phone" placeholder="Enter Phone..." class="o_address_zip"/>
+                                    <field name="mobile_1" placeholder="Enter Mobile 2..."
+                                           class="o_address_zip"/>
+                                    <field name="mobile_2" placeholder="Enter Mobile 3..."
+                                           class="o_address_zip"/>
                                     <field name="partner_address_id" invisible="1"/>
                                 </group>
                             </group>
-
+                            <hr>
+                                <seperator></seperator>
+                            </hr>
+                            <group string="Treatment"
+                                   attrs="{'invisible':[('state','not in',('eecp_started','eecp_completed'))]}">
+                                <group>
+                                    <field name="treatment_start_date"/>
+                                </group>
+                                <group>
+                                    <field name="treatment_stop_date"/>
+                                </group>
+                                <group attrs="{'invisible':[('comp_treatment_bool','=', True)]}">
+                                    <field name="treatment_day"/>
+                                </group>
+                                <group attrs="{'invisible':[('comp_treatment_bool','!=', True)]}">
+                                    <field name="comp_treatment_day"/>
+                                </group>
+                                <group>
+                                    <field name="comp_treatment_bool" invisible="1"/>
+                                    <field name="remain_amount"/>
+                                </group>
+                            </group>
+                            <hr>
+                                <seperator></seperator>
+                            </hr>
+                            <group string="Holiday's"
+                                   attrs="{'invisible':[('state','not in',('eecp_started','eecp_completed'))]}">
+                                <field name='patient_holidays_ids' nolabel="1">
+                                    <tree strig="Patient Leave" editable="bottom">
+                                        <field name="medical_patient_id" invisible="1"/>
+                                        <field name="date"/>
+                                        <field name="remarks"/>
+                                    </tree>
+                                </field>
+                            </group>
                         </page>
-
 
                         <!--Cardiac History-->
                         <page string="Cardiac History">
@@ -78,12 +170,53 @@
 
 
                         <page string="Medical / Surgical History">
-                            <group string="Patient Medical / Surgical History">
+                            <group>
                                 <group>
+                                    <group>
+                                        <field name="diabetes_mellitus"/>
+                                    </group>
+                                    <group attrs="{'invisible':[('diabetes_mellitus','!=',True)]}">
+                                        <field name="diabetes_type"/>
+                                        <field name="diabetes_years"/>
+                                    </group>
                                 </group>
                                 <group>
+                                    <group>
+                                        <field name="hin"/>
+                                    </group>
+                                    <group attrs="{'invisible':[('hin','!=',True)]}">
+                                        <field name="hin_years"/>
+                                    </group>
                                 </group>
                             </group>
+                            <seperator/>
+                            <hr/>
+                            <group>
+                                <field name="ckd"/>
+                                <field name="ckd_years" attrs="{'invisible':[('ckd','!=',True)]}"/>
+                            </group>
+                            <seperator/>
+                            <hr/>
+                            <group>
+                                <field name="leg_fracture"/>
+                                <field name="fracture_text" attrs="{'invisible':[('leg_fracture','!=',True)]}"/>
+                            </group>
+                            <seperator/>
+                            <hr/>
+                            <group>
+                                <field name="leg_surgery"/>
+                                <field name="surgery_text" attrs="{'invisible':[('leg_surgery','!=',True)]}"/>
+                            </group>
+                            <hr/>
+                            <group>
+                                <group>
+                                    <field name="other_surgical_conditions"/>
+                                </group>
+                                <group attrs="{'invisible':[('other_surgical_conditions','!=',True)]}">
+                                    <field name="other_surgical_conditions_text"/>
+                                </group>
+                            </group>
+
                         </page>
                         <page string="Sign and Symptoms">
                             <group string="Patient Sign and Symptoms">
@@ -160,44 +293,156 @@
                                 <page string="ECG">
                                     <group string="ECG">
                                         <field name='ecg_ids' nolabel="1">
-                                            <tree strig="ECG " editable="bottom">
-                                                <field name="medical_patient_id" readonly="1"/>
+                                            <tree strig="ECG" editable="bottom">
+                                                <field name="medical_patient_id" invisible="1"/>
+                                                <field name="date"/>
+                                                <field name="pre_eecp"/>
+                                                <field name="post_eecp"/>
                                                 <field name="text"/>
                                                 <field name="documents" widget="binary" filename="name"/>
                                             </tree>
+                                            <form>
+                                                <group>
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="date"/>
+                                                    <field name="documents"/>
+                                                    <field name="text"/>
+                                                </group>
+                                                <group>
+                                                    <field name="pre_eecp"/>
+                                                    <field name="post_eecp"/>
+                                                </group>
+                                            </form>
                                         </field>
+
                                     </group>
                                 </page>
                                 <page string="Echo">
                                     <group string="Echo">
                                         <field name='echo_ids' nolabel="1">
-                                            <tree strig="Echo " editable="bottom">
-                                                <field name="medical_patient_id" readonly="1"/>
+                                            <tree strig="Echo ">
+                                                <field name="medical_patient_id" invisible="1"/>
+                                                <field name="date"/>
+                                                <field name="pre_eecp"/>
+                                                <field name="post_eecp"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
+                                            <form>
+                                                <group>
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="date"/>
+                                                    <field name="documents"/>
+                                                </group>
+                                                <group>
+                                                    <field name="text"/>
+                                                </group>
+                                            </form>
                                         </field>
                                     </group>
                                 </page>
-                                <page string="Stress Echo / Thallium Echo">
-                                    <group string="Stress Echo / Thallium Echo">
+                                <page string="Treadmill Test/ Stress Test">
+                                    <group string="Treadmill Test/ Stress Test">
                                         <field name='stress_echo_ids' nolabel="1">
-                                            <tree strig="Stress Echo / Thallium Echo " editable="bottom">
-                                                <field name="medical_patient_id" readonly="1"/>
+                                            <tree strig="Treadmill Test/ Stress Test">
+                                                <field name="medical_patient_id" invisible="1"/>
+                                                <field name="date"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
+                                            <form>
+                                                <group>
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="date"/>
+                                                    <field name="documents"/>
+                                                </group>
+                                                <group>
+                                                    <field name="text"/>
+                                                </group>
+                                            </form>
                                         </field>
                                     </group>
                                 </page>
+
+                                <page string="NT Pro BNP">
+                                    <field name='nt_pro_bnp_ids' nolabel="1">
+                                        <tree strig="NT pro BNP">
+                                            <field name="medical_patient_id" invisible="1"/>
+                                            <field name="date"/>
+                                            <field name="pre_eecp"/>
+                                            <field name="post_eecp"/>
+                                            <field name="nt_pro_bnp"/>
+                                        </tree>
+                                        <form>
+                                            <group>
+                                                <field name="medical_patient_id" invisible="1"/>
+                                                <field name="date"/>
+                                            </group>
+                                            <group>
+                                                <field name="pre_eecp"/>
+                                                <field name="post_eecp"/>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </page>
+
+                                <page string="PT INR">
+                                    <notebook>
+                                        <page string="PT details">
+                                            <field name='cad_pt_ids' nolabel="1">
+                                                <tree strig="PT Details" editable="bottom">
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="date"/>
+                                                    <field name="cad_pt"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="INR details">
+                                            <field name='cad_inr_ids' nolabel="1">
+                                                <tree strig="INT Details" editable="bottom">
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="date"/>
+                                                    <field name="cad_inr"/>
+                                                </tree>
+
+                                            </field>
+                                        </page>
+                                    </notebook>
+                                </page>
+
+
+                                <page string="Renal Liver Profile">
+                                    <field name='renal_liver_ids' nolabel="1">
+                                        <tree editable="bottom">
+                                            <field name="medical_patient_id" invisible="1"/>
+                                            <field name="date"/>
+                                            <field name="s_creatinine"/>
+                                            <field name="s_na_plus"/>
+                                            <field name="s_k_plus"/>
+                                            <field name="s_cl_minus"/>
+                                            <field name="sgpt"/>
+                                        </tree>
+                                    </field>
+                                </page>
+
+
                                 <page string="Cardiac Cath / Angiography ">
                                     <group string="Cardiac Cath / Angiography ">
                                         <field name='angiography_ids' nolabel="1">
-                                            <tree strig="Cardiac Cath / Angiography  " editable="bottom">
-                                                <field name="medical_patient_id" readonly="1"/>
+                                            <tree strig="Cardiac Cath / Angiography ">
+                                                <field name="medical_patient_id" invisible="1"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
+                                            <form>
+                                                <group>
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="documents"/>
+                                                </group>
+                                                <group>
+                                                    <field name="text"/>
+                                                </group>
+                                            </form>
                                         </field>
                                     </group>
                                 </page>
@@ -205,11 +450,22 @@
                                 <page string="PTCA / Stent  ">
                                     <group string="PTCA / Stent ">
                                         <field name='ptca_stend_ids' nolabel="1">
-                                            <tree strig="PTCA / Stent  " editable="bottom">
-                                                <field name="medical_patient_id" readonly="1"/>
+                                            <tree strig="PTCA / Stent">
+                                                <field name="medical_patient_id" invisible="1"/>
+                                                <field name="date"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
+                                            <form>
+                                                <group>
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="documents"/>
+                                                </group>
+                                                <group>
+                                                    <field name="text"/>
+                                                </group>
+                                            </form>
+
                                         </field>
                                     </group>
                                 </page>
@@ -217,11 +473,20 @@
                                 <page string="CABG ">
                                     <group string="CABG">
                                         <field name='cabg_ids' nolabel="1">
-                                            <tree strig="CABG " editable="bottom">
-                                                <field name="medical_patient_id" readonly="1"/>
+                                            <tree strig="CABG">
+                                                <field name="medical_patient_id" invisible="1"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
+                                            <form>
+                                                <group>
+                                                    <field name="medical_patient_id" invisible="1"/>
+                                                    <field name="documents"/>
+                                                </group>
+                                                <group>
+                                                    <field name="text"/>
+                                                </group>
+                                            </form>
                                         </field>
                                     </group>
                                 </page>
@@ -230,11 +495,16 @@
                                     <group string="Other Tests">
                                         <field name='other_test_ids' nolabel="1">
                                             <tree strig="Other Tests " editable="bottom">
-                                                <field name="medical_patient_id" readonly="1"/>
+                                                <field name="medical_patient_id" invisible="1"/>
                                                 <field name="text"/>
                                                 <field name="documents"/>
                                             </tree>
                                         </field>
+                                    </group>
+                                </page>
+                                <page string="All Documents">
+                                    <group>
+                                        <field name="all_report_docs" nolabel="1" class="oe_left oe_avatar"/>
                                     </group>
                                 </page>
 
@@ -245,50 +515,101 @@
                         <page string="CAD Risk Factors">
                             <notebook>
                                 <page string="Family History of CAD">
-
+                                    <field name="cad_history_text" nolabel="1"/>
                                 </page>
+
+                                <page string="Smoking /Tabacco">
+                                    <group>
+                                        <group>
+                                            <field name="currently_smoking"/>
+                                        </group>
+                                        <group>
+                                            <field name="past_history"/>
+                                        </group>
+                                        <group>
+                                            <field name="how_many_per_day"
+                                                   attrs="{'invisible':[('currently_smoking','!=',True)]}"/>
+                                        </group>
+                                        <group>
+                                            <field name="smoking_since_how_long"
+                                                   attrs="{'invisible':[('past_history','!=',True)]}"/>
+
+                                        </group>
+                                        <group>
+                                            <field name="desire_to_quite"
+                                                   attrs="{'invisible':[('currently_smoking','!=',True)]}"/>
+                                        </group>
+                                        <group>
+                                            <field name="date_to_quit_smoking"
+                                                   attrs="{'invisible':[('past_history','!=',True)]}"/>
+
+                                        </group>
+                                    </group>
+                                </page>
+
+
+                                <page string="Blood Pressure">
+                                    <group>
+                                        <group>
+                                            <field name="hypertension"/>
+                                        </group>
+                                        <group>
+
+                                        </group>
+                                        <group>
+                                            <field name="hypertension_how_many_years"
+                                                   attrs="{'invisible':[('hypertension','!=',True)]}"/>
+                                        </group>
+                                        <group>
+                                            <field name="medications_bp"
+                                                   attrs="{'invisible':[('hypertension','!=',True)]}"/>
+                                        </group>
+                                    </group>
+                                </page>
+
+
                                 <page string="Cholesterol">
                                     <group>
-                                        <field name="is_chol_bool" widget="boolean_toggle"/>
+                                        <group>
+                                            <field name="is_chol_bool"/>
+                                        </group>
                                     </group>
                                     <group string="Cholesterol Details"
                                            attrs="{'invisible':[('is_chol_bool','!=',True)]}">
-                                        <group>
-                                            <field name='patient_cholesterol_ids' nolabel="1">
-                                                <tree strig="Cholesterol " editable="bottom">
-                                                    <field name="medical_patient_id" readonly="1"/>
-                                                    <field name="date"/>
-                                                    <field name="total_chol"/>
-                                                    <field name="ldl"/>
-                                                    <field name="hdl"/>
-                                                    <field name="triglycerides"/>
-                                                    <field name="other_tests"/>
-                                                    <field name="medications"/>
-                                                </tree>
-                                            </field>
-                                        </group>
+                                        <field name='patient_cholesterol_ids' nolabel="1">
+                                            <tree strig="Cholesterol " editable="bottom">
+                                                <field name="medical_patient_id" invisible="1"/>
+                                                <field name="date"/>
+                                                <field name="total_chol"/>
+                                                <field name="ldl"/>
+                                                <field name="hdl"/>
+                                                <field name="triglycerides"/>
+                                                <field name="vldl"/>
+                                                <field name="medications"/>
+                                            </tree>
+                                        </field>
                                     </group>
                                 </page>
                                 <page string="Diabetes">
                                     <group>
-                                        <field name="is_diabetes_bool" widget="boolean_toggle"/>
+                                        <field name="is_diabetes_bool"/>
+                                    </group>
+                                    <group attrs="{'invisible':[('is_diabetes_bool','!=',True)]}">
+                                        <field name="how_long"/>
+                                        <field name="medications"/>
                                     </group>
                                     <group string="Diabetes Details"
                                            attrs="{'invisible':[('is_diabetes_bool','!=',True)]}">
-                                        <group>
-                                            <field name='patient_diabetes_ids' nolabel="1">
-                                                <tree strig="Diabetes " editable="bottom">
-                                                    <field name="medical_patient_id" readonly="1"/>
-                                                    <field name="date"/>
-                                                    <field name="rbs"/>
-                                                    <field name="fast_blood_suger"/>
-                                                    <field name="ppbs"/>
-                                                    <field name="hba1c"/>
-                                                    <field name="how_long"/>
-                                                    <field name="medications"/>
-                                                </tree>
-                                            </field>
-                                        </group>
+                                        <field name='patient_diabetes_ids' nolabel="1">
+                                            <tree strig="Diabetes " editable="bottom">
+                                                <field name="medical_patient_id" invisible="1"/>
+                                                <field name="date"/>
+                                                <field name="rbs"/>
+                                                <field name="fast_blood_suger"/>
+                                                <field name="ppbs"/>
+                                                <field name="hba1c"/>
+                                            </tree>
+                                        </field>
                                     </group>
                                 </page>
                                 <page string="Stress">
@@ -346,49 +667,50 @@
                                     </group>
                                 </page>
 
-                                <page string="Physical Examination">
-                                    <group>
-                                        <group>
-                                            <field name="height" style="width: 33%"/>
-                                        </group>
-                                        <group>
-                                            <field name="weight" style="width: 33%"/>
-                                        </group>
-                                        <group>
-                                            <field name="bmi" style="width: 33%"/>
-                                        </group>
-                                    </group>
-                                    <group>
-                                        <field name='pulse'/>
-                                        <field name='blood_pressure'/>
-                                        <field name='auscultatory_finding'/>
-                                        <field name='peripheral_pulses'/>
-                                    </group>
-                                </page>
-
-
                             </notebook>
 
                         </page>
 
-                        <page string="Physical Examinations">
-                            <group string="Patient Physical Examinations">
+                        <group string="Patient Physical Examinations">
+                            <group>
                                 <group>
+                                    <field name="height" style="width: 33%"/>
                                 </group>
                                 <group>
+                                    <field name="weight" style="width: 33%"/>
+                                </group>
+                                <group>
+                                    <field name="bmi" style="width: 33%"/>
                                 </group>
                             </group>
-                        </page>
+                            <group>
+                                <field name='pulse'/>
+                                <field name='blood_pressure'/>
+                                <field name='auscultatory_finding'/>
+                                <field name='peripheral_pulses'/>
+                            </group>
+                        </group>
 
                         <page string="Medications">
                             <group>
                                 <field name='patient_medications_ids' nolabel="1">
                                     <tree strig="Medications " editable="bottom">
-                                        <field name="medical_patient_id" readonly="1"/>
+                                        <field name="medical_patient_id" invisible="1"/>
                                         <field name="date"/>
                                         <field name="name"/>
                                         <field name="dose"/>
                                         <field name="frequency"/>
+                                    </tree>
+                                </field>
+                            </group>
+
+                            <group string="Medicine Documents">
+                                <field name='medicine_docs_ids' nolabel="1">
+                                    <tree strig="Medicine Documents " editable="bottom">
+                                        <field name="medical_patient_id" invisible="1"/>
+                                        <field name="date"/>
+                                        <field name="remarks"/>
+                                        <field name="documents"/>
                                     </tree>
                                 </field>
                             </group>
@@ -414,39 +736,373 @@
                         </page>
 
                         <page string="Indications / Contra Indi.">
-                            <form>
-                                <div class="o_setting_container">
-                                    <div class="settings_tab"/>
-                                    <div class="settings">
-                                        <div class="app_settings_block" data-string="Patient" string="Patient's Name">
-                                            <h2>Patient's Name</h2>
-                                            <div class="row mt16 o_settings_container">
-                                                <div class="col-12 col-lg-6 o_setting_box">
-                                                    <div class="o_setting_right_pane" id="barcode_settings">
-                                                        <label for="chronic_cad"/>
-                                                        <span class="fa fa-envelope-square"
-                                                              title="Values set here are set sender email of marketplace."/>
-                                                        <div class="text-muted" name="email_from">
-                                                            Values set here are set sender email of marketplace.
-                                                        </div>
-                                                        <div class="content-group">
-                                                            <field name="chronic_cad" id="chronic_cad"/>
-                                                        </div>
-                                                    </div>
+                            <notebook>
+                                <page string="Contra Indication CheckList">
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box"
+                                                 title="(a.)Surgery / PTCA not contemplated">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_1"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        1. Uncontrolled Ventricular/Supraventricular arrhythmias
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_2"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        2. Decompensated heart Failure (raised central venous pressure >
+                                                        7mmHg or Pulmonary oedema)
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_3"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        3. Severe Pulmonary hypertension(MRsn pulm. artery pressure >
+                                                        50mmHg)
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_4"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        4. Uncontrolled systemic hypertension
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_5"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        5. Severe aortic insufficiency
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_6"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        6. Severe Lower Extremity peripheral vascular diesase with rest
+                                                        claudication or no -healing ulcers
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_7"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        7. Aortic aneurysm surgical repair
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_8"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        8. Current Or recent (less then 2 months) Lower extremity
+                                                        thyombophlebitis
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_9"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        9. Lower extermity deep vein thrombosis
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_10"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        10. Bleeding diathesis or on warfarin with INR > 3.0
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-left:20px;">
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="con_indication_11"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        11. Pregnancy
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </page>
+
+
+                                <!--============   2nd page =========-->
+                                <page string="Indication(s) Check List">
+                                    <h2>1. CHRONIC CAD</h2>
+                                    <div style="margin-left:20px;">
+                                        <span>(a.) Surgery / PTCA not contemplated</span>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box"
+                                                 title="(a.)Surgery / PTCA not contemplated">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_1"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        1. Patient Refused Due to :
+                                                    </span>
+                                                    <field name="patient_refused_due"
+                                                           attrs="{'invisible':[('indication_1','!=',True)]}"
+                                                           nolabel="1"/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_2"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">2. Diffuse Distal Disease</span>
+                                                    <br/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_3"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">3. Systemic Disorder-High Risk
+                                                        Surgery</span>
+                                                    <br/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_4"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">4. LV Dysfunction - High Risk CABG; EF
+                                                        less
+                                                        than 35%</span>
+                                                    <br/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left:20px;">
+                                        <span>(b.) Preparation For Revascularization.</span>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_5"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">1. Severe , LV dysfunction with log if
+                                                        Hibernation to stabilize heart function.</span>
+                                                    <br/>
+                                                    <span class="o_form_label">
+                                                        2. Waiting Due to Other reason/Very elderly patient.
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <h2>2. ACUTE CORONARY SYNDROME</h2>
+                                    <div style="margin-left:20px;">
+                                        <span/>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_a"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        A. Unstable Angina
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_b"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        B. Acute MI
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_c"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        C. Cardiogenic Shock.
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_d"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        D. Restricted activity to avoid angina symptoms.
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <h2>3. CHRONIC CCF; Also no responce to medical therapy. </h2>
+                                    <div style="margin-left:20px;">
+                                        <span/>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_non_cad_333"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        CHRONIC CCF; Also no responce to medical therapy.
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <h2>4. NON - CAD CASE</h2>
+                                    <div style="margin-left:20px;">
+                                        <span/>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_non_cad_1"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        1. Preventive care
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_non_cad_2"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        2. Atherosclerotic disease involving brain,kidneys
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt16 o_settings_container">
+                                            <div class="col-12 col-lg-6 o_setting_box">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="indication_non_cad_3"/>
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <span class="o_form_label">
+                                                        3. Repeat case
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </page>
+                            </notebook>
                         </page>
 
                         <page string="6MWT">
                             <group>
                                 <group>
-                                    <field name="patient_id" readonly="1"/>
-                                    <field name="date_of_birth" readonly="1"/>
-                                    <field name="age" readonly="1"/>
                                     <field name="target_hr"/>
                                 </group>
                                 <group>
@@ -512,6 +1168,7 @@
 
                         <page string="Final Diagnosis">
                             <group>
+                                <field name="final_html"/>
                             </group>
                             <group>
                             </group>
@@ -519,21 +1176,12 @@
 
                         <page string="Treatment Chart">
                             <group>
-                                <group>
-                                    <field name="patient_id" readonly="1"/>
-                                </group>
-                                <group>
-                                    <field name="age" readonly="1"/>
-                                </group>
-                            </group>
-                            <group>
                                 <field name='treatment_chart_ids' nolabel="1">
                                     <tree editable="bottom">
                                         <field name="sequence" widget="handle"/>
                                         <field name="date"/>
                                         <field name="pre_bp"/>
                                         <field name="hr"/>
-                                        <field name="time"/>
                                         <field name="post_hr"/>
                                         <field name="rbs"/>
                                         <field name="diagnosis_systolic_aug_ratio"/>
@@ -543,7 +1191,11 @@
                                 </field>
                             </group>
                         </page>
-
+                        <page string="Patient Consent">
+                            <group>
+                                <field name="patient_consent" nolabel="1" class="oe_left oe_avatar"/>
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
@@ -557,7 +1209,12 @@
             <tree string="Patient Information">
                 <field name="name"/>
                 <field name="patient_id"/>
+                <field name="occupation"/>
+                <field name="phone"/>
                 <field name="date_of_birth"/>
+                <field name="total_inv_amt" sum="Total Invoiced"/>
+                <field name="total_paid_amt" sum="Total Paid"/>
+                <field name="total_inv_refund_amt" sum="Total Refund"/>
             </tree>
         </field>
     </record>
@@ -587,6 +1244,7 @@
                                         <field name="patient_id"/>
                                     </a>
                                 </h4>
+
                                 <ul>
                                     <li>DOB:
                                         <field name="date_of_birth"/>
@@ -652,6 +1310,25 @@
                 </templates>
             </kanban>
         </field>
+    </record>
+
+
+    <record id="action_move_in_invoice_type" model="ir.actions.act_window">
+        <field name="name">Credit Notes</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" ref="account.view_invoice_tree"/>
+        <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+        <field name="domain">[('type', '=', 'out_refund')]</field>
+        <field name="context">{'default_type': 'out_refund'}</field>
+    </record>
+
+    <record id="action_move_out_invoice_type" model="ir.actions.act_window">
+        <field name="name">Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" ref="account.view_invoice_tree"/>
+        <field name="search_view_id" ref="account.view_account_invoice_filter"/>
     </record>
 
 

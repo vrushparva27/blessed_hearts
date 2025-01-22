@@ -3,6 +3,8 @@ access_medical_patient,medical.patient,model_medical_patient,base.group_user,1,1
 access_patient_cholesterol,patient.cholesterol,model_patient_cholesterol,base.group_user,1,1,1,1
 access_patient_diabetes,patient.diabetes,model_patient_diabetes,base.group_user,1,1,1,1
 access_patient_medications,patient.medications,model_patient_medications,base.group_user,1,1,1,1
+access_patient_medicine,patient.medicine,model_patient_medicine,base.group_user,1,1,1,1
+access_medicines_list,medicines.list,model_medicines_list,base.group_user,1,1,1,1
 access_patient_ecg,patient.ecg,model_patient_ecg,base.group_user,1,1,1,1
 access_patient_echo,patient.echo,model_patient_echo,base.group_user,1,1,1,1
 access_patient_stress_echo,patient.stress_echo,model_patient_stress_echo,base.group_user,1,1,1,1
@@ -11,4 +13,12 @@ access_patient_angiography,patient.angiography,model_patient_angiography,base.gr
 access_patient_cabg,patient.cabg,model_patient_cabg,base.group_user,1,1,1,1
 access_patient_other_tests,patient.other_tests,model_patient_other_tests,base.group_user,1,1,1,1
 access_patient_treatment_chart,patient.treatment.chart,model_patient_treatment_chart,base.group_user,1,1,1,1
+access_nt_pro_bnp,nt.pro.bnp,model_nt_pro_bnp,base.group_user,1,1,1,1
+access_cad_pt,cad.pt,model_cad_pt,base.group_user,1,1,1,1
+access_cad_inr,cad.inr,model_cad_inr,base.group_user,1,1,1,1
+access_renal_liver_profile,renal.liver.profile,model_renal_liver_profile,base.group_user,1,1,1,1
+access_patient_holiday,patient.holiday,model_patient_holiday,base.group_user,1,1,1,1
+access_patient_medicine_documents,patient.medicine.documents,model_patient_medicine_documents,base.group_user,1,1,1,1
+
+
 

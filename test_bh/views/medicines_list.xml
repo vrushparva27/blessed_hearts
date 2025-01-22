@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="medicines_list_form_view" model="ir.ui.view">
+        <field name="name">medicines.list.form.view</field>
+        <field name="model">medicines.list</field>
+        <field name="arch" type="xml">
+            <form string="Medicines">
+                <sheet>
+                    <notebook>
+                        <page string="Medicines Name">
+                            <group>
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="frequency"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="medicines_list_tree_view" model="ir.ui.view">
+        <field name="name">medicines.list.tree.view</field>
+        <field name="model">medicines.list</field>
+        <field name="arch" type="xml">
+            <tree string="Medicines Name">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="frequency"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_medicines_list" model="ir.actions.act_window">
+        <field name="name">Medicines List</field>
+        <field name="res_model">medicines.list</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_medicines_list_code" action="action_medicines_list"
+              string="Medicines List" parent="menu_patient_medicines" sequence="0"/>
+
+
+</odoo>
